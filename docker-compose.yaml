@@ -1,5 +1,4 @@
 version: "3.7"
-
 networks:
   default:
     external:
@@ -25,3 +24,28 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.entrypoints=web"
+
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    hostname: transmission
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.entrypoints=web"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+      - USER=ksmi
+      - PASS=112233
+    volumes:
+      - ./transmission/config/:/config
+      - /home/ksmi/a/plex/movies/:/downloads
+      - /home/ksmi/a/plex/tv/:/serialsHHD
+      - /home/ksmi/a/transmission/watch/:/watch
+    ports:
+      - 9091:9091
+      - 51413:51413
+      - 51413:51413/udp
+    restart: unless-stopped
