@@ -4,10 +4,10 @@ http:
       entryPoints:
         - "web"
       rule: "Host(`web.example.com`)"
-      service: web
+      service: nginx
 
   services:
-    web:
+    nginx:
       loadBalancer:
         servers:
           - url: http://web:80

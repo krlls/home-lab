@@ -18,11 +18,11 @@ services:
       - ./traefik/traefik.yml:/traefik.yml:ro
       - ./traefik/custom/:/custom/:ro
 
-  web:
+  nginx:
     image: nginx:latest
-    container_name: web
-    hostname: web
+    container_name: nginx
+    hostname: nginx
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.nginx.entrypoints=web"
-#      - "traefik.http.routers.nginx.rule=Host(`web.example.com`)"
+      - "traefik.http.routers.nginx.rule=Host(`web.example.com`)"
