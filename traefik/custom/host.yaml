@@ -1,0 +1,22 @@
+http:
+  routers:
+    web:
+      entryPoints:
+        - "web"
+      rule: "Host(`web.example.com`)"
+      service: web
+    webw:
+      entryPoints:
+        - "webwn"
+      rule: "Host(`webw.example.com`)"
+      service: webw
+
+  services:
+    web:
+      loadBalancer:
+        servers:
+          - url: http://web:80
+    webw:
+      loadBalancer:
+        servers:
+          - url: http://webw:9091

@@ -1,0 +1,27 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  traefik:
+    image: "traefik:v2.1"
+    container_name: "traefik"
+    hostname: "traefik"
+    ports:
+      - "80:80"
+      - "8080:8080"
+    volumes:
+      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+      - ./traefik/traefik.yml:/traefik.yml:ro
+      - ./traefik/custom/:/custom/:ro
+
+  web:
+    image: nginx:latest
+    container_name: web
+    hostname: web
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.nginx.entrypoints=web"
