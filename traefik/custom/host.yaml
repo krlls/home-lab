@@ -4,19 +4,10 @@ http:
       entryPoints:
         - "web"
       rule: "Host(`web.example.com`)"
-      service: web
-    transmission:
-      entryPoints:
-        - "webwn"
-      rule: "Host(`transmission.example.com`)"
-      service: transmission
+      service: nginx
 
   services:
-    web:
+    nginx:
       loadBalancer:
         servers:
           - url: http://web:80
-    transmission:
-      loadBalancer:
-        servers:
-          - url: http://transmission:80
