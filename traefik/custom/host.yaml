@@ -5,18 +5,9 @@ http:
         - "web"
       rule: "Host(`web.example.com`)"
       service: web
-    transmission:
-      entryPoints:
-        - "webwn"
-      rule: "Host(`transmission.example.com`)"
-      service: transmission
 
   services:
     web:
       loadBalancer:
         servers:
           - url: http://web:80
-    transmission:
-      loadBalancer:
-        servers:
-          - url: http://transmission:80
