@@ -19,4 +19,4 @@ http:
     transmission:
       loadBalancer:
         servers:
-          - url: http://transmission:9091
+          - url: http://transmission:80
