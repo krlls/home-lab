@@ -69,7 +69,7 @@ services:
       - PLEX_CLAIM=claim-ti3CyARHrBcrK-Ei5oav
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.plex.rule=Host(`plex.example.com`)"
+      - "traefik.http.routers.plex.rule=Host(`promfis.ru`)"
       - "traefik.frontend.rule=Host:plex.example.com"
       - "traefik.port=32400"
     volumes:
