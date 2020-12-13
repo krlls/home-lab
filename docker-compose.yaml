@@ -104,10 +104,10 @@ services:
     container_name: "youtrack"
     hostname: "${YOUTRACK_HOST}.${DOMAIN_NAME}"
     volumes:
-      - ./youtrack/srv/youtrack/data:/opt/youtrack/data
-      - ./youtrack/srv/youtrack/conf:/opt/youtrack/conf
-      - ./youtrack/srv/youtrack/logs:/opt/youtrack/logs
-      - ./youtrack/srv/youtrack/backups:/opt/youtrack/backups
+      - ./youtrack/srv/youtrack/data/:/opt/youtrack/data
+      - ./youtrack/srv/youtrack/conf/:/opt/youtrack/conf
+      - ./youtrack/srv/youtrack/logs/:/opt/youtrack/logs
+      - ./youtrack/srv/youtrack/backups/:/opt/youtrack/backups
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${YOUTRACK_HOST}.rule=Host(`${YOUTRACK_HOST}.${DOMAIN_NAME}`)"
