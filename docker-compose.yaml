@@ -73,6 +73,8 @@ services:
 #      - "traefik.http.routers.plex.rule=Host(`promfis.ru`)"
       - "traefik.frontend.rule=Host:promfis.ru"
       - "traefik.port=32400"
+    ports:
+    - 32400
     volumes:
       - ./plex/config:/config
       - /home/ksmi/a/plex/tv:/tv
