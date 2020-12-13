@@ -24,20 +24,20 @@ services:
   transmission:
     image: linuxserver/transmission
     container_name: transmission
-    hostname: "transmission.${DOMAIN_NAME}"
+    hostname: "${TRANSMISSION_HOST}.${DOMAIN_NAME}"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.transmission.rule=Host(`transmission.${DOMAIN_NAME}`)"
-      - "traefik.http.routers.transmission.entrypoints=websecure"
-      - "traefik.http.routers.transmission.tls.certresolver=mydnschallenge"
-      - "traefik.http.services.transmission.loadbalancer.server.port=9091"
+      - "traefik.http.routers.${TRANSMISSION_HOST}.rule=Host(`${TRANSMISSION_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${TRANSMISSION_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${TRANSMISSION_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${TRANSMISSION_HOST}.loadbalancer.server.port=9091"
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-      - USER=ksmi
-      - PASS=112233
+      - USER=${TRANSMISSION_LOGIN}
+      - PASS=${TRANSMISSION_PASS}
     volumes:
       - /home/ksmi/transmission/config/:/config
       - /home/ksmi/a/plex/movies/:/downloads
@@ -53,18 +53,18 @@ services:
   plex:
     image: linuxserver/plex
     container_name: plex
-    hostname: "plex.${DOMAIN_NAME}"
+    hostname: "${PLEX_HOST}.${DOMAIN_NAME}"
     environment:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM=claim-ti3CyARHrBcrK-Ei5oav
+      - PLEX_CLAIM=${PLEX_CLAIM}
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.plex.rule=Host(`plex.${DOMAIN_NAME}`)"
-      - "traefik.http.routers.plex.entrypoints=websecure"
-      - "traefik.http.routers.plex.tls.certresolver=mydnschallenge"
-      - "traefik.http.services.plex.loadbalancer.server.port=32400"
+      - "traefik.http.routers.${PLEX_HOST}.rule=Host(`${PLEX_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${PLEX_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${PLEX_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${PLEX_HOST}.loadbalancer.server.port=32400"
     ports:
     - 32400
     volumes:
