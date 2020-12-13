@@ -4,7 +4,6 @@ volumes:
   nextcloud:
   db:
 
-
 networks:
   default:
     external:
@@ -71,7 +70,7 @@ services:
       - "traefik.http.routers.${PLEX_HOST}.tls.certresolver=mydnschallenge"
       - "traefik.http.services.${PLEX_HOST}.loadbalancer.server.port=32400"
     ports:
-    - 32400
+    - 32400:32400
     volumes:
       - ./plex/config:/config
       - /home/ksmi/a/plex/tv:/tv
