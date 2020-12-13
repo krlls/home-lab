@@ -6,29 +6,43 @@ networks:
       name: traefik-network
 
 services:
+#  traefik:
+#    image: "traefik:v2.2"
+#    container_name: "traefik"
+#    command:
+#      - "--api.insecure=true"
+#      - "--providers.docker=true"
+##      - "--providers.docker.exposedbydefault=false"
+#      - "--entrypoints.websecure.address=:443"
+#      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
+#      - "--certificatesresolvers.myresolver.acme.email=krrllsm@gmail.com"
+#      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
+#      - "--entrypoints.web.address=:80"
+#      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+#      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+#    ports:
+#      - "443:443"
+#      - "80:80"
+#      - "8070:8080"
+#    volumes:
+#      - "./traefik/srv/letsencrypt:/letsencrypt"
+#      - "/var/run/docker.sock:/var/run/docker.sock:ro"
+#    restart: unless-stopped
+
   traefik:
-    image: "traefik:v2.2"
-    container_name: "traefik"
-    command:
-      - "--log.level=INFO"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=krrllsm@gmail.com"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-    ports:
-      - "443:443"
-      - "80:80"
-      - "8070:8080"
-    volumes:
-      - "./traefik/srv/letsencrypt:/letsencrypt"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: unless-stopped
+    image: traefik:v2.2.0
+    read_only: true
+    container_name: "traefik"
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8080:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yaml:/traefik.yaml:ro
+      - ./traefik/etc/traefik:/etc/traefik/
+      - ./traefik/srv/letsencrypt:/letsencrypt
 
 #  transmission:
 #    image: linuxserver/transmission
@@ -62,6 +76,7 @@ services:
   plex:
     image: linuxserver/plex
     container_name: plex
+    hostname: promfis.ru
     environment:
       - PUID=1000
       - PGID=1000
@@ -69,11 +84,10 @@ services:
       - PLEX_CLAIM=claim-ti3CyARHrBcrK-Ei5oav
     labels:
       - "traefik.enable=true"
-      - "traefik.protocol=https"
-#      - "traefik.http.routers.plex.rule=Host(`promfis.ru`)"
-      - "traefik.frontend.rule=Host:promfis.ru"
-      - "traefik.port=32400"
-      - "traefik.frontend=plex"
+      - "traefik.http.routers.plex.rule=Host(`promfis.ru`)"
+      - "traefik.http.routers.plex.entrypoints=websecure"
+      - "traefik.http.routers.plex.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.plex.loadbalancer.server.port=32400"
     ports:
     - 32400
     volumes:
