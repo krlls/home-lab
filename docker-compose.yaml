@@ -1,5 +1,10 @@
 version: "3.7"
 
+volumes:
+  nextcloud:
+  db:
+
+
 networks:
   default:
     external:
@@ -74,4 +79,36 @@ services:
       - /home/ksmi/a/plex/movies:/moviesHHD
       - /home/ksmi/a/plex/tv:/serialsHHD
     restart: unless-stopped
+
+  nextcloud_app:
+    image: nextcloud
+    container_name: nextcloud_app
+    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.rule=Host(`${NEXT_CLOUD_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${NEXT_CLOUD_HOST}.loadbalancer.server.port=80"
+    ports:
+      - 80
+    links:
+      - nextcloud_db
+    volumes:
+      - ./nextcloud/app:/var/www/html
+      - /home/ksmi/a/nextcloud/data:/var/www/html/data
+    restart: always
+
+  nextcloud_db:
+    image: mariadb
+    container_name: nextcloud_db
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${NEXT_CLOUD_MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
+      - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
 
