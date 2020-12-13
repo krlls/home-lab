@@ -1,5 +1,9 @@
 version: "3.7"
 
+volumes:
+  nextcloud:
+  db:
+
 networks:
   default:
     external:
@@ -7,46 +11,37 @@ networks:
 
 services:
   traefik:
-    image: "traefik:v2.2"
-    container_name: "traefik"
-    command:
-      - "--log.level=INFO"
-      - "--api.insecure=true"
-      - "--providers.docker=true"
-      - "--providers.docker.exposedbydefault=false"
-      - "--entrypoints.websecure.address=:443"
-      - "--certificatesresolvers.myresolver.acme.tlschallenge=true"
-      - "--certificatesresolvers.myresolver.acme.email=${LETSENCRYPT_EMAIL}"
-      - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
-      - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-#      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
-    ports:
-      - "443:443"
-      - "80:80"
-      - "8070:8080"
-    volumes:
-      - "./traefik/srv/letsencrypt:/letsencrypt"
-      - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: unless-stopped
+    image: traefik:v2.2.0
+    read_only: true
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yaml:/traefik.yaml:ro
+      - ./traefik/etc/traefik:/etc/traefik/
+      - ./traefik/srv/letsencrypt:/letsencrypt
 
   transmission:
     image: linuxserver/transmission
     container_name: transmission
+    hostname: "${TRANSMISSION_HOST}.${DOMAIN_NAME}"
     labels:
       - "traefik.enable=true"
-      - "traefik.http.services.youtrack.loadbalancer.server.port=8080"
-      - "traefik.http.routers.youtrack.rule=Host(`transmission.example.com`)"
-      - "traefik.http.routers.youtrack.entrypoints=websecure"
-      - "traefik.http.routers.youtrack.tls.certresolver=myresolver"
-      - traefik.port=80
+      - "traefik.http.routers.${TRANSMISSION_HOST}.rule=Host(`${TRANSMISSION_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${TRANSMISSION_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${TRANSMISSION_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${TRANSMISSION_HOST}.loadbalancer.server.port=9091"
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-      - USER=ksmi
-      - PASS=112233
+      - USER=${TRANSMISSION_LOGIN}
+      - PASS=${TRANSMISSION_PASS}
     volumes:
       - /home/ksmi/transmission/config/:/config
       - /home/ksmi/a/plex/movies/:/downloads
@@ -54,7 +49,82 @@ services:
       - /home/ksmi/a/plex/tv/:/serialsHHD
       - /home/ksmi/a/transmission/watch/:/watch
     ports:
-      - 8383:80
+      - 9091
       - 51413:51413
       - 51413:51413/udp
     restart: unless-stopped
+
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    hostname: "${PLEX_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM=${PLEX_CLAIM}
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${PLEX_HOST}.rule=Host(`${PLEX_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${PLEX_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${PLEX_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${PLEX_HOST}.loadbalancer.server.port=32400"
+    ports:
+    - 32400:32400
+    volumes:
+      - ./plex/config:/config
+      - /home/ksmi/a/plex/tv:/tv
+      - /home/ksmi/a/plex/movies:/movies
+      - /home/ksmi/a/plex/movies:/moviesHHD
+      - /home/ksmi/a/plex/tv:/serialsHHD
+    restart: unless-stopped
+
+  nextcloud_app:
+    image: nextcloud
+    container_name: nextcloud_app
+    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.rule=Host(`${NEXT_CLOUD_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${NEXT_CLOUD_HOST}.loadbalancer.server.port=80"
+    ports:
+      - 80
+    links:
+      - nextcloud_db
+    volumes:
+      - ./nextcloud/app:/var/www/html
+      - /home/ksmi/a/nextcloud/data:/var/www/html/data
+    restart: always
+
+  youtrack:
+    image: jetbrains/youtrack:2020.2.7479
+    container_name: "youtrack"
+    hostname: "${YOUTRACK_HOST}.${DOMAIN_NAME}"
+    volumes:
+      - ./youtrack/srv/youtrack/data/:/opt/youtrack/data
+      - ./youtrack/srv/youtrack/conf/:/opt/youtrack/conf
+      - ./youtrack/srv/youtrack/logs/:/opt/youtrack/logs
+      - ./youtrack/srv/youtrack/backups/:/opt/youtrack/backups
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${YOUTRACK_HOST}.rule=Host(`${YOUTRACK_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${YOUTRACK_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${YOUTRACK_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${YOUTRACK_HOST}.loadbalancer.server.port=8080"
+    restart: unless-stopped
+
+  nextcloud_db:
+    image: mariadb
+    container_name: nextcloud_db
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${NEXT_CLOUD_MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
+      - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
+
