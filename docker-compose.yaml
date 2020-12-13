@@ -29,7 +29,8 @@ services:
       - "./traefik/srv/letsencrypt:/letsencrypt"
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: unless-stopped
-    network: traefik-network
+    network:
+      - traefik-network
 
   transmission:
     image: linuxserver/transmission
@@ -59,7 +60,8 @@ services:
       - 51413:51413
       - 51413:51413/udp
     restart: unless-stopped
-    network: traefik-network
+    network:
+      - traefik-network
 
   plex:
     image: linuxserver/plex
@@ -81,5 +83,6 @@ services:
       - /home/ksmi/a/plex/movies:/moviesHHD
       - /home/ksmi/a/plex/tv:/serialsHHD
     restart: unless-stopped
-    network: traefik-network
+    network:
+      - traefik-network
 
