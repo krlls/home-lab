@@ -54,6 +54,7 @@ services:
       - /home/ksmi/a/plex/tv/:/serialsHHD
       - /home/ksmi/a/transmission/watch/:/watch
     ports:
+      - 8383:80
       - 51413:51413
       - 51413:51413/udp
     restart: unless-stopped
