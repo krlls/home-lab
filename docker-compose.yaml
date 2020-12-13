@@ -19,7 +19,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.email=krrllsm@gmail.com"
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
       - "--entrypoints.web.address=:80"
-      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
+#      - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
 #      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
     ports:
       - "443:443"
@@ -62,7 +62,6 @@ services:
   plex:
     image: linuxserver/plex
     container_name: plex
-    network_mode: host
     environment:
       - PUID=1000
       - PGID=1000
@@ -71,10 +70,10 @@ services:
     labels:
       - "traefik.enable=true"
       - "traefik.http.services.youtrack.loadbalancer.server.port=8080"
-      - "traefik.http.routers.youtrack.rule=Host(`plex.example.com`)"
+      - "traefik.frontend.rule=Host:plex.example.com"
       - "traefik.http.routers.youtrack.entrypoints=websecure"
       - "traefik.http.routers.youtrack.tls.certresolver=myresolver"
-      - traefik.port=32400
+      - "traefik.port=32400"
     volumes:
       - ./plex/config:/config
       - /home/ksmi/a/plex/tv:/tv
