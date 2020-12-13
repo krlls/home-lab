@@ -30,34 +30,34 @@ services:
       - "/var/run/docker.sock:/var/run/docker.sock:ro"
     restart: unless-stopped
 
-  transmission:
-    image: linuxserver/transmission
-    container_name: transmission
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.services.transmission.loadbalancer.server.port=8080"
-      - "traefik.http.routers.transmission.rule=Host(`transmission.example.com`)"
-#      - "traefik.http.routers.transmission.entrypoints=websecure"
-      - "traefik.http.routers.transmission.tls.certresolver=myresolver"
-      - traefik.port=80
-    environment:
-      - PUID=1000
-      - PGID=1000
-      - TZ=Europe/London
-      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-      - USER=ksmi
-      - PASS=112233
-    volumes:
-      - /home/ksmi/transmission/config/:/config
-      - /home/ksmi/a/plex/movies/:/downloads
-      - /home/ksmi/plex/movies/:/downloadsSSD
-      - /home/ksmi/a/plex/tv/:/serialsHHD
-      - /home/ksmi/a/transmission/watch/:/watch
-    ports:
-      - 8383:80
-      - 51413:51413
-      - 51413:51413/udp
-    restart: unless-stopped
+#  transmission:
+#    image: linuxserver/transmission
+#    container_name: transmission
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.services.transmission.loadbalancer.server.port=8080"
+#      - "traefik.http.routers.transmission.rule=Host(`transmission.example.com`)"
+##      - "traefik.http.routers.transmission.entrypoints=websecure"
+#      - "traefik.http.routers.transmission.tls.certresolver=myresolver"
+#      - traefik.port=80
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=Europe/London
+#      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+#      - USER=ksmi
+#      - PASS=112233
+#    volumes:
+#      - /home/ksmi/transmission/config/:/config
+#      - /home/ksmi/a/plex/movies/:/downloads
+#      - /home/ksmi/plex/movies/:/downloadsSSD
+#      - /home/ksmi/a/plex/tv/:/serialsHHD
+#      - /home/ksmi/a/transmission/watch/:/watch
+#    ports:
+#      - 8383:80
+#      - 51413:51413
+#      - 51413:51413/udp
+#    restart: unless-stopped
 
   plex:
     image: linuxserver/plex
