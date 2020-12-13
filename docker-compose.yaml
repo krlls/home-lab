@@ -20,7 +20,7 @@ services:
       - "--certificatesresolvers.myresolver.acme.storage=/letsencrypt/acme.json"
       - "--entrypoints.web.address=:80"
       - "--entrypoints.web.http.redirections.entrypoint.to=websecure"
-      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
+#      - "--entrypoints.web.http.redirections.entrypoint.scheme=https"
     ports:
       - "443:443"
       - "80:80"
@@ -39,7 +39,7 @@ services:
       - "traefik.http.routers.youtrack.rule=Host(`transmission.example.com`)"
       - "traefik.http.routers.youtrack.entrypoints=websecure"
       - "traefik.http.routers.youtrack.tls.certresolver=myresolver"
-      - traefik.port=9091
+      - traefik.port=80
     environment:
       - PUID=1000
       - PGID=1000
@@ -54,7 +54,6 @@ services:
       - /home/ksmi/a/plex/tv/:/serialsHHD
       - /home/ksmi/a/transmission/watch/:/watch
     ports:
-      - 9091:9091
       - 51413:51413
       - 51413:51413/udp
     restart: unless-stopped
