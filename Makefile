@@ -1,13 +1,20 @@
 start:
 	docker-compose up -d
 
-stop:
-	docker-compose stop
-
 restart:
-	docker-compose restart
-
-build:
-	docker-compose stop
-	docker-compose build
+	docker-compose down
 	docker-compose up -d
+
+stop:
+	docker-compose down
+
+update:
+	docker-compose down
+	docker-compose pull
+	docker-compose up -d
+
+help:
+	@echo 'Запуск: make start'
+	@echo 'Остановка: make stop'
+	@echo 'Перезагрузка: make restart'
+	@echo 'Обновление инфраструктуры: make update'
