@@ -141,4 +141,6 @@ services:
       - "10000:10000/tcp"
     volumes:
       - ./bind:/data
+    environment:
+      - WEBMIN_INIT_SSL_ENABLED=false
 
