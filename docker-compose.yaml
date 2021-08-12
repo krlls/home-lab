@@ -132,3 +132,15 @@ services:
       - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
       - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
 
+  bind:
+    restart: always
+    image: sameersbn/bind:9.16.1-20200524
+    ports:
+      - "53:53/udp"
+      - "53:53/tcp"
+      - "10000:10000/tcp"
+    volumes:
+      - ./bind:/data
+    environment:
+      - WEBMIN_INIT_SSL_ENABLED=false
+
