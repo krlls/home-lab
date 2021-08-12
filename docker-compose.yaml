@@ -47,6 +47,7 @@ services:
       - /home/ksmi/a/plex/movies/:/downloads
       - /home/ksmi/plex/movies/:/downloadsSSD
       - /home/ksmi/a/plex/tv/:/serialsHHD
+      - /home/ksmi/a/plex/music/:/music
       - /home/ksmi/a/transmission/watch/:/watch
     ports:
       - 9091
@@ -62,7 +63,7 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM=${PLEX_CLAIM}
+      - PLEX_CLAIM="claim-mBWf_FXSdKwkYfzzPFZf"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${PLEX_HOST}.rule=Host(`${PLEX_HOST}.${DOMAIN_NAME}`)"
@@ -81,6 +82,7 @@ services:
       - /home/ksmi/a/plex/movies:/movies
       - /home/ksmi/a/plex/movies:/moviesHHD
       - /home/ksmi/a/plex/tv:/serialsHHD
+      - /home/ksmi/a/plex/music/:/music
     restart: unless-stopped
 
   nextcloud_app:
