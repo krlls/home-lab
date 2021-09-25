@@ -138,6 +138,7 @@ services:
 
   cron:
     image: rcdailey/nextcloud-cronjob
+    container_name: nextcloud_cron
     restart: always
     network_mode: none
     depends_on:
@@ -147,9 +148,11 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       - NEXTCLOUD_CONTAINER_NAME=nextcloud_db
+      - NEXTCLOUD_EXEC_SHELL=sh
 
   bind:
     restart: always
+    container_name: bind_dns
     image: sameersbn/bind:9.16.1-20200524
     ports:
       - "53:53/udp"
