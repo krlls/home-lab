@@ -150,6 +150,7 @@ services:
 
   bind:
     restart: always
+    container_name: bind_dns
     image: sameersbn/bind:9.16.1-20200524
     ports:
       - "53:53/udp"
