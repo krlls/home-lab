@@ -149,6 +149,7 @@ services:
     environment:
       - NEXTCLOUD_CONTAINER_NAME=nextcloud_app
       - NEXTCLOUD_EXEC_SHELL=sh
+      - NEXTCLOUD_CRON_MINUTE_INTERVAL=5
 
   bind:
     restart: always
