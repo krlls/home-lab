@@ -148,6 +148,7 @@ services:
       - /etc/localtime:/etc/localtime:ro
     environment:
       - NEXTCLOUD_CONTAINER_NAME=nextcloud_db
+      - NEXTCLOUD_EXEC_SHELL=sh
 
   bind:
     restart: always
