@@ -138,6 +138,7 @@ services:
 
   cron:
     image: rcdailey/nextcloud-cronjob
+    container_name: nextcloud_cron
     restart: always
     network_mode: none
     depends_on:
