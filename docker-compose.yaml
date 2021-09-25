@@ -119,6 +119,8 @@ services:
       - "traefik.http.routers.${YOUTRACK_HOST}.entrypoints=websecure"
       - "traefik.http.routers.${YOUTRACK_HOST}.tls.certresolver=mydnschallenge"
       - "traefik.http.services.${YOUTRACK_HOST}.loadbalancer.server.port=8080"
+      - "traefik.http.middlewares.${NEXT_CLOUD_HOST}.headers.STSPreload=true"
+      - "traefik.http.middlewares.${NEXT_CLOUD_HOST}.headers.STSSeconds=315360000"
     restart: unless-stopped
 
   nextcloud_db:
