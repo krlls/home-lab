@@ -85,25 +85,6 @@ services:
       - /home/ksmi/a/plex/music/:/music
     restart: unless-stopped
 
-  nextcloud_app:
-    image: nextcloud
-    container_name: nextcloud_app
-    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
-    labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.${NEXT_CLOUD_HOST}.rule=Host(`${NEXT_CLOUD_HOST}.${DOMAIN_NAME}`)"
-      - "traefik.http.routers.${NEXT_CLOUD_HOST}.entrypoints=websecure"
-      - "traefik.http.routers.${NEXT_CLOUD_HOST}.tls.certresolver=mydnschallenge"
-      - "traefik.http.services.${NEXT_CLOUD_HOST}.loadbalancer.server.port=80"
-    ports:
-      - 80
-    links:
-      - nextcloud_db
-    volumes:
-      - ./nextcloud/app:/var/www/html
-      - /home/ksmi/a/nextcloud/data:/var/www/html/data
-    restart: always
-
   youtrack:
     image: jetbrains/youtrack:2020.2.7479
     container_name: "youtrack"
@@ -123,6 +104,25 @@ services:
       - "traefik.http.middlewares.${NEXT_CLOUD_HOST}.headers.STSSeconds=315360000"
     restart: unless-stopped
 
+  nextcloud_app:
+    image: nextcloud
+    container_name: nextcloud_app
+    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.rule=Host(`${NEXT_CLOUD_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${NEXT_CLOUD_HOST}.loadbalancer.server.port=80"
+    ports:
+      - 80
+    links:
+      - nextcloud_db
+    volumes:
+      - ./nextcloud/app:/var/www/html
+      - /home/ksmi/a/nextcloud/data:/var/www/html/data
+    restart: always
+
   nextcloud_db:
     image: mariadb
     container_name: nextcloud_db
@@ -135,6 +135,18 @@ services:
       - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
       - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
       - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
+
+  cron:
+    image: rcdailey/nextcloud-cronjob
+    restart: always
+    network_mode: none
+    depends_on:
+      - nextcloud_db
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime:ro
+    environment:
+      - NEXTCLOUD_CONTAINER_NAME=nextcloud_db
 
   bind:
     restart: always
