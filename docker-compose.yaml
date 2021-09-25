@@ -138,8 +138,8 @@ services:
     restart: always
     image: sameersbn/bind:9.16.1-20200524
     ports:
-      - "54:53/udp"
-      - "54:53/tcp"
+      - "53:53/udp"
+      - "53:53/tcp"
       - "10000:10000/tcp"
     volumes:
       - ./bind:/data
