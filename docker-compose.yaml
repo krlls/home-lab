@@ -151,16 +151,3 @@ services:
       - NEXTCLOUD_EXEC_SHELL=sh
       - NEXTCLOUD_CRON_MINUTE_INTERVAL=5
 
-  bind:
-    restart: always
-    container_name: bind_dns
-    image: sameersbn/bind:9.16.1-20200524
-    ports:
-      - "53:53/udp"
-      - "53:53/tcp"
-      - "10000:10000/tcp"
-    volumes:
-      - ./bind:/data
-    environment:
-      - WEBMIN_INIT_SSL_ENABLED=false
-
