@@ -20,8 +20,8 @@ help:
 	@echo 'Обновление инфраструктуры: make update'
 
 bind.start:
-	docker-compose -f docker-compose-bind.yml up -d
+	docker-compose -f docker-compose-bind.yaml up -d
 
 bind.restart:
-	docker-compose -f docker-compose-bind.yml down
-	docker-compose -f docker-compose-bind.yml up -d
+	docker-compose -f docker-compose-bind.yaml down
+	docker-compose -f docker-compose-bind.yaml up -d
