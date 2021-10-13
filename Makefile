@@ -8,7 +8,7 @@ restart:
 stop:
 	docker-compose down
 
-update:
+upgrade:
 	docker-compose down
 	docker-compose pull
 	docker-compose up -d
