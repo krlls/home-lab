@@ -161,9 +161,9 @@ services:
       - /home/ksmi/a:/home/ksmi
       - /etc/pure-ftpd/passwd/passwd:/etc/pure-ftpd/passwd
     environment:
-      PUBLICHOST: "77.244.75.110"
-      FTP_USER_NAME=${FTP_USER_NAME}
-      FTP_USER_PASS=${FTP_USER_PASS}
-      FTP_USER_HOME: /home/ksmi
-      ADDED_FLAGS: "--tls=2"
+      - PUBLICHOST="77.244.75.110"
+      - FTP_USER_NAME=${FTP_USER_NAME}
+      - FTP_USER_PASS=${FTP_USER_NAME}
+      - FTP_USER_HOME=/home/ksmi
+      - ADDED_FLAGS="--tls=2"
     restart: always
