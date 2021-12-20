@@ -163,7 +163,7 @@ services:
       - /etc/pure-ftpd/passwd:/etc/pure-ftpd/passwd
     environment:
       - PUBLICHOST=0.0.0.0
-      - FTP_USER_NAME=${FTP_USER_NAME}
-      - FTP_USER_PASS=${FTP_USER_NAME}
+      - FTP_USER_NAME=ksmi
+      - FTP_USER_PASS=112233
       - FTP_USER_HOME=/home/ksmi
     restart: always
