@@ -167,5 +167,4 @@ services:
       - FTP_USER_NAME=ksmi
       - FTP_USER_PASS=112233
       - FTP_USER_HOME=/home/ksmi
-    hostname: ftpserver
     restart: always
