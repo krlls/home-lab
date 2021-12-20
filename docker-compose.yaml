@@ -151,3 +151,19 @@ services:
       - NEXTCLOUD_EXEC_SHELL=sh
       - NEXTCLOUD_CRON_MINUTE_INTERVAL=5
 
+  ftpd_server:
+    image: stilliard/pure-ftpd
+    container_name: home_pure_ftpd
+    ports:
+      - "21:21"
+      - "30000-30009:30000-30009"
+    volumes:
+      - /home/ksmi/a:/home/ksmi
+      - /etc/pure-ftpd/passwd/passwd:/etc/pure-ftpd/passwd
+    environment:
+      PUBLICHOST: "77.244.75.110"
+      FTP_USER_NAME=${FTP_USER_NAME}
+      FTP_USER_PASS=${FTP_USER_PASS}
+      FTP_USER_HOME: /home/ksmi
+      ADDED_FLAGS: "--tls=2"
+    restart: always
