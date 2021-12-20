@@ -161,7 +161,7 @@ services:
       - /home/ksmi/a:/home/ksmi
       - /etc/pure-ftpd/passwd:/etc/pure-ftpd/passwd
     networks:
-      traefik-network:
+      default:
         ipv4_address: 1.2.3.4
     environment:
       - PUBLICHOST="1.2.3.4"
