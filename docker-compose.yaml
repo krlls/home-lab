@@ -157,7 +157,7 @@ services:
     hostname: ftpserver
     ports:
       - "21:21"
-      - "30000-30009:30000-30009"
+      - "30000:30000"
     volumes:
       - /home/ksmi/a:/home/ksmi
       - /etc/pure-ftpd/passwd:/etc/pure-ftpd/passwd
