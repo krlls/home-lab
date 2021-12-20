@@ -154,19 +154,16 @@ services:
   ftpd_server:
     image: stilliard/pure-ftpd
     container_name: home_pure_ftpd
+    hostname: ftpserver
     ports:
       - "21:21"
       - "30000-30009:30000-30009"
     volumes:
       - /home/ksmi/a:/home/ksmi
       - /etc/pure-ftpd/passwd:/etc/pure-ftpd/passwd
-    networks:
-      default:
-        ipv4_address: 172.28.0.9
     environment:
-      - PUBLICHOST="172.28.0.9"
+      - PUBLICHOST="192.168.0.92"
       - FTP_USER_NAME=${FTP_USER_NAME}
       - FTP_USER_PASS=${FTP_USER_NAME}
       - FTP_USER_HOME=/home/ksmi
-    hostname: ftpserver
     restart: always
