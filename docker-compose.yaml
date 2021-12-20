@@ -162,9 +162,9 @@ services:
       - /etc/pure-ftpd/passwd:/etc/pure-ftpd/passwd
     networks:
       default:
-        ipv4_address: 1.2.3.4
+        ipv4_address: 172.28.0.9
     environment:
-      - PUBLICHOST="1.2.3.4"
+      - PUBLICHOST="172.28.0.9"
       - FTP_USER_NAME=${FTP_USER_NAME}
       - FTP_USER_PASS=${FTP_USER_NAME}
       - FTP_USER_HOME=/home/ksmi
