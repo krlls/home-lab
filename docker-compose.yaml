@@ -160,8 +160,11 @@ services:
     volumes:
       - /home/ksmi/a:/home/ksmi
       - /etc/pure-ftpd/passwd:/etc/pure-ftpd/passwd
+    networks:
+      traefik-network:
+        ipv4_address: 1.2.3.4
     environment:
-      - PUBLICHOST="192.168.0.92"
+      - PUBLICHOST="1.2.3.4"
       - FTP_USER_NAME=${FTP_USER_NAME}
       - FTP_USER_PASS=${FTP_USER_NAME}
       - FTP_USER_HOME=/home/ksmi
