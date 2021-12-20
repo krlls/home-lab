@@ -165,4 +165,5 @@ services:
       - FTP_USER_NAME=${FTP_USER_NAME}
       - FTP_USER_PASS=${FTP_USER_NAME}
       - FTP_USER_HOME=/home/ksmi
+    hostname: ftpserver
     restart: always
