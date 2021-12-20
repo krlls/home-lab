@@ -152,7 +152,7 @@ services:
       - NEXTCLOUD_CRON_MINUTE_INTERVAL=5
 
   ftpd_server:
-    image: stilliard/pure-ftpd
+    image: stilliard/pure-ftpd:hardened
     container_name: home_pure_ftpd
     hostname: ftpserver
     ports:
