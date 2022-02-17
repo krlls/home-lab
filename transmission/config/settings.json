@@ -46,7 +46,7 @@
     "rpc-host-whitelist": "",
     "rpc-host-whitelist-enabled": true,
     "rpc-password": "{e7e8d7b3d5bda1e7d3d68542fd94e9140799cf83OBEMF3nf",
-    "rpc-port": 9091,
+    "rpc-port": 80,
     "rpc-url": "/transmission/",
     "rpc-username": "ksmi",
     "rpc-whitelist": "127.0.0.1",
