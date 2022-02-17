@@ -39,6 +39,7 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
+      - WHITELIST=127.0.0.1
       - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
       - USER=${TRANSMISSION_LOGIN}
       - PASS=${TRANSMISSION_PASS}
