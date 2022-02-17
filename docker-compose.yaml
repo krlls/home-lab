@@ -46,9 +46,9 @@ services:
       - /home/ksmi/transmission/config/:/config
       - /home/ksmi/a/plex/movies/:/downloads
       - /home/ksmi/plex/movies/:/downloadsSSD
-      - /home/ksmi/a/plex/tv/:/serialsHHD
-      - /home/ksmi/a/plex/music/:/music
-      - /home/ksmi/a/transmission/watch/:/watch
+      - /home/ksmi/a/plex/tv/:/s
+      - /home/ksmi/a/plex/music/:/m
+      - /home/ksmi/a/transmission/watch/:/w
     ports:
       - 9091
       - 51413:51413
