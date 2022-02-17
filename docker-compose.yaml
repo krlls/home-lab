@@ -43,7 +43,7 @@ services:
       - USER=${TRANSMISSION_LOGIN}
       - PASS=${TRANSMISSION_PASS}
     volumes:
-      - /home/ksmi/transmission/config/:/config
+      - ./transmission/config/:/config
       - /home/ksmi/a/plex/movies/:/downloads
       - /home/ksmi/plex/movies/:/downloadsSSD
       - /home/ksmi/a/plex/tv/:/s
