@@ -161,6 +161,7 @@ services:
     volumes:
       - /home/ksmi/a:/home/ksmi
       - /etc/pure-ftpd/passwd:/etc/pure-ftpd/passwd
+    command: /run.sh -l puredb:/etc/pure-ftpd/pureftpd.pdb -E -j -R -P 0.0.0.0 -s -A -j -Z -H -4 -E -R -X -x
     environment:
       - PUBLICHOST=0.0.0.0
       - FTP_USER_NAME=ksmi
