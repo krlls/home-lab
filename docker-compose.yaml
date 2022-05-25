@@ -96,12 +96,12 @@ services:
       - ./youtrack/srv/youtrack/backups/:/opt/youtrack/backups
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.${YOUTRACK_HOST}.rule=Host(`${YOUTRACK_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${YOUTRACK_HOST}.rule=Host(`${YOUTRACK_HOST}.${PROMFIS_DOMAIN}`)"
       - "traefik.http.routers.${YOUTRACK_HOST}.entrypoints=websecure"
       - "traefik.http.routers.${YOUTRACK_HOST}.tls.certresolver=mydnschallenge"
       - "traefik.http.services.${YOUTRACK_HOST}.loadbalancer.server.port=8080"
-      - "traefik.http.middlewares.${NEXT_CLOUD_HOST}.headers.STSPreload=true"
-      - "traefik.http.middlewares.${NEXT_CLOUD_HOST}.headers.STSSeconds=315360000"
+      - "traefik.http.middlewares.${YOUTRACK_HOST}.headers.STSPreload=true"
+      - "traefik.http.middlewares.${YOUTRACK_HOST}.headers.STSSeconds=315360000"
     restart: unless-stopped
 
   nextcloud_app:
