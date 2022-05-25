@@ -108,8 +108,6 @@ services:
     image: nextcloud
     container_name: nextcloud_app
     hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
-    command:
-      - "apt -y install libmagickcore-6.q16-6-extra"
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${NEXT_CLOUD_HOST}.rule=Host(`${NEXT_CLOUD_HOST}.${DOMAIN_NAME}`)"
