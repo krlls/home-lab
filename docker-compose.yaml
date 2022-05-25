@@ -127,6 +127,11 @@ services:
       - ./nextcloud/app:/var/www/html
       - /home/ksmi/a/nextcloud/data:/var/www/html/data
     restart: always
+    environment:
+      - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
+      - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
+      - MYSQL_HOST=nextcloud_db
 
   nextcloud_db:
     image: mariadb
