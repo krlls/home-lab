@@ -114,6 +114,8 @@ services:
       - "traefik.http.routers.${NEXT_CLOUD_HOST}.entrypoints=websecure"
       - "traefik.http.routers.${NEXT_CLOUD_HOST}.tls.certresolver=mydnschallenge"
       - "traefik.http.services.${NEXT_CLOUD_HOST}.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.${NEXT_CLOUD_HOST}.headers.STSPreload=true"
+      - "traefik.http.middlewares.${NEXT_CLOUD_HOST}.headers.STSSeconds=315360000"
     ports:
       - 80
     links:
