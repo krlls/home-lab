@@ -137,6 +137,7 @@ services:
     depends_on:
       - nextcloud_db
       - nextcloud_redis
+    command: apt -y update && apt -y install libmagickcore-6.q16-6-extra
 
   nextcloud_redis:
     image: redis
