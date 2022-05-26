@@ -123,15 +123,26 @@ services:
       - 80
     links:
       - nextcloud_db
+      - nextcloud_redis
     volumes:
       - ./nextcloud/app:/var/www/html
       - /home/ksmi/a/nextcloud/data:/var/www/html/data
     restart: always
     environment:
+      - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
       - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
       - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
       - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
       - MYSQL_HOST=nextcloud_db
+    depends_on:
+      - nextcloud_db
+      - nextcloud_redis
+
+  nextcloud_redis:
+    image: redis
+    container_name: nextcloud_redis
+    restart: always
+    command: redis-server --requirepass ${REDIS_PASSWORD}
 
   nextcloud_db:
     image: mariadb
