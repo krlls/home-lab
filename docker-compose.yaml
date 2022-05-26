@@ -83,6 +83,7 @@ services:
       - /home/ksmi/a/plex/movies:/moviesHHD
       - /home/ksmi/a/plex/tv:/serialsHHD
       - /home/ksmi/a/plex/music/:/music
+      - /home/ksmi/a/plex/likedMusic/:/likedMusic
     restart: unless-stopped
 
   youtrack:
@@ -137,6 +138,7 @@ services:
     depends_on:
       - nextcloud_db
       - nextcloud_redis
+    entrypoint: sh -c "apt update && apt install -y libmagickcore-6.q16-6-extra && /entrypoint.sh apache2-foreground"
 
   nextcloud_redis:
     image: redis
