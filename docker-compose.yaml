@@ -198,16 +198,7 @@ services:
     hostname: "${DOMAIN_NAME}"
     labels:
       - traefik.enable=true
-      - traefik.http.routers.ksmi.rule=Host(`${DOMAIN_NAME}`, `www.${DOMAIN_NAME}`, `vk-line.ru`, `www.vk-line.ru`)
-
-      - traefik.http.middlewares.redirect-to-site.redirectregex.regex=https?:\/\/vk-line.ru(.*)
-      - traefik.http.middlewares.redirect-to-site.redirectregex.replacement=https://ksmi.me
-      - traefik.http.routers.ksmi.middlewares=redirect-to-site
-
-      - traefik.http.middlewares.redirect-to-nonwww.redirectregex.regex=(https|http):\/\/(www\.(.*))
-      - traefik.http.middlewares.redirect-to-nonwww.redirectregex.replacement=https://ksmi.me
-      - traefik.http.routers.ksmi.middlewares=redirect-to-nonwww
-
+      - traefik.http.routers.ksmi.rule=Host(`${DOMAIN_NAME}`)
       - traefik.http.routers.ksmi.entrypoints=websecure
       - traefik.http.routers.ksmi.tls.certresolver=mydnschallenge
       - traefik.http.services.ksmi.loadbalancer.server.port=80
