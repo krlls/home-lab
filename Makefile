@@ -13,11 +13,19 @@ upgrade:
 	docker-compose pull
 	docker-compose up -d
 
+sources.get:
+	git clone https://github.com/ntoporcov/iQbit.git ./qbittorrent/webgui/iQbit
+
+sources.update:
+	cd ./qbittorrent/webgui/iQbit && git fetch && git reset --hard origin/master
+
 help:
 	@echo 'Запуск: make start'
 	@echo 'Остановка: make stop'
 	@echo 'Перезагрузка: make restart'
-	@echo 'Обновление инфраструктуры: make update'
+	@echo 'Обновление инфраструктуры: make upgrade'
+	@echo 'Обновить ресурсы: make sources.update'
+	@echo 'Загрузить ресурсы: make sources.get'
 
 bind.start:
 	docker-compose -f docker-compose-bind.yaml up -d
