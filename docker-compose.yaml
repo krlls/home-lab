@@ -40,7 +40,7 @@ services:
       - TZ=Europe/London
       - WEBUI_PORT=9092
     volumes:
-      - ./transmission/config/:/config
+      - ./qbittorrent/config/:/config
       - /home/ksmi/a/plex/movies/:/downloads
       - /home/ksmi/a/plex/tv/:/s
       - /home/ksmi/a/plex/music/:/m
