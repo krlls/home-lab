@@ -41,7 +41,7 @@ services:
       - WEBUI_PORT=9092
     volumes:
       - ./qbittorrent/config/:/config
-      - ./webgui/:webgui
+      - ./qbittorrent/webgui/:webgui
       - /home/ksmi/a/plex/movies/:/downloads
       - /home/ksmi/a/plex/tv/:/s
       - /home/ksmi/a/plex/music/:/m
