@@ -25,35 +25,60 @@ services:
       - ./traefik/etc/traefik:/etc/traefik/
       - ./traefik/srv/letsencrypt:/letsencrypt
 
-  transmission:
-    image: linuxserver/transmission
-    container_name: transmission
-    hostname: "${TRANSMISSION_HOST}.${DOMAIN_NAME}"
+  qbittorrent:
+    image: lscr.io/linuxserver/qbittorrent:latest
+    container_name: qbittorrent
     labels:
       - "traefik.enable=true"
-      - "traefik.http.routers.${TRANSMISSION_HOST}.rule=Host(`${TRANSMISSION_HOST}.${DOMAIN_NAME}`)"
-      - "traefik.http.routers.${TRANSMISSION_HOST}.entrypoints=websecure"
-      - "traefik.http.routers.${TRANSMISSION_HOST}.tls.certresolver=mydnschallenge"
-      - "traefik.http.services.${TRANSMISSION_HOST}.loadbalancer.server.port=9091"
+      - "traefik.http.routers.${TORRENT_HOST}.rule=Host(`${TORRENT_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${TORRENT_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${TORRENT_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${TORRENT_HOST}.loadbalancer.server.port=9092"
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
-      - USER=${TRANSMISSION_LOGIN}
-      - PASS=${TRANSMISSION_PASS}
+      - WEBUI_PORT=9092
     volumes:
       - ./transmission/config/:/config
       - /home/ksmi/a/plex/movies/:/downloads
-      - /home/ksmi/plex/movies/:/downloadsSSD
       - /home/ksmi/a/plex/tv/:/s
       - /home/ksmi/a/plex/music/:/m
-      - /home/ksmi/a/transmission/watch/:/w
     ports:
-      - 9091
-      - 51413:51413
-      - 51413:51413/udp
+      - 9092:9092
+      - 6881:6881
+      - 6881:6881/udp
     restart: unless-stopped
+
+#  transmission:
+#    image: linuxserver/transmission
+#    container_name: transmission
+#    hostname: "${TRANSMISSION_HOST}.${DOMAIN_NAME}"
+#    labels:
+#      - "traefik.enable=true"
+#      - "traefik.http.routers.${TRANSMISSION_HOST}.rule=Host(`${TRANSMISSION_HOST}.${DOMAIN_NAME}`)"
+#      - "traefik.http.routers.${TRANSMISSION_HOST}.entrypoints=websecure"
+#      - "traefik.http.routers.${TRANSMISSION_HOST}.tls.certresolver=mydnschallenge"
+#      - "traefik.http.services.${TRANSMISSION_HOST}.loadbalancer.server.port=9091"
+#    environment:
+#      - PUID=1000
+#      - PGID=1000
+#      - TZ=Europe/London
+#      - TRANSMISSION_WEB_HOME=/combustion-release/ #optional
+#      - USER=${TRANSMISSION_LOGIN}
+#      - PASS=${TRANSMISSION_PASS}
+#    volumes:
+#      - ./transmission/config/:/config
+#      - /home/ksmi/a/plex/movies/:/downloads
+#      - /home/ksmi/plex/movies/:/downloadsSSD
+#      - /home/ksmi/a/plex/tv/:/s
+#      - /home/ksmi/a/plex/music/:/m
+#      - /home/ksmi/a/transmission/watch/:/w
+#    ports:
+#      - 9091
+#      - 51413:51413
+#      - 51413:51413/udp
+#    restart: unless-stopped
 
   plex:
     image: linuxserver/plex
