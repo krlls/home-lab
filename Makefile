@@ -14,7 +14,7 @@ upgrade:
 	docker-compose up -d
 
 sources.get:
-	git clone https://github.com/ntoporcov/iQbit.git ./qbittorrent/webgui/iQbit
+	git clone https://github.com/ntoporcov/iQbit.git ./qbittorrent/webgui/iqbit
 
 sources.update:
 	cd ./qbittorrent/webgui/iQbit && git fetch && git reset --hard origin/master
