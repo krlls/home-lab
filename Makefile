@@ -17,7 +17,7 @@ sources.get:
 	git clone https://github.com/krlls/iQbit_test.git ./qbittorrent/webgui/iqbit
 
 sources.update:
-	cd ./qbittorrent/webgui/iqbit && git fetch && git reset --hard origin/master
+	rm -rf ./qbittorrent/webgui/iqbit && make sources.get
 
 help:
 	@echo 'Запуск: make start'
