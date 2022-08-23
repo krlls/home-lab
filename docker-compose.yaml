@@ -191,3 +191,16 @@ services:
       - FTP_USER_PASS=112233
       - FTP_USER_HOME=/home/ksmi
     restart: always
+
+  ksmi_site:
+    image: ksmi/site:latest
+    container_name: ksmi_site
+    hostname: "${DOMAIN_NAME}"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ksmi.rule=Host(`${DOMAIN_NAME}`)
+      - traefik.http.routers.ksmi.entrypoints=websecure
+      - traefik.http.routers.ksmi.tls.certresolver=mydnschallenge
+      - traefik.http.services.ksmi.loadbalancer.server.port=80
+
+    restart: always
