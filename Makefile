@@ -14,7 +14,6 @@ upgrade:
 	docker-compose up -d
 
 sources.get:
-	git clone https://github.com/krlls/iQbit_test.git ./qbittorrent/webgui/iqbit
 	git clone --depth 1 --branch with_category https://github.com/krlls/iQbit_test.git ./qbittorrent/webgui/iqbit
 
 sources.update:
