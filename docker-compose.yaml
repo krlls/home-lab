@@ -42,7 +42,7 @@ services:
     volumes:
       - ./qbittorrent/config/:/config
       - ./qbittorrent/webgui/:/webgui
-      - /home/ksmi/a/plex/movies/:/downloads/movies
+      - /home/ksmi/a/plex/movies/complete:/downloads/movies
       - /home/ksmi/a/plex/tv/:/downloads/serials
       - /home/ksmi/a/plex/music/:/downloads/music
     ports:
