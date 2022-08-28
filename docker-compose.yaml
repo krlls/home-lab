@@ -227,5 +227,5 @@ services:
       - traefik.http.routers.ksmi.rule=Host(`${DOMAIN_NAME}`)
       - traefik.http.routers.ksmi.entrypoints=websecure
       - traefik.http.routers.ksmi.tls.certresolver=mydnschallenge
-      - traefik.http.services.ksmi.loadbalancer.server.port=80
+      - traefik.http.services.ksmi.loadbalancer.server.port=3000
     restart: always
