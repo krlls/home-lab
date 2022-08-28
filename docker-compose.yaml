@@ -219,7 +219,7 @@ services:
 #    restart: always
 
   ksmi_site:
-    image: ksmi/site:latest
+    image: ksmi/ksmi_site:latest
     container_name: ksmi_site
     hostname: "${DOMAIN_NAME}"
     labels:
