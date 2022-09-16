@@ -134,7 +134,7 @@ services:
     depends_on:
       - nextcloud_db
       - nextcloud_redis
-    entrypoint: sh -c "apt update && apt install -y libmagickcore-6.q16hdri-6-extra && /entrypoint.sh apache2-foreground"
+    entrypoint: sh -c "apt update && apt install -y libmagickcore-6.q16-6-extra && /entrypoint.sh apache2-foreground"
 
   nextcloud_redis:
     image: redis
