@@ -1,0 +1,1 @@
+./occ preview:pre-generate
