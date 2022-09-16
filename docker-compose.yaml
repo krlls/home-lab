@@ -165,6 +165,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
+      - ./nextcloud/cron/jobs.sh:/cron-scripts/jobs.sh:ro
     environment:
       - NEXTCLOUD_CONTAINER_NAME=nextcloud_app
       - NEXTCLOUD_EXEC_SHELL=sh
