@@ -10,6 +10,7 @@ stop:
 
 upgrade:
 	docker-compose down
+	make sources.update
 	docker-compose pull
 	docker-compose up -d
 
