@@ -195,6 +195,8 @@ services:
       - ./duplicati/config:/config
       - ./duplicati/backups:/backups
       - /home/ksmi/a/nextcloud:/source/nextcloud
+    ports:
+      - 8200:8200
     labels:
       - traefik.enable=true
       - traefik.http.routers.ksmi.rule=Host(`${DUPLICATI_HOST}.${DOMAIN_NAME}`)
