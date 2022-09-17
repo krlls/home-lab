@@ -199,8 +199,8 @@ services:
       - 8200:8200
     labels:
       - traefik.enable=true
-      - traefik.http.routers.ksmi.rule=Host(`${DUPLICATI_HOST}.${DOMAIN_NAME}`)
-      - traefik.http.routers.ksmi.entrypoints=websecure
-      - traefik.http.routers.ksmi.tls.certresolver=mydnschallenge
-      - traefik.http.services.ksmi.loadbalancer.server.port=8200
+      - traefik.http.routers.duplicati.rule=Host(`${DUPLICATI_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.duplicati.entrypoints=websecure
+      - traefik.http.routers.duplicati.tls.certresolver=mydnschallenge
+      - traefik.http.services.duplicati.loadbalancer.server.port=8200
     restart: unless-stopped
