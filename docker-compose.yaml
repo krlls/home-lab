@@ -121,7 +121,7 @@ services:
       - nextcloud_db
       - nextcloud_redis
     volumes:
-      - ./nextcloud/app:/var/www/html
+      - ./data/nextcloud/app:/var/www/html
       - /home/ksmi/a/nextcloud/data:/var/www/html/data
     restart: always
     environment:
