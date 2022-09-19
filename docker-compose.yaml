@@ -1,9 +1,5 @@
 version: "3.7"
 
-volumes:
-  nextcloud:
-  db:
-
 networks:
   default:
     external:
@@ -21,9 +17,9 @@ services:
       - "8081:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ./traefik/traefik.yaml:/traefik.yaml:ro
-      - ./traefik/etc/traefik:/etc/traefik/
-      - ./traefik/srv/letsencrypt:/letsencrypt
+      - ./data/traefik/traefik.yaml:/traefik.yaml:ro
+      - ./data/traefik/etc/traefik:/etc/traefik/
+      - ./data/traefik/srv/letsencrypt:/letsencrypt
 
   qbittorrent:
     image: lscr.io/linuxserver/qbittorrent:latest
@@ -40,8 +36,8 @@ services:
       - TZ=Europe/London
       - WEBUI_PORT=9092
     volumes:
-      - ./qbittorrent/config/:/config
-      - ./qbittorrent/webgui/:/webgui
+      - ./data/qbittorrent/config/:/config
+      - ./data/qbittorrent/webgui/:/webgui
       - /home/ksmi/a/plex/movies/complete:/downloads/movies
       - /home/ksmi/a/plex/tv/:/downloads/serials
       - /home/ksmi/a/plex/music/:/downloads/music
@@ -73,7 +69,7 @@ services:
       - "32469:32469/udp"
       - "1900:1900/udp"
     volumes:
-      - ./plex/config:/config
+      - ./data/plex/config:/config
       - /home/ksmi/a/plex/tv:/tv
       - /home/ksmi/a/plex/movies:/movies
       - /home/ksmi/a/plex/movies:/moviesHHD
@@ -86,11 +82,14 @@ services:
     image: jetbrains/youtrack:2020.2.7479
     container_name: "youtrack"
     hostname: "${YOUTRACK_HOST}.${PROMFIS_DOMAIN}"
+    environment:
+      - PUID=1000
+      - PGID=1000
     volumes:
-      - ./youtrack/srv/youtrack/data/:/opt/youtrack/data
-      - ./youtrack/srv/youtrack/conf/:/opt/youtrack/conf
-      - ./youtrack/srv/youtrack/logs/:/opt/youtrack/logs
-      - ./youtrack/srv/youtrack/backups/:/opt/youtrack/backups
+      - ./data/youtrack/app/srv/youtrack/data/:/opt/youtrack/data
+      - ./data/youtrack/app/srv/youtrack/conf/:/opt/youtrack/conf
+      - ./data/youtrack/app/srv/youtrack/logs/:/opt/youtrack/logs
+      - ./data/youtrack/app/srv/youtrack/backups/:/opt/youtrack/backups
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${YOUTRACK_HOST}.rule=Host(`${YOUTRACK_HOST}.${PROMFIS_DOMAIN}`)"
@@ -122,7 +121,7 @@ services:
       - nextcloud_db
       - nextcloud_redis
     volumes:
-      - ./nextcloud/app:/var/www/html
+      - ./data/nextcloud/app:/var/www/html
       - /home/ksmi/a/nextcloud/data:/var/www/html/data
     restart: always
     environment:
@@ -148,7 +147,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
-      - db:/var/lib/mysql
+      - ./data/nextcloud-db/db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${NEXT_CLOUD_MYSQL_ROOT_PASSWORD}
       - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
@@ -165,7 +164,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
-      - ./nextcloud/cron/jobs.sh:/cron-scripts/jobs.sh:ro
+      - ./data/nextcloud/cron/jobs.sh:/cron-scripts/jobs.sh:ro
     environment:
       - NEXTCLOUD_CONTAINER_NAME=nextcloud_app
       - NEXTCLOUD_EXEC_SHELL=sh
@@ -192,8 +191,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./duplicati/config:/config
-      - ./duplicati/backups:/backups
+      - ./data/duplicati/config:/config
+      - ./data//duplicati/backups:/backups
       - /home/ksmi/a/nextcloud:/source/nextcloud
     ports:
       - 8200:8200

@@ -2,5 +2,7 @@
 /bind/bind/
 /bind/webmin/
 /bind/.initialized
-/qbittorrent/config/qBittorrent/
-/qbittorrent/webgui/iqbit/
+/data/qbittorrent/config/qBittorrent/
+/data/qbittorrent/webgui/iqbit/
+/data/youtrack/app/
+/data/nextcloud-db/db/
