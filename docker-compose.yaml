@@ -82,6 +82,9 @@ services:
     image: jetbrains/youtrack:2020.2.7479
     container_name: "youtrack"
     hostname: "${YOUTRACK_HOST}.${PROMFIS_DOMAIN}"
+    environment:
+      - PUID=1000
+      - PGID=1000
     volumes:
       - ./data/youtrack/app/srv/youtrack/data/:/opt/youtrack/data
       - ./data/youtrack/app/srv/youtrack/conf/:/opt/youtrack/conf
