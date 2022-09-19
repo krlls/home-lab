@@ -182,3 +182,25 @@ services:
       - traefik.http.routers.ksmi.tls.certresolver=mydnschallenge
       - traefik.http.services.ksmi.loadbalancer.server.port=3000
     restart: always
+
+  duplicati:
+    image: lscr.io/linuxserver/duplicati:latest
+    container_name: duplicati
+    hostname: "${DUPLICATI_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ./duplicati/config:/config
+      - ./duplicati/backups:/backups
+      - /home/ksmi/a/nextcloud:/source/nextcloud
+    ports:
+      - 8200:8200
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.duplicati.rule=Host(`${DUPLICATI_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.duplicati.entrypoints=websecure
+      - traefik.http.routers.duplicati.tls.certresolver=mydnschallenge
+      - traefik.http.services.duplicati.loadbalancer.server.port=8200
+    restart: unless-stopped
