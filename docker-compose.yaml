@@ -188,8 +188,8 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ./duplicati/config:/config
-      - ./duplicati/backups:/backups
+      - ./data/duplicati/config:/config
+      - ./data//duplicati/backups:/backups
       - /home/ksmi/a/nextcloud:/source/nextcloud
     ports:
       - 8200:8200
