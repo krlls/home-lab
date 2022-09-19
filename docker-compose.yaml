@@ -69,7 +69,7 @@ services:
       - "32469:32469/udp"
       - "1900:1900/udp"
     volumes:
-      - ./plex/config:/config
+      - ./data/plex/config:/config
       - /home/ksmi/a/plex/tv:/tv
       - /home/ksmi/a/plex/movies:/movies
       - /home/ksmi/a/plex/movies:/moviesHHD
