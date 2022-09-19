@@ -83,10 +83,10 @@ services:
     container_name: "youtrack"
     hostname: "${YOUTRACK_HOST}.${PROMFIS_DOMAIN}"
     volumes:
-      - ./youtrack/srv/youtrack/data/:/opt/youtrack/data
-      - ./youtrack/srv/youtrack/conf/:/opt/youtrack/conf
-      - ./youtrack/srv/youtrack/logs/:/opt/youtrack/logs
-      - ./youtrack/srv/youtrack/backups/:/opt/youtrack/backups
+      - ./data/youtrack/app/srv/youtrack/data/:/opt/youtrack/data
+      - ./data/youtrack/app/srv/youtrack/conf/:/opt/youtrack/conf
+      - ./data/youtrack/app/srv/youtrack/logs/:/opt/youtrack/logs
+      - ./data/youtrack/app/srv/youtrack/backups/:/opt/youtrack/backups
     labels:
       - "traefik.enable=true"
       - "traefik.http.routers.${YOUTRACK_HOST}.rule=Host(`${YOUTRACK_HOST}.${PROMFIS_DOMAIN}`)"
