@@ -1,8 +1,28 @@
 {
   "projects": [
     {
-      "name": "all",
-      "file": "docker-compose.yaml"
+      "name": "traefik",
+      "file": "traefik-compose.yaml"
+    },
+    {
+      "name": "qbittorrent",
+      "file": "qbittorrent-compose.yaml"
+    },
+    {
+      "name": "plex",
+      "file": "plex-compose.yaml"
+    },
+    {
+      "name": "youtrack",
+      "file": "youtrack-compose.yaml"
+    },
+    {
+      "name": "nextcloud",
+      "file": "nextcloud-compose.yaml"
+    },
+    {
+      "name": "ksmi-site",
+      "file": "ksmi-site-compose.yaml"
     },
     {
       "name": "duplicati",

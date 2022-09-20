@@ -1,0 +1,38 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    hostname: "${PLEX_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - VERSION=docker
+      - PLEX_CLAIM="claim-mBWf_FXSdKwkYfzzPFZf"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${PLEX_HOST}.rule=Host(`${PLEX_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${PLEX_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${PLEX_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${PLEX_HOST}.loadbalancer.server.port=32400"
+    ports:
+      - "32400:32400"
+      - "32400:32400/udp"
+      - "32469:32469"
+      - "32469:32469/udp"
+      - "1900:1900/udp"
+    volumes:
+      - ../data/plex/config:/config
+      - /home/ksmi/a/plex/tv:/tv
+      - /home/ksmi/a/plex/movies:/movies
+      - /home/ksmi/a/plex/movies:/moviesHHD
+      - /home/ksmi/a/plex/tv:/serialsHHD
+      - /home/ksmi/a/plex/music/:/music
+      - /home/ksmi/a/plex/likedMusic/:/likedMusic
+    restart: unless-stopped
