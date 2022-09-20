@@ -6,3 +6,5 @@
 /data/qbittorrent/webgui/iqbit/
 /data/youtrack/app/
 /data/nextcloud-db/db/
+/config/.env
+/.env
