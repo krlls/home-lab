@@ -10,25 +10,7 @@ function startProjects(componentsList) {
     return previousValue + ` -f ./components/${file}`
   }, '')
 
-  const cmd = `docker-compose${cmpStr} --env-file ./config/.env up`
-
-  const process = exec(cmd, (err, stdout) => {
-    if (err) {
-      console.log(err?.message)
-    }
-
-    if (stdout) {
-      console.log(stdout)
-    }
-
-    if (!err) {
-      console.log("\x1b[35m", '== START SUCCESS ==','\x1b[0m')
-    }
-  })
-
-  process.on('data', (data) => {
-    console.log(data)
-  })
+  console.log(cmpStr)
 }
 
 startProjects(components)

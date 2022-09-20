@@ -9,7 +9,8 @@ start:
 	node ./utils/startProjects.js
 
 start.verbose:
-	node ./utils/startVerboseProjects.js
+	VARIABLE=`node ./utils/startVerboseProjects.js`
+	docker-compose $(VARIABLE) --env-file ./config/.env up
 
 stop:
 	node ./utils/stopProjects.js
