@@ -26,7 +26,7 @@ function startProjects(componentsList) {
     }
   })
 
-  process.stderr.on('data', (data) => {
+  process.on('data', (data) => {
     console.log(data)
   })
 }
