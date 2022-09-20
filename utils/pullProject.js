@@ -1,22 +1,22 @@
 /*jshint esversion: 7 */
 
-const projects = require('../config/components.json').projects
+const components = require('../config/components.json').components
 const exec = require('child_process').exec
 
-function pullProject(projectsList) {
-  const project = projectsList.find((p) => p.name === process.argv[2])
-  const projectNames = projectsList.map((p) => p.name).join(', ')
+function pullProject(componentsList) {
+  const project = componentsList.find((p) => p.name === process.argv[2])
+  const projectNames = componentsList.map((p) => p.name).join(', ')
 
   if (!project) {
-    console.error("\x1b[31m", 'ERROR: Select project name', '\x1b[0m')
+    console.error("\x1b[31m", 'ERROR: Select Components name', '\x1b[0m')
     console.log('\x1b[33m', 'Names:', projectNames, '\x1b[0m')
     return
   }
 
-  console.log("\x1b[33m", '== PROJECT PULL ==','\x1b[0m')
-  console.log('Projects:', "\x1b[32m", project.name,'\x1b[0m')
+  console.log("\x1b[33m", '== COMPONENT PULL ==','\x1b[0m')
+  console.log('Components:', "\x1b[32m", project.name,'\x1b[0m')
 
-  const cmpStr = ` -f ./projects/${project.file}`
+  const cmpStr = ` -f ./components/${project.file}`
 
   const cmd = `docker-compose${cmpStr} pull`
 
@@ -35,4 +35,4 @@ function pullProject(projectsList) {
   })
 }
 
-pullProject(projects)
+pullProject(components)
