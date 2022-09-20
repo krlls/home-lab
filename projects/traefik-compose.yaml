@@ -8,7 +8,7 @@ networks:
 services:
   traefik:
     restart: unless-stopped
-    image: traefik:v2.2.0
+    image: traefik:latest
     read_only: true
     container_name: traefik
     ports:
