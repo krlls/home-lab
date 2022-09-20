@@ -17,7 +17,9 @@ function startProjects(projectsList) {
       console.log(err?.message)
     }
 
-    console.log(stdout)
+    if (stdout) {
+      console.log(stdout)
+    }
 
     if (!err) {
       console.log("\x1b[31m", '== PULL SUCCESS ==','\x1b[0m')
