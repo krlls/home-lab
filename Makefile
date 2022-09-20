@@ -3,10 +3,13 @@ install:
 	make check_install
 	docker network create traefik-network
 	@echo 'Image loading and assembling is performed, at first start it can take a long time...'
-	make start
+	make start.verbose
 
 start:
 	node ./utils/startProjects.js
+
+start.verbose:
+	node ./utils/startVerboseProjects.js
 
 stop:
 	node ./utils/stopProjects.js
