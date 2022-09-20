@@ -1,18 +1,18 @@
 start:
-	docker-compose up -d
+	docker-compose -f ./projects/docker-compose.yaml up -d
 
 restart:
-	docker-compose down
-	docker-compose up -d
+	make stop
+	make start
 
 stop:
-	docker-compose down
+	docker-compose -f ./projects/docker-compose.yaml down
 
 upgrade:
-	docker-compose down
+	make stop
 	make sources.update
-	docker-compose pull
-	docker-compose up -d
+	docker-compose -f ./projects/docker-compose.yaml pull
+	make start
 
 sources.get:
 #	git clone --depth 1 --branch with_category https://github.com/krlls/iQbit_test.git ./qbittorrent/webgui/iqbit
@@ -28,10 +28,3 @@ help:
 	@echo 'Обновление инфраструктуры: make upgrade'
 	@echo 'Обновить ресурсы: make sources.update'
 	@echo 'Загрузить ресурсы: make sources.get'
-
-bind.start:
-	docker-compose -f docker-compose-bind.yaml up -d
-
-bind.restart:
-	docker-compose -f docker-compose-bind.yaml down
-	docker-compose -f docker-compose-bind.yaml up -d
