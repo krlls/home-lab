@@ -1,6 +1,6 @@
 /*jshint esversion: 7 */
 
-const projects = require('../components.json').projects
+const projects = require('../config/components.json').projects
 const exec = require('child_process').exec
 
 function pullProject(projectsList) {
