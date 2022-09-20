@@ -10,20 +10,24 @@ component.start:
 component.stop:
 	node ./utils/stopProject.js $(component)
 
-component.upgrade:
-	make component.stop component=$(component)
-	node ./utils/pullProject.js $(component)
-	make component.start component=$(component)
-
 restart:
 	make stop
 	make start
+
+component.restart:
+	make component.stop component=$(component)
+	make component.start component=$(component)
 
 upgrade:
 	make stop
 	make sources.update
 	node ./utils/pullProjects.js
 	make start
+
+component.upgrade:
+	make component.stop component=$(component)
+	node ./utils/pullProject.js $(component)
+	make component.start component=$(component)
 
 sources.get:
 #	git clone --depth 1 --branch with_category https://github.com/krlls/iQbit_test.git ./qbittorrent/webgui/iqbit
