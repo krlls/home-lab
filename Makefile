@@ -1,5 +1,5 @@
 install:
-	make help.config.template
+	make help.config
 	make check_install
 	docker network create traefik-network
 	@echo 'Image loading and assembling is performed, at first start it can take a long time...'
