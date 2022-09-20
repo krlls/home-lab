@@ -1,9 +1,9 @@
 /*jshint esversion: 7 */
 
-const projects = require('../config/components.json').projects
+const components = require('../config/components.json').components
 
-function printProjectNames(projectsList) {
-  console.log('Projects:', "\x1b[32m", projectsList.map((p) => p.name).join(', '),'\x1b[0m')
+function printProjectNames(componentsList) {
+  console.log('Components:', "\x1b[32m", componentsList.map((p) => p.name).join(', '),'\x1b[0m')
 }
 
-printProjectNames(projects)
+printProjectNames(components)

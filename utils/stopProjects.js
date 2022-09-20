@@ -1,13 +1,13 @@
 /*jshint esversion: 7 */
 
-const projects = require('../config/components.json').projects
+const components = require('../config/components.json').components
 const exec = require('child_process').exec
 
-function startProjects(projectsList) {
-  console.log("\x1b[31m", '== PROJECTS STOP ==','\x1b[0m')
-  console.log('Projects:', "\x1b[32m", projectsList.map((p) => p.name).join(', '),'\x1b[0m')
-  const cmpStr = projectsList.reduce((previousValue, { file }) => {
-    return previousValue + ` -f ./projects/${file}`
+function startProjects(componentsList) {
+  console.log("\x1b[31m", '== COMPONENTS STOP ==','\x1b[0m')
+  console.log('Components:', "\x1b[32m", componentsList.map((p) => p.name).join(', '),'\x1b[0m')
+  const cmpStr = componentsList.reduce((previousValue, { file }) => {
+    return previousValue + ` -f ./components/${file}`
   }, '')
 
   const cmd = `docker-compose${cmpStr} down`
@@ -27,4 +27,4 @@ function startProjects(projectsList) {
   })
 }
 
-startProjects(projects)
+startProjects(components)
