@@ -1,3 +1,10 @@
+install:
+	make help.config.template
+	make check_install
+	docker network create traefik-network
+	@echo 'Image loading and assembling is performed, at first start it can take a long time...'
+	make start
+
 start:
 	node ./utils/startProjects.js
 
@@ -58,3 +65,7 @@ help:
 	@echo 'Stop component nt name: make component.stop component=<name>'
 	@echo 'Start component by name: make component.start component=<name>'
 	@echo 'Upgrade component by name: make component.upgrade component=<name>'
+
+check_install:
+	@echo -n "Check config file... Are you sure? [Y/N] " && read ans && [ $${ans:-N} = Y ]
+.PHONY: clean check_clean
