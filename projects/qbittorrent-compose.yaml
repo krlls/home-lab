@@ -10,11 +10,11 @@ services:
     image: lscr.io/linuxserver/qbittorrent:latest
     container_name: qbittorrent
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.${TORRENT_HOST}.rule=Host(`${TORRENT_HOST}.${DOMAIN_NAME}`)"
-      - "traefik.http.routers.${TORRENT_HOST}.entrypoints=websecure"
-      - "traefik.http.routers.${TORRENT_HOST}.tls.certresolver=mydnschallenge"
-      - "traefik.http.services.${TORRENT_HOST}.loadbalancer.server.port=9092"
+      - traefik.enable=true
+      - traefik.http.routers.${TORRENT_HOST}.rule=Host(`${TORRENT_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.${TORRENT_HOST}.entrypoints=websecure
+      - traefik.http.routers.${TORRENT_HOST}.tls.certresolver=mydnschallenge
+      - traefik.http.services.${TORRENT_HOST}.loadbalancer.server.port=9092
     environment:
       - PUID=1000
       - PGID=1000

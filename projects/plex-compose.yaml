@@ -16,11 +16,11 @@ services:
       - VERSION=docker
       - PLEX_CLAIM="claim-mBWf_FXSdKwkYfzzPFZf"
     labels:
-      - "traefik.enable=true"
-      - "traefik.http.routers.${PLEX_HOST}.rule=Host(`${PLEX_HOST}.${DOMAIN_NAME}`)"
-      - "traefik.http.routers.${PLEX_HOST}.entrypoints=websecure"
-      - "traefik.http.routers.${PLEX_HOST}.tls.certresolver=mydnschallenge"
-      - "traefik.http.services.${PLEX_HOST}.loadbalancer.server.port=32400"
+      - traefik.enable=true
+      - traefik.http.routers.${PLEX_HOST}.rule=Host(`${PLEX_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.${PLEX_HOST}.entrypoints=websecure
+      - traefik.http.routers.${PLEX_HOST}.tls.certresolver=mydnschallenge
+      - traefik.http.services.${PLEX_HOST}.loadbalancer.server.port=32400
     ports:
       - "32400:32400"
       - "32400:32400/udp"
