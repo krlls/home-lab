@@ -1,17 +1,17 @@
 start:
-	docker-compose -f ./projects/docker-compose.yaml up -d
+	node ./utils/startProjects.js
+
+stop:
+	node ./utils/stopProjects.js
 
 restart:
 	make stop
 	make start
 
-stop:
-	docker-compose -f ./projects/docker-compose.yaml down
-
 upgrade:
 	make stop
 	make sources.update
-	docker-compose -f ./projects/docker-compose.yaml pull
+	node ./utils/pullProjects.js
 	make start
 
 sources.get:

@@ -1,0 +1,12 @@
+{
+  "projects": [
+    {
+      "name": "all",
+      "file": "docker-compose.yaml"
+    },
+    {
+      "name": "duplicati",
+      "file": "duplicati-compose.yaml"
+    }
+  ]
+}
