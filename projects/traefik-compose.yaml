@@ -1,0 +1,22 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  traefik:
+    restart: unless-stopped
+    image: traefik:v2.2.0
+    read_only: true
+    container_name: traefik
+    ports:
+      - "80:80"
+      - "443:443"
+      - "8081:8080"
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ../data/traefik/traefik.yaml:/traefik.yaml:ro
+      - ../data/traefik/etc/traefik:/etc/traefik/
+      - ../data/traefik/srv/letsencrypt:/letsencrypt
