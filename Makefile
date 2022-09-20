@@ -4,6 +4,17 @@ start:
 stop:
 	node ./utils/stopProjects.js
 
+component.start:
+	node ./utils/startProject.js $(component)
+
+component.stop:
+	node ./utils/stopProject.js $(component)
+
+component.upgrade:
+	make component.stop component=$(component)
+	node ./utils/pullProject.js $(component)
+	make component.start component=$(component)
+
 restart:
 	make stop
 	make start

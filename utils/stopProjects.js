@@ -20,7 +20,7 @@ function startProjects(projectsList) {
     console.log(stdout)
 
     if (!err) {
-      console.log("\x1b[31m", '== START SUCCESS ==','\x1b[0m')
+      console.log("\x1b[31m", '== STOP SUCCESS ==','\x1b[0m')
     }
   })
 }
