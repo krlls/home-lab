@@ -1,0 +1,77 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  nextcloud_app:
+    image: nextcloud
+    container_name: nextcloud_app
+    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
+    labels:
+      - "traefik.enable=true"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.rule=Host(`${NEXT_CLOUD_HOST}.${DOMAIN_NAME}`)"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.entrypoints=websecure"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.tls.certresolver=mydnschallenge"
+      - "traefik.http.services.${NEXT_CLOUD_HOST}.loadbalancer.server.port=80"
+      - "traefik.http.middlewares.cloud.headers.STSPreload=true"
+      - "traefik.http.middlewares.cloud.headers.STSSeconds=15552000"
+      - "traefik.http.middlewares.cloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav"
+      - "traefik.http.middlewares.cloud-dav.replacepathregex.replacement=/remote.php/dav/"
+      - "traefik.http.routers.${NEXT_CLOUD_HOST}.middlewares=cloud,cloud-dav"
+    ports:
+      - 80
+    links:
+      - nextcloud_db
+      - nextcloud_redis
+    volumes:
+      - ../data/nextcloud/app:/var/www/html
+      - /home/ksmi/a/nextcloud/data:/var/www/html/data
+    restart: always
+    environment:
+      - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
+      - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
+      - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
+      - MYSQL_HOST=nextcloud_db
+    depends_on:
+      - nextcloud_db
+      - nextcloud_redis
+    entrypoint: sh -c "apt update && apt install -y libmagickcore-6.q16-6-extra ffmpeg && /entrypoint.sh apache2-foreground"
+
+  nextcloud_redis:
+    image: redis
+    container_name: nextcloud_redis
+    restart: always
+    command: redis-server --requirepass ${REDIS_PASSWORD}
+
+  nextcloud_db:
+    image: mariadb
+    container_name: nextcloud_db
+    command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
+    restart: always
+    volumes:
+      - ../data/nextcloud-db/db:/var/lib/mysql
+    environment:
+      - MYSQL_ROOT_PASSWORD=${NEXT_CLOUD_MYSQL_ROOT_PASSWORD}
+      - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
+      - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
+      - MYSQL_USER=${NEXT_CLOUD_MYSQL_USER}
+
+  cron:
+    image: rcdailey/nextcloud-cronjob
+    container_name: nextcloud_cron
+    restart: always
+    network_mode: none
+    depends_on:
+      - nextcloud_db
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - /etc/localtime:/etc/localtime:ro
+      - ../data/nextcloud/cron/jobs.sh:/cron-scripts/jobs.sh:ro
+    environment:
+      - NEXTCLOUD_CONTAINER_NAME=nextcloud_app
+      - NEXTCLOUD_EXEC_SHELL=sh
+      - NEXTCLOUD_CRON_MINUTE_INTERVAL=5

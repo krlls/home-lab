@@ -1,0 +1,19 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  ksmi_site:
+    image: ksmi/ksmi_site:latest
+    container_name: ksmi_site
+    hostname: "${DOMAIN_NAME}"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.ksmi.rule=Host(`${DOMAIN_NAME}`)
+      - traefik.http.routers.ksmi.entrypoints=websecure
+      - traefik.http.routers.ksmi.tls.certresolver=mydnschallenge
+      - traefik.http.services.ksmi.loadbalancer.server.port=3000
+    restart: always
