@@ -39,6 +39,12 @@ sources.update:
 help.names:
 	node ./utils/printProjectNames.js
 
+help.config:
+	cat ./config/.env
+
+help.config.template:
+	cat ./config/temp.env
+
 help:
 	@echo 'Start all: make start'
 	@echo 'Stop all: make stop'
