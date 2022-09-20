@@ -5,7 +5,7 @@ const exec = require('child_process').exec
 
 function startProjects(projectsList) {
   console.log("\x1b[35m", '== PROJECTS START ==','\x1b[0m')
-  console.log('Projects:', "\x1b[32m", ...projectsList.map((p) => p.name),'\x1b[0m')
+  console.log('Projects:', "\x1b[32m", projectsList.map((p) => p.name).join(', '),'\x1b[0m')
   const cmpStr = projectsList.reduce((previousValue, { file }) => {
     return previousValue + ` -f ./projects/${file}`
   }, '')
