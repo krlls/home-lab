@@ -2,31 +2,31 @@
   "components": [
     {
       "name": "traefik",
-      "file": "traefik-compose.yaml"
+      "file": "traefik.yaml"
     },
     {
       "name": "qbittorrent",
-      "file": "qbittorrent-compose.yaml"
+      "file": "qbittorrent.yaml"
     },
     {
       "name": "plex",
-      "file": "plex-compose.yaml"
+      "file": "plex.yaml"
     },
     {
       "name": "youtrack",
-      "file": "youtrack-compose.yaml"
+      "file": "youtrack.yaml"
     },
     {
       "name": "nextcloud",
-      "file": "nextcloud-compose.yaml"
+      "file": "nextcloud.yaml"
     },
     {
       "name": "ksmi-site",
-      "file": "ksmi-site-compose.yaml"
+      "file": "ksmi-site.yaml"
     },
     {
       "name": "duplicati",
-      "file": "duplicati-compose.yaml"
+      "file": "duplicati.yaml"
     }
   ]
 }

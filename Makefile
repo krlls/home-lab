@@ -1,3 +1,10 @@
+install:
+	make help.config
+	make check_install
+	docker network create traefik-network
+	@echo 'Image loading and assembling is performed, at first start it can take a long time...'
+	make start
+
 start:
 	node ./utils/startProjects.js
 
@@ -46,15 +53,22 @@ help.config.template:
 	cat ./config/temp.env
 
 help:
-	@echo 'Start all: make start'
-	@echo 'Stop all: make stop'
-	@echo 'Restart all: make restart'
-	@echo 'Upgrade all: make upgrade'
+	@echo 'Start all: `make start`'
+	@echo 'Stop all: `make stop`'
+	@echo 'Restart all: `make restart`'
+	@echo 'Upgrade all: `make upgrade`'
 	@echo ' '
 	@echo 'Update secondary sources: make sources.update'
 	@echo 'Download secondary sources: make sources.get'
 	@echo ' '
 	@echo 'Print all component names: make help.names'
+	@echo 'Print current config: make help.config'
+	@echo 'Print template config: make help.config.template'
+	@echo ' '
 	@echo 'Stop component nt name: make component.stop component=<name>'
 	@echo 'Start component by name: make component.start component=<name>'
 	@echo 'Upgrade component by name: make component.upgrade component=<name>'
+
+check_install:
+	@echo -n "Check config file... Are you sure? [Y/N] " && read ans && [ $${ans:-N} = Y ]
+.PHONY: clean check_clean
