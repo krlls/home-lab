@@ -11,8 +11,8 @@ services:
     container_name: duplicati
     hostname: "${DUPLICATI_HOST}.${DOMAIN_NAME}"
     environment:
-      - PUID=1000
-      - PGID=1000
+      - PUID=0
+      - PGID=0
       - TZ=Europe/London
     volumes:
       - ../data/duplicati/config:/config
