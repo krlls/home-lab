@@ -14,9 +14,12 @@ services:
       - PUID=0
       - PGID=0
       - TZ=Europe/London
+      - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
+      - TELEGRAM_CHATID=${TELEGRAM_CHATID}
     volumes:
       - ../data/duplicati/config:/config
-      - ../data//duplicati/backups:/backups
+      - ../data/duplicati/backups:/backups
+      - ../data/duplicati/telegram:/telegram
       - /home/ksmi/a/nextcloud:/source/nextcloud
     ports:
       - 8200:8200
