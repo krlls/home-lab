@@ -42,7 +42,7 @@ The basic installation of the infrastructure. The components must be configured 
 $ git clone https://github.com/krlls/homeServer/
 ```
 #### 2. Create env
-Copy config/temp.env as config/.env and replace the data for the services with your own.
+Copy `config/temp.en` as `config/.env` and replace the data for the services with your own.
 
 ```shell
 $ cp ./config/temp.env ./config/.env
@@ -56,7 +56,6 @@ After launching, it is necessary to confirm that the data in the config/.env fil
 
 #### 5. Configuring components
 Go to all the addresses and follow the suggested steps, depending on the service
-
 
 ## Overview
 Next I will try to give some general information about the infrastructure and how things work.
