@@ -34,6 +34,30 @@ It currently hosts several services that make my life more fun and easier:
 - Start component by name: `make component.start component=<name>`
 - Upgrade component by name: `make component.upgrade component=<name>`
 
+## Install
+The basic installation of the infrastructure. The components must be configured according to their documentation in the links above.
+
+#### 1. Сlone a repository
+```shell
+$ git clone https://github.com/krlls/homeServer/
+```
+#### 2. Create env
+Copy config/temp.env as config/.env and replace the data for the services with your own.
+
+```shell
+$ cp ./config/temp.env ./config/.env
+$ nano ./config/.env
+```
+#### 3. Domains Connection
+Bind the domain to the ip server and add A records according to the selected subdomains for components. Or use local DNS.
+
+#### 4. Run the installation
+After launching, it is necessary to confirm that the data in the config/.env file are correct. After that, all components will start.
+
+#### 5. Configuring components
+Go to all the addresses and follow the suggested steps, depending on the service
+
+
 ## Overview
 Next I will try to give some general information about the infrastructure and how things work.
 
@@ -60,7 +84,10 @@ In `сonfig/components.json` you must register a new component, this will link i
 #### 2. Add component data
 Create the directory `data/<component_name>` and mount all the necessary volumes, this will organize the container data for future use.
 
-#### 3. Component  start
+#### 3. Add .env
+Put all the important data (what should not be in the git index) in the `config/.env` file.
+
+#### 4. Component  start
 After that, you will need to restart the entire infrastructure or just this component:
 ```shell
 $ make restart 
@@ -78,8 +105,8 @@ Within this framework I'm sticking to using images with the **latest** tag. This
 > But I advise not to use this approach in production in commercial projects since it will cause probable failures.
 
 ### RoadMap
-1.  Вынести все абсолютные пути томов в переменные окружения
-2. Создать скрипт для генерации .env
-3. Вынести конфигурацию Traefik в yaml файлы (отделить от докера)
+1. Put all absolute volume paths in environment variables
+2. Create a script to generate `.env`
+3. Put the Traefik configuration into `.yaml` files (separate from the docker).
 
 
