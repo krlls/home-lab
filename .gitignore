@@ -8,3 +8,5 @@
 /data/nextcloud-db/db/
 /config/.env
 /.env
+data/duplicati/config/
+/data/qbittorrent/config/
