@@ -95,7 +95,7 @@ After that, you will need to restart the entire infrastructure or just this comp
 ```shell
 $ make restart 
 #or 
-$ make componen.start component=<component_name> 
+$ make component.start component=<component_name> 
 ```
 
 ### Additionally
