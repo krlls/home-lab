@@ -14,7 +14,7 @@ services:
     - ../data/adguard/work:/opt/adguardhome/work
     - ../data/adguard/conf:/opt/adguardhome/conf
     ports:
-      - "80:80"
+      - "80"
       - "63:53/tcp"
       - "63:53/udp"
     labels:
