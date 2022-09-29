@@ -10,3 +10,5 @@
 /.env
 data/duplicati/config/
 /data/qbittorrent/config/
+/data/adguard/work/
+/data/adguard/conf/
