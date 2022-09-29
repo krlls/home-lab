@@ -2,13 +2,14 @@
 My main server repository for home use.<br>
 It currently hosts several services that make my life more fun and easier:
 
-- **[Traefik Proxy](https://registry.hub.docker.com/_/traefik "Traefik proxy")** - I use it as a reverse proxy for service routing, HTTPS connection and certificate issuance.
-- **[Duplicati ](https://hub.docker.com/r/linuxserver/duplicati "Duplicati")** - I use it for file-cloud backups.
-- **[Plex](https://registry.hub.docker.com/r/linuxserver/plex "Plex")** - Media server for watching movies and music.
-- **[QBittorrent](https://hub.docker.com/r/linuxserver/qbittorrent "QBittorrent")** - Torrent to download movies and music directly through the [web UI](https://github.com/ntoporcov/iQbit "web UI")
-- **[NextCloud](https://registry.hub.docker.com/_/nextcloud "NextCloud")** - A personal cloud for storing files.
+- **[Traefik Proxy](https://traefik.io/traefik/ "Traefik proxy")** - I use it as a reverse proxy for service routing, HTTPS connection and certificate issuance.
+- **[Duplicati](https://www.duplicati.com/ "Duplicati")** - I use it for file-cloud backups.
+- **[Plex](https://www.plex.tv/ "Plex")** - Media server for watching movies and music.
+- **[QBittorrent](https://www.qbittorrent.org/ "QBittorrent")** - Torrent to download movies and music directly through the [iQbit Web UI](https://github.com/ntoporcov/iQbit "iQbit")
+- **[NextCloud](https://nextcloud.com/ "NextCloud")** - A personal cloud for storing files.
 - **[Ksmi-Site](http://ksmi.me "Ksmi-Site")** - My personal site.
-- **[YouTrack](https://registry.hub.docker.com/r/jetbrains/youtrack "YouTrack")** - I use it as a task tracker for personal projects.
+- **[YouTrack](https://www.jetbrains.com/youtrack/ "YouTrack")** - I use it as a task tracker for personal projects.
+- **[AdGuard Home](https://adguard.com/adguard-home/overview.html "AdGuard Home")** - Network-wide software for blocking ads & tracking.
 
 ## Infrastructure management
 
@@ -37,7 +38,7 @@ It currently hosts several services that make my life more fun and easier:
 ## Install
 The basic installation of the infrastructure. The components must be configured according to their documentation in the links above.
 
-#### 1. Сlone a repository
+#### 1. Clone repository
 ```shell
 $ git clone https://github.com/krlls/homeServer/
 ```
