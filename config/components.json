@@ -27,6 +27,10 @@
     {
       "name": "duplicati",
       "file": "duplicati.yaml"
+    },
+    {
+      "name": "adguard",
+      "file": "adguard.yaml"
     }
   ]
 }
