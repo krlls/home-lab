@@ -1,0 +1,26 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  adguard:
+    image: adguard/adguardhome:latest
+    container_name: adguard
+    hostname: "${ADGUARD_HOST}.${DOMAIN_NAME}"
+    volumes:
+    - ../data/adguard/work:/opt/adguardhome/work
+    - ../data/adguard/conf:/opt/adguardhome/conf
+    ports:
+      - "3000:3000"
+      - "63:53/tcp"
+      - "63:53/udp"
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.adguard.rule=Host(`${ADGUARD_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.adguard.entrypoints=websecure
+      - traefik.http.routers.adguard.tls.certresolver=mydnschallenge
+      - traefik.http.services.adguard.loadbalancer.server.port=3000
+    restart: unless-stopped
