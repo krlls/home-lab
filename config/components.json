@@ -31,6 +31,10 @@
     {
       "name": "adguard",
       "file": "adguard.yaml"
+    },
+    {
+      "name": "tautulli",
+      "file": "tautulli.yaml"
     }
   ]
 }

@@ -1,0 +1,27 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  tautulli:
+    image: ghcr.io/tautulli/tautulli
+    container_name: tautulli
+    hostname: "${TAUTULLI_HOST}.${DOMAIN_NAME}"
+    volumes:
+      - ../data/tautulli/config:/config
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Asia/Tbilisi
+    ports:
+      - 8181
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.tautulli.rule=Host(`${TAUTULLI_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.tautulli.entrypoints=websecure
+      - traefik.http.routers.tautulli.tls.certresolver=mydnschallenge
+      - traefik.http.services.tautulli.loadbalancer.server.port=8181
+    restart: unless-stopped
