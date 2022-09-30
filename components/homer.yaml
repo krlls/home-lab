@@ -15,8 +15,6 @@ services:
       - INIT_ASSETS=1
     volumes:
       - ../data/homer/assets:/www/assets
-    ports:
-      - 8080
     labels:
       - traefik.enable=true
       - traefik.http.routers.homer.rule=Host(`${HOMER_HOST}.${DOMAIN_NAME}`)
