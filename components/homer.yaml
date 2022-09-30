@@ -10,6 +10,9 @@ services:
     image: b4bz/homer:latest
     container_name: homer
     hostname: "${HOMER_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
     volumes:
       - ../data/homer/assets:/www/assets
     ports:
