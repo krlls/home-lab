@@ -30,10 +30,10 @@ services:
       PHOTOPRISM_UPLOAD_NSFW: "true"
       PHOTOPRISM_SITE_DESCRIPTION: ""
       PHOTOPRISM_SITE_AUTHOR: ""
-      PHOTOPRISM_SIDECAR_PATH: "/photoprism/converted/"
+      PHOTOPRISM_SIDECAR_PATH: "/photoprism/converted"
     working_dir: "/photoprism"
     volumes:
-      - /home/ksmi/a/photoprism/converted:/photoprism/converted:ro
+      - /home/ksmi/a/photoprism/converted:/photoprism/converted/
       - /home/ksmi/a/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
       - /home/ksmi/a/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
       - ../data/photoprism/storage:/photoprism/storage
