@@ -39,6 +39,10 @@
     {
       "name": "homer",
       "file": "homer.yaml"
+    },
+    {
+      "name": "photoprism",
+      "file": "photoprism.yaml"
     }
   ]
 }
