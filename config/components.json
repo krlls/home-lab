@@ -35,6 +35,10 @@
     {
       "name": "tautulli",
       "file": "tautulli.yaml"
+    },
+    {
+      "name": "homer",
+      "file": "homer.yaml"
     }
   ]
 }

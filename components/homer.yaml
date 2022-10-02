@@ -1,0 +1,24 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  homer:
+    image: b4bz/homer:latest
+    container_name: homer
+    hostname: "${HOMER_HOST}.${DOMAIN_NAME}"
+    user: 1000:1000
+    environment:
+      - INIT_ASSETS=1
+    volumes:
+      - ../data/homer/assets:/www/assets
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.homer.rule=Host(`${HOMER_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.homer.entrypoints=websecure
+      - traefik.http.routers.homer.tls.certresolver=mydnschallenge
+      - traefik.http.services.homer.loadbalancer.server.port=8080
+    restart: unless-stopped
