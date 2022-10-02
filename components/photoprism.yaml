@@ -39,10 +39,10 @@ services:
       ofelia.job-exec.photoprism_index.schedule: "@every 1h"
       ofelia.job-exec.photoprism_index.command: "photoprism index --cleanup"
       traefik.enable: true
-      traefik.http.routers.adguard.rule: Host(`${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}`)
-      traefik.http.routers.adguard.entrypoints: websecure
-      traefik.http.routers.adguard.tls.certresolver: mydnschallenge
-      traefik.http.services.adguard.loadbalancer.server.port: 2342
+      traefik.http.routers.photoprism.rule: Host(`${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}`)
+      traefik.http.routers.photoprism.entrypoints: websecure
+      traefik.http.routers.photoprism.tls.certresolver: mydnschallenge
+      traefik.http.services.photoprism.loadbalancer.server.port: 2342
     restart: unless-stopped
 
   ofelia:
