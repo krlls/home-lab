@@ -1,0 +1,51 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  photoprism:
+    image: photoprism/photoprism:latest
+    container_name: photoprism
+    depends_on:
+      - nextcloud_db
+    hostname: "${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}"
+    ports:
+      - 2342
+    links:
+      - nextcloud_db
+    environment:
+      PHOTOPRISM_ADMIN_PASSWORD: ${PHOTO_PRISM_ADMIN_PASSWORD}
+      PHOTOPRISM_SITE_URL: "${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}"
+      PHOTOPRISM_DATABASE_NAME: ${PHOTO_PRISM_DATABASE_NAME}
+      PHOTOPRISM_DATABASE_USER: ${PHOTO_PRISM_DATABASE_USER}
+      PHOTOPRISM_DATABASE_PASSWORD: ${PHOTO_PRISM_DATABASE_PASSWORD}
+      PHOTOPRISM_DATABASE_DRIVER: "mysql"
+      PHOTOPRISM_DATABASE_SERVER: "nextcloud_db:3306"
+      PHOTOPRISM_SITE_TITLE: "PhotoPrism"
+      PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
+      PHOTOPRISM_READONLY: "true"
+      PHOTOPRISM_SITE_DESCRIPTION: ""
+      PHOTOPRISM_SITE_AUTHOR: ""
+    working_dir: "/photoprism"
+    volumes:
+      - /home/ksmi/a/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
+      - /home/ksmi/a/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
+      - ../data/photoprism/storage:/photoprism/storage
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.photoprism_index.schedule: "@every 1h"
+      ofelia.job-exec.photoprism_index.command: "photoprism index --cleanup"
+    restart: unless-stopped
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: ofelia
+    depends_on:
+      - photoprism
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped
