@@ -47,7 +47,7 @@ services:
       traefik.http.routers.photoprism.entrypoints: websecure
       traefik.http.routers.photoprism.tls.certresolver: mydnschallenge
       traefik.http.services.photoprism.loadbalancer.server.port: 2342
-    entrypoint: /photoprism/scripts/darktable.sh
+    entrypoint: sudo /photoprism/scripts/darktable.sh
     restart: unless-stopped
 
   photoprism_db:
