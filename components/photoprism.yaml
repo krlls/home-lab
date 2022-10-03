@@ -37,6 +37,7 @@ services:
       - /home/ksmi/a/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
       - /home/ksmi/a/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
       - ../data/photoprism/storage:/photoprism/storage
+      - ../data/photoprism/scripts:/photoprism/scripts
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.photoprism_index.schedule: "@every 1h"
@@ -46,6 +47,7 @@ services:
       traefik.http.routers.photoprism.entrypoints: websecure
       traefik.http.routers.photoprism.tls.certresolver: mydnschallenge
       traefik.http.services.photoprism.loadbalancer.server.port: 2342
+    entrypoint: sh /photoprism/scripts/darktable.sh
     restart: unless-stopped
 
   photoprism_db:
