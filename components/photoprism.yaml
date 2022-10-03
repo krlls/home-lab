@@ -10,7 +10,7 @@ services:
     image: photoprism/photoprism:latest
     container_name: photoprism
     depends_on:
-      - nextcloud_db
+      - photoprism_db
     hostname: "${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}"
     ports:
       - 2342
