@@ -7,7 +7,7 @@ networks:
 
 services:
   photoprism:
-    image: photoprism/photoprism:latest
+    image: photoprism/photoprism:preview-ubuntu
     container_name: photoprism
     depends_on:
       - photoprism_db
