@@ -1,4 +1,4 @@
 #!/bin/bash
 
-apt-get update
-apt-get upgrade -y darktable
+apt update
+apt -y upgrade darktable
