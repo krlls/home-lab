@@ -7,4 +7,4 @@ echo 'deb http://download.opensuse.org/repositories/graphics:/darktable/Debian_1
 curl -fsSL https://download.opensuse.org/repositories/graphics:darktable/Debian_11/Release.key | gpg --dearmor | sudo tee /etc/apt/trusted.gpg.d/graphics_darktable.gpg > /dev/null
 
 apt-get update
-apt-get install darktable
+apt-get install -f darktable
