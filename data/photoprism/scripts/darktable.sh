@@ -1,4 +1,5 @@
 #!/bin/bash
 
 apt update
-apt -y upgrade darktable
+apt -y remove darktable
+apt -y install darktable
