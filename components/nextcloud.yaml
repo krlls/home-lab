@@ -40,7 +40,7 @@ services:
     depends_on:
       - nextcloud_db
       - nextcloud_redis
-    entrypoint: /custom-entrypoint.sh
+    entrypoint: sh -c "/custom-entrypoint.sh"
 
   nextcloud_redis:
     image: redis
