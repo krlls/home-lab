@@ -8,10 +8,13 @@ function startProject(componentsList) {
   const projectNames = componentsList.map((p) => p.name).join(', ')
 
   if (!project) {
-
     console.error("\x1b[31m", 'ERROR: Select project name: `make component.start component=<name>`', '\x1b[0m')
     console.log('\x1b[33m', 'Names:', projectNames, '\x1b[0m')
     return
+  }
+
+  if (project.disabled) {
+    console.error("\x1b[33m", `WARNING: Start disabled component ${project.name}`, '\x1b[0m')
   }
 
   console.log("\x1b[35m", '== COMPONENT START ==','\x1b[0m')

@@ -5,8 +5,12 @@ const exec = require('child_process').exec
 
 function startProjects(componentsList) {
   console.log("\x1b[35m", '== COMPONENTS START ==','\x1b[0m')
-  console.log('Components:', "\x1b[32m", componentsList.map((p) => p.name).join(', '),'\x1b[0m')
-  const cmpStr = componentsList.reduce((previousValue, { file }) => {
+  console.log('Components:', componentsList.map((p) => p.disabled ? `\x1b[31mDISABLED: ${p.name}\x1b[0m` : `\x1b[32m${p.name}\x1b[0m`).join(', '))
+  const cmpStr = componentsList.reduce((previousValue, { file, disabled }) => {
+    if (disabled) {
+      return previousValue
+    }
+
     return previousValue + ` -f ./components/${file}`
   }, '')
 
