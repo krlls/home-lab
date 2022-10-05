@@ -10,6 +10,8 @@ It currently hosts several services that make my life more fun and easier:
 - **[Ksmi-Site](http://ksmi.me "Ksmi-Site")** - My personal site.
 - **[YouTrack](https://www.jetbrains.com/youtrack/ "YouTrack")** - I use it as a task tracker for personal projects.
 - **[AdGuard Home](https://adguard.com/adguard-home/overview.html "AdGuard Home")** - Network-wide software for blocking ads & tracking.
+- **[PhotoPrism](https://photoprism.app "PhotoPrism")** - AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically.
+- **[Homer](https://github.com/bastienwirtz/homer "Homer")** - A simple static homepage for your serveRr to keep your services on hand, from a simple yaml configuration file.
 
 ## Infrastructure management
 

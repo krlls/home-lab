@@ -1,0 +1,76 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  photoprism:
+    image: photoprism/photoprism:ubuntu
+    container_name: photoprism
+    depends_on:
+      - photoprism_db
+    hostname: "${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}"
+    ports:
+      - 2342
+    links:
+      - photoprism_db
+    environment:
+      PHOTOPRISM_ADMIN_PASSWORD: ${PHOTO_PRISM_ADMIN_PASSWORD}
+      PHOTOPRISM_SITE_URL: "https://${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}"
+      PHOTOPRISM_DATABASE_NAME: ${PHOTO_PRISM_DATABASE_NAME}
+      PHOTOPRISM_DATABASE_USER: ${PHOTO_PRISM_DATABASE_USER}
+      PHOTOPRISM_DATABASE_PASSWORD: ${PHOTO_PRISM_DATABASE_PASSWORD}
+      PHOTOPRISM_DATABASE_DRIVER: "mysql"
+      PHOTOPRISM_DATABASE_SERVER: photoprism_db
+      PHOTOPRISM_SITE_TITLE: "PhotoPrism"
+      PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
+#      PHOTOPRISM_READONLY: "true"
+      PHOTOPRISM_UPLOAD_NSFW: "true"
+      PHOTOPRISM_SITE_DESCRIPTION: ""
+      PHOTOPRISM_SITE_AUTHOR: ""
+      PHOTOPRISM_SIDECAR_PATH: "/photoprism/converted"
+    working_dir: "/photoprism"
+    volumes:
+      - /home/ksmi/a/photoprism/converted:/photoprism/converted/
+      - /home/ksmi/a/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
+      - /home/ksmi/a/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
+      - ../data/photoprism/storage:/photoprism/storage
+      - ../data/photoprism/scripts:/photoprism/scripts
+    labels:
+      ofelia.enabled: "true"
+      ofelia.job-exec.photoprism_index.schedule: "@every 1h"
+      ofelia.job-exec.photoprism_index.command: "photoprism index --cleanup"
+      traefik.enable: true
+      traefik.http.routers.photoprism.rule: Host(`${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}`)
+      traefik.http.routers.photoprism.entrypoints: websecure
+      traefik.http.routers.photoprism.tls.certresolver: mydnschallenge
+      traefik.http.services.photoprism.loadbalancer.server.port: 2342
+    restart: unless-stopped
+
+  photoprism_db:
+    image: mariadb
+    container_name: photoprism_db
+    command: mysqld --innodb-buffer-pool-size=256M --transaction-isolation=READ-COMMITTED --character-set-server=utf8mb4 --collation-server=utf8mb4_unicode_ci --max-connections=512 --innodb-rollback-on-timeout=OFF --innodb-lock-wait-timeout=120
+    security_opt:
+      - seccomp:unconfined
+      - apparmor:unconfined
+    environment:
+      MYSQL_ROOT_PASSWORD: ${PHOTO_PRISM_ROOT_DATABASE_PASSWORD}
+      MYSQL_DATABASE: ${PHOTO_PRISM_DATABASE_NAME}
+      MYSQL_USER: ${PHOTO_PRISM_DATABASE_USER}
+      MYSQL_PASSWORD: ${PHOTO_PRISM_DATABASE_PASSWORD}
+    volumes:
+      - ../data/photoprism/photoprism-db:/var/lib/mysql
+    restart: unless-stopped
+
+  ofelia:
+    image: mcuadros/ofelia:latest
+    container_name: ofelia
+    depends_on:
+      - photoprism
+    command: daemon --docker
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+    restart: unless-stopped

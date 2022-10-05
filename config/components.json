@@ -13,6 +13,7 @@
       "file": "plex.yaml"
     },
     {
+      "disabled": true,
       "name": "youtrack",
       "file": "youtrack.yaml"
     },
@@ -39,6 +40,10 @@
     {
       "name": "homer",
       "file": "homer.yaml"
+    },
+    {
+      "name": "photoprism",
+      "file": "photoprism.yaml"
     }
   ]
 }
