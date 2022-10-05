@@ -29,6 +29,7 @@ services:
     volumes:
       - ../data/nextcloud/app:/var/www/html
       - /home/ksmi/a/nextcloud/data:/var/www/html/data
+      - ../data/nextcloud/scripts/custom-entrypoint.sh:/custom-entrypoint.sh:ro
     restart: always
     environment:
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
@@ -39,7 +40,7 @@ services:
     depends_on:
       - nextcloud_db
       - nextcloud_redis
-    entrypoint: ../data/nextcloud/scripts/custom-entrypoint.sh
+    entrypoint: /custom-entrypoint.sh
 
   nextcloud_redis:
     image: redis
