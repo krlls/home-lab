@@ -29,6 +29,7 @@ services:
     volumes:
       - ../data/nextcloud/app:/var/www/html
       - /home/ksmi/a/nextcloud/data:/var/www/html/data
+      - ../data/nextcloud/scripts/custom-entrypoint.sh:/custom-entrypoint.sh:ro
     restart: always
     environment:
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
@@ -39,7 +40,7 @@ services:
     depends_on:
       - nextcloud_db
       - nextcloud_redis
-    entrypoint: sh -c "apt update && apt install -y libmagickcore-6.q16-6-extra ffmpeg && /entrypoint.sh apache2-foreground"
+    entrypoint: sh -c "/custom-entrypoint.sh"
 
   nextcloud_redis:
     image: redis
