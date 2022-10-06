@@ -1,0 +1,25 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  windscribe:
+    container_name: windscribe
+    hostname: windscribe
+    image: adyanth/docker-windscribe-proxy
+    environment:
+      - WINDSCRIBE_USERNAME=${WINDSCRIBE_USERNAME}
+      - WINDSCRIBE_PASSWORD=${WINDSCRIBE_PASSWORD}
+      - WINDSCRIBE_FIREWALL=on
+      - WINDSCRIBE_LANBYPASS=on
+      - WINDSCRIBE_LOCATION=NL
+    ports:
+      - 8888:3128
+    dns:
+      - 1.1.1.1
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped
