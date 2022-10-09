@@ -14,8 +14,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-    links:
-      - windscribe
     volumes:
       - ../data/jackett/config:/config
       - ../data/jackett/downloads:/downloads
