@@ -44,6 +44,15 @@
     {
       "name": "photoprism",
       "file": "photoprism.yaml"
+    },
+    {
+      "name": "jackett",
+      "file": "jackett.yaml"
+    },
+    {
+      "name": "windscribe",
+      "file": "windscribe.yaml",
+      "permanently": true
     }
   ]
 }

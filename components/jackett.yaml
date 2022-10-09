@@ -1,0 +1,26 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  jackett:
+    image: lscr.io/linuxserver/jackett:latest
+    container_name: jackett
+    hostname: "${JACKETT_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ../data/jackett/config:/config
+      - ../data/jackett/downloads:/downloads
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.jackett.rule=Host(`${JACKETT_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.jackett.entrypoints=websecure
+      - traefik.http.routers.jackett.tls.certresolver=mydnschallenge
+      - traefik.http.services.jackett.loadbalancer.server.port=9117
+    restart: unless-stopped

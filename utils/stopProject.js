@@ -14,6 +14,10 @@ function stopProject(componentsList) {
     return
   }
 
+  if (project.permanently) {
+    console.error("\x1b[33m", `WARNING: Stopping permanently component ${project.name}`, '\x1b[0m')
+  }
+
   console.log("\x1b[31m", '== COMPONENT STOP ==','\x1b[0m')
   console.log('Components:', "\x1b[32m", project.name,'\x1b[0m')
 
