@@ -57,6 +57,10 @@
       "name": "windscribe",
       "file": "windscribe.yaml",
       "permanently": true
+    },
+    {
+      "name": "overseerr",
+      "file": "overseerr.yaml"
     }
   ]
 }

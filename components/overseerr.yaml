@@ -1,0 +1,26 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  overseerr:
+    image: sctx/overseerr:latest
+    container_name: overseerr
+    hostname: "${OVERSEERR_HOST}.${DOMAIN_NAME}"
+    environment:
+      - LOG_LEVEL=debug
+      - TZ=Europe/London
+    volumes:
+      - ../data/overseerr/config:/app/config
+    ports:
+      - 5055
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.overseerr.rule=Host(`${RADARR_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.overseerr.entrypoints=websecure
+      - traefik.http.routers.overseerr.tls.certresolver=mydnschallenge
+      - traefik.http.services.overseerr.loadbalancer.server.port=5055
+    restart: unless-stopped
