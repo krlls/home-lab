@@ -16,9 +16,8 @@ services:
       - TZ=Europe/London
     volumes:
       - ../data/radarr/config:/config
-      - ../data/radarr/downloads:/downloads
-      - /home/ksmi/a/plex/movies:/movies/movies
-      - /home/ksmi/a/plex/tv:/movies/tv
+      - /home/ksmi/a/torrent/movies:/downloads
+      - /home/ksmi/a/plex/movies:/movies
     ports:
       - 7878
     labels:
