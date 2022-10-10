@@ -1,0 +1,29 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  radarr:
+    image: lscr.io/linuxserver/radarr:latest
+    container_name: radarr
+    hostname: "${RADARR_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ../data/radarr/config:/config
+      - /home/ksmi/a/torrent/movies:/downloads
+      - /home/ksmi/a/plex/movies:/movies
+    ports:
+      - 7878:7878
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.radarr.rule=Host(`${RADARR_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.radarr.entrypoints=websecure
+      - traefik.http.routers.radarr.tls.certresolver=mydnschallenge
+      - traefik.http.services.radarr.loadbalancer.server.port=7878
+    restart: unless-stopped

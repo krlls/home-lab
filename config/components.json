@@ -50,9 +50,17 @@
       "file": "jackett.yaml"
     },
     {
+      "name": "radarr",
+      "file": "radarr.yaml"
+    },
+    {
       "name": "windscribe",
       "file": "windscribe.yaml",
       "permanently": true
+    },
+    {
+      "name": "overseerr",
+      "file": "overseerr.yaml"
     }
   ]
 }
