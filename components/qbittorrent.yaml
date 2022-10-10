@@ -23,8 +23,8 @@ services:
     volumes:
       - ../data/qbittorrent/config/:/config
       - ../data/qbittorrent/webgui/:/webgui
-      - /home/ksmi/a/plex/movies/complete:/downloads/movies
-      - /home/ksmi/a/plex/tv/:/downloads/serials
+      - /home/ksmi/a/torrent/movies:/downloads/movies
+      - /home/ksmi/a/torrent/tv/:/downloads/serials
       - /home/ksmi/a/plex/music/:/downloads/music
     ports:
       - 9092:9092
