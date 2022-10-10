@@ -19,7 +19,7 @@ services:
       - /home/ksmi/a/torrent/movies:/downloads
       - /home/ksmi/a/plex/movies:/movies
     ports:
-      - 7878
+      - 7878:7878
     labels:
       - traefik.enable=true
       - traefik.http.routers.radarr.rule=Host(`${RADARR_HOST}.${DOMAIN_NAME}`)
