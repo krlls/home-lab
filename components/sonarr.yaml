@@ -19,7 +19,7 @@ services:
       - /home/ksmi/a/torrent/tv:/downloads
       - /home/ksmi/a/plex/tv:/tv
     ports:
-      - 8989
+      - 8989:8989
     labels:
       - traefik.enable=true
       - traefik.http.routers.sonarr.rule=Host(`${SONARR_HOST}.${DOMAIN_NAME}`)
