@@ -14,7 +14,8 @@ It currently hosts several services that make my life more fun and easier:
 - **[Homer](https://github.com/bastienwirtz/homer "Homer")** - A simple static homepage for your serveRr to keep your services on hand, from a simple yaml configuration file.
 - **[Windscribe](https://windscribe.net "Windscribe")** - VPN client + local proxy for any components.
 - **[Jackett](https://github.com/Jackett/Jackett "Jackett")** - Proxy for searching multiple torrents at once
-- **[Radarr](https://radarr.video/ "Radarr")** - Torrent management
+- **[Radarr](https://radarr.video/ "Radarr")** - Torrent management for movies
+- **[Sonarr](https://sonarr.tv/ "Sonarr")** - Torrent management for serials
 - **[Overseerr](https://overseerr.dev/ "Overseerr")** - is a request management and media discovery tool built to work with your existing Plex ecosystem.
 
 ## Infrastructure management
