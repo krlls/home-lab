@@ -16,6 +16,7 @@ It currently hosts several services that make my life more fun and easier:
 - **[Jackett](https://github.com/Jackett/Jackett "Jackett")** - Proxy for searching multiple torrents at once
 - **[Radarr](https://radarr.video/ "Radarr")** - Torrent management for movies
 - **[Sonarr](https://sonarr.tv/ "Sonarr")** - Torrent management for serials
+- **[Lidarr](https://lidarr.audio/ "Lidarr")** - Torrent management for music (somig soon)
 - **[Overseerr](https://overseerr.dev/ "Overseerr")** - is a request management and media discovery tool built to work with your existing Plex ecosystem.
 
 ## Infrastructure management
