@@ -1,0 +1,29 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  sonarr:
+    image: lscr.io/linuxserver/sonarr:latest
+    container_name: sonarr
+    hostname: "${SONARR_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ../data/sonarr/config:/config
+      - /home/ksmi/a/torrent/tv:/downloads
+      - /home/ksmi/a/plex/tv:/tv
+    ports:
+      - 8989:8989
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.sonarr.rule=Host(`${SONARR_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.sonarr.entrypoints=websecure
+      - traefik.http.routers.sonarr.tls.certresolver=mydnschallenge
+      - traefik.http.services.sonarr.loadbalancer.server.port=8989
+    restart: unless-stopped

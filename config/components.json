@@ -54,6 +54,10 @@
       "file": "radarr.yaml"
     },
     {
+      "name": "sonarr",
+      "file": "sonarr.yaml"
+    },
+    {
       "name": "windscribe",
       "file": "windscribe.yaml",
       "permanently": true
