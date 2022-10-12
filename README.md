@@ -6,29 +6,24 @@ It currently hosts several services that make my life more fun and easier:
 - **[PhotoPrism](https://photoprism.app "PhotoPrism")** - AI-Powered Photos App for the Decentralized Web. It makes use of the latest technologies to tag and find pictures automatically.
 - **[NextCloud](https://nextcloud.com/ "NextCloud")** - A personal cloud for storing files.
 - **[Plex](https://www.plex.tv/ "Plex")** - Media server for watching movies and music.
-- **[Tautulli](https://tautulli.com/ "Tautulli")** - Monitor for Plex Media Server.
 
 #### For torrents
 - **[Overseerr](https://overseerr.dev/ "Overseerr")** - is a request management and media discovery tool built to work with your existing Plex ecosystem.
-- **[QBittorrent](https://www.qbittorrent.org/ "QBittorrent")** - Torrent to download movies and music directly through the [iQbit Web UI].
-- **[Jackett](https://github.com/Jackett/Jackett "Jackett")** - Proxy for searching multiple torrents at once.
-- **[Radarr](https://radarr.video/ "Radarr")** - Torrent management for movies.
-- **[Sonarr](https://sonarr.tv/ "Sonarr")** - Torrent management for serials.
-- **[Lidarr](https://lidarr.audio/ "Lidarr")** - Torrent management for music.
-
-#### VPN
-- **[WireGuard Proxy](https://www.wireguard.com/ "WireGuard client Proxy")** - WireGuard VPN client and Socks5 proxy for local use.
-- **[WireGuard Server](https://www.wireguard.com/ "WireGuard Server")** - WireGuard VPN server for use home ip (Does not allow access to the local network).
-- **[Windscribe](https://windscribe.net "Windscribe")** - VPN client + local proxy for any components. (Blocked by Roskomnadzor).
+- **[QBittorrent](https://www.qbittorrent.org/ "QBittorrent")** - Torrent to download movies and music directly through the [iQbit Web UI]
+- **[Jackett](https://github.com/Jackett/Jackett "Jackett")** - Proxy for searching multiple torrents at once
+- **[Radarr](https://radarr.video/ "Radarr")** - Torrent management for movies
+- **[Sonarr](https://sonarr.tv/ "Sonarr")** - Torrent management for serials
+- **[Lidarr](https://lidarr.audio/ "Lidarr")** - Torrent management for music (somig soon)
 
 #### Other applications
 - **[Traefik Proxy](https://traefik.io/traefik/ "Traefik proxy")** - I use it as a reverse proxy for service routing, HTTPS connection and certificate issuance.
 - **[Duplicati](https://www.duplicati.com/ "Duplicati")** - I use it for file-cloud backups.
+(https://github.com/ntoporcov/iQbit "iQbit")
 - **[Ksmi-Site](http://ksmi.me "Ksmi-Site")** - My personal site.
+- **[YouTrack](https://www.jetbrains.com/youtrack/ "YouTrack")** - I use it as a task tracker for personal projects.
 - **[AdGuard Home](https://adguard.com/adguard-home/overview.html "AdGuard Home")** - Network-wide software for blocking ads & tracking.
 - **[Homer](https://github.com/bastienwirtz/homer "Homer")** - A simple static homepage for your serveRr to keep your services on hand, from a simple yaml configuration file.
-- **[Netdata](https://www.netdata.cloud/ "Netdata")** - Server monitoring.
-
+- **[Windscribe](https://windscribe.net "Windscribe")** - VPN client + local proxy for any components.
 ## Infrastructure management
 
 - Start all: `make start`
