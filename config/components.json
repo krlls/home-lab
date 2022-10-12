@@ -65,6 +65,10 @@
     {
       "name": "overseerr",
       "file": "overseerr.yaml"
+    },
+    {
+      "name": "lidarr",
+      "file": "lidarr.yaml"
     }
   ]
 }

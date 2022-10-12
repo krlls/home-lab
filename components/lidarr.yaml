@@ -1,0 +1,29 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  lidarr:
+    image: lscr.io/linuxserver/lidarr:latest
+    container_name: lidarr
+    hostname: "${LIDARR_HOST}.${DOMAIN_NAME}"
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+    volumes:
+      - ../data/lidarr/config:/config
+      - /home/ksmi/a/torrent/music:/downloads
+      - /home/ksmi/a/plex/music:/music
+    ports:
+      - 8686:8686
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.lidarr.rule=Host(`${LIDARR_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.lidarr.entrypoints=websecure
+      - traefik.http.routers.lidarr.tls.certresolver=mydnschallenge
+      - traefik.http.services.lidarr.loadbalancer.server.port=8989
+    restart: unless-stopped
