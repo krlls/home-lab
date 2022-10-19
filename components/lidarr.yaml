@@ -14,8 +14,6 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - HTTP_PROXY="http://192.168.0.92:8888"
-      - HTTPS_PROXY="http://192.168.0.92:8888"
     volumes:
       - ../data/lidarr/config:/config
       - /home/ksmi/a/torrent/music:/downloads
