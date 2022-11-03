@@ -11,6 +11,7 @@ services:
     container_name: overseerr
     hostname: "${OVERSEERR_HOST}.${DOMAIN_NAME}"
     environment:
+      - HTTP_PROXY=192.168.0.92:8888
       - LOG_LEVEL=debug
       - TZ=Europe/London
     volumes:
