@@ -15,6 +15,7 @@ function startProjects(componentsList) {
   }, '')
 
   const cmd = `docker-compose${cmpStr} pull`
+  console.log(cmd)
 
   exec(cmd, (err, stdout) => {
     if (err) {
