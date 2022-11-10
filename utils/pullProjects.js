@@ -6,7 +6,11 @@ const exec = require('child_process').exec
 function startProjects(componentsList) {
   console.log("\x1b[33m", '== COMPONENTS PULL ==','\x1b[0m')
   console.log('Components:', "\x1b[32m", componentsList.map((p) => p.name).join(', '),'\x1b[0m')
-  const cmpStr = componentsList.reduce((previousValue, { file }) => {
+  const cmpStr = componentsList.reduce((previousValue, { file, permanently }) => {
+    if (permanently) {
+      return previousValue
+    }
+
     return previousValue + ` -f ./components/${file}`
   }, '')
 
