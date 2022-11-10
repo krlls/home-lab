@@ -11,8 +11,6 @@ function startProjects(componentsList) {
       return previousValue
     }
 
-    console.log(previousValue)
-
     return previousValue + ` -f ./components/${file}`
   }, '')
 
