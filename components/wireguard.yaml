@@ -16,6 +16,4 @@ services:
       - 1080:1080
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun
     restart: unless-stopped
