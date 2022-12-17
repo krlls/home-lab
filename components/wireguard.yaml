@@ -9,18 +9,11 @@ services:
   wireguard:
     container_name: wireguard
     hostname: wireguard
-    image:  curve25519xsalsa20poly1305/wireguard
+    image: kizzx2/wireguard-socks-proxy
     volumes:
-      - ../data/wireguard/:/vpn:ro
-    environment:
-      - PROXY_USER=ksmi
-      - PROXY_PASS=test
-      - WIREGUARD_CONFIG=/vpn/wg.conf
+      - ../data/wireguard:/etc/wireguard/:ro
     ports:
-      - 7777:3128
-      - 8888:1080
+      - 1080:1080
     cap_add:
       - NET_ADMIN
-    devices:
-      - /dev/net/tun
     restart: unless-stopped
