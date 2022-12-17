@@ -11,7 +11,7 @@ services:
     hostname: wireguard
     image: kizzx2/wireguard-socks-proxy
     volumes:
-      - ../data/wireguard/:/etc/wireguard/
+      - ../data/wireguard/wg.conf:/etc/wireguard/wg.conf:ro
     ports:
       - 1080:1080
     cap_add:
