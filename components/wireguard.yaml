@@ -1,0 +1,21 @@
+version: "3.7"
+
+networks:
+  default:
+    external:
+      name: traefik-network
+
+services:
+  wireguard:
+    container_name: wireguard
+    hostname: wireguard
+    image: kizzx2/wireguard-socks-proxy
+    volumes:
+      - /directory/containing/your/wireguard/conf/file/:/etc/wireguard/:ro
+    ports:
+      - 1080:1080
+    cap_add:
+      - NET_ADMIN
+    devices:
+      - /dev/net/tun
+    restart: unless-stopped

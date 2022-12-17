@@ -60,11 +60,16 @@
     {
       "name": "windscribe",
       "file": "windscribe.yaml",
-      "permanently": true
+      "disabled": true
     },
     {
       "name": "overseerr",
-      "file": "overseerr.yaml"
+      "file": "overseerr.yaml",
+      "disabled": true
+    },
+    {
+      "name": "wireguard",
+      "file": "wireguard.yaml"
     }
   ]
 }
