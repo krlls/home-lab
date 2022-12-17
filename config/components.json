@@ -47,24 +47,29 @@
     },
     {
       "name": "jackett",
-      "file": "jackett.yaml"
+      "file": "jackett.yaml",
+      "disabled": true
     },
     {
       "name": "radarr",
-      "file": "radarr.yaml"
+      "file": "radarr.yaml",
+      "disabled": true
     },
     {
       "name": "sonarr",
-      "file": "sonarr.yaml"
+      "file": "sonarr.yaml",
+      "disabled": true
     },
     {
       "name": "windscribe",
       "file": "windscribe.yaml",
-      "permanently": true
+      "permanently": true,
+      "disabled": true
     },
     {
       "name": "overseerr",
-      "file": "overseerr.yaml"
+      "file": "overseerr.yaml",
+      "disabled": true
     }
   ]
 }
