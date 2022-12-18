@@ -10,6 +10,7 @@ services:
     container_name: wireguard_server
     hostname: wireguard_server
     image: linuxserver/wireguard
+    network_mode: 'host'
     environment:
       - PUID=1000
       - PGID=1000
