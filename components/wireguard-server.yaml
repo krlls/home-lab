@@ -1,16 +1,10 @@
 version: "3.7"
 
-networks:
-  default:
-    external:
-      name: traefik-network
-
 services:
   wireguard_server:
     container_name: wireguard_server
     hostname: wireguard_server
     image: linuxserver/wireguard
-    network_mode: 'host'
     environment:
       - PUID=1000
       - PGID=1000
