@@ -14,16 +14,16 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - SERVERPORT=51820
+      - SERVERPORT=51830
       - PEERS=ksmimac,ksmiphone,promfismac,promfisphone
-      - PEERDNS=77.244.75.110
+      - PEERDNS=1.1.1.1
       - INTERNAL_SUBNET=10.13.13.0
       - ALLOWEDIPS=0.0.0.0/0
       - LOG_CONFS=true
     volumes:
       - ../data/wireguard-server:/config
     ports:
-      - 51830:51820/udp
+      - 51830:51830/udp
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     cap_add:
