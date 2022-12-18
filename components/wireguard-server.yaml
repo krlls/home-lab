@@ -6,7 +6,7 @@ networks:
       name: traefik-network
 
 services:
-  wireguard:
+  wireguard_server:
     container_name: wireguard_server
     hostname: wireguard_server
     image: linuxserver/wireguard
