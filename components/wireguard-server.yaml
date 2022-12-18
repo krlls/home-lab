@@ -23,7 +23,7 @@ services:
     volumes:
       - ../data/wireguard-server:/config
     ports:
-      - 51830:51830/udp
+      - 51830:51830
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     cap_add:
