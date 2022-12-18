@@ -70,6 +70,10 @@
     {
       "name": "wireguard",
       "file": "wireguard.yaml"
+    },
+    {
+      "name": "wireguard-server",
+      "file": "wireguard-server.yaml"
     }
   ]
 }
