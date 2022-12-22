@@ -5,5 +5,5 @@ services:
     image: imightbebob/linux-dash:x86
     container_name: linux_dash
     ports:
-      - 8989:8080
+      - 9999:8080
     restart: always
