@@ -10,8 +10,6 @@ services:
     image: netdata/netdata:stable
     container_name: netdata
     hostname: "${NETDATA_HOST}.${DOMAIN_NAME}"
-    ports:
-      - 19999
     environment:
       - PUID=1000
       - PGID=1000
@@ -24,7 +22,7 @@ services:
       - traefik.http.routers.netdata.tls.certresolver=mydnschallenge
 
       - traefik.http.middlewares.netdata-auth.basicauth.users=ksmi:$$2y$$05$$13/ksXQc0vMy2sf0IBYQJe2R0iAylI2ZlgNsaRgLI/UP3bplGg9xu
-      - traefik.http.routers.linux_dash.middlewares=netdata-auth
+      - traefik.http.routers.netdata.middlewares=netdata-auth
 
       - traefik.http.services.netdata.loadbalancer.server.port=19999
     cap_add:
