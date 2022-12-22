@@ -20,5 +20,3 @@ services:
       - ../data/traefik/traefik.yaml:/traefik.yaml:ro
       - ../data/traefik/etc/traefik:/etc/traefik/
       - ../data/traefik/srv/letsencrypt:/letsencrypt
-    labels:
-      - traefik.http.middlewares.dash-auth.basicauth.users=ksmi:$$2y$$05$$13/ksXQc0vMy2sf0IBYQJe2R0iAylI2ZlgNsaRgLI/UP3bplGg9xu
