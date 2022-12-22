@@ -6,7 +6,7 @@ networks:
       name: traefik-network
 
 services:
-  linux_dash:
+  netdata:
     image: netdata/netdata:stable
     container_name: netdata
     hostname: "${LINUX_DASH_HOST}.${DOMAIN_NAME}"
@@ -14,14 +14,10 @@ services:
       - 19999
     labels:
       - traefik.enable=true
-      - traefik.http.routers.linux_dash.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
-      - traefik.http.routers.linux_dash.entrypoints=websecure
-      - traefik.http.routers.linux_dash.tls.certresolver=mydnschallenge
-
-#      - traefik.http.middlewares.dash-auth.basicauth.users=ksmi:$$2y$$05$$13/ksXQc0vMy2sf0IBYQJe2R0iAylI2ZlgNsaRgLI/UP3bplGg9xu
-#      - traefik.http.routers.linux_dash.middlewares=dash-auth
-
-      - traefik.http.services.linux_dash.loadbalancer.server.port=19999
+      - traefik.http.routers.netdata.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.netdata.entrypoints=websecure
+      - traefik.http.routers.netdata.tls.certresolver=mydnschallenge
+      - traefik.http.services.netdata.loadbalancer.server.port=19999
     cap_add:
       - SYS_PTRACE
     security_opt:
