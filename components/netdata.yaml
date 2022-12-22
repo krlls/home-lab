@@ -9,15 +9,17 @@ services:
   netdata:
     image: netdata/netdata:stable
     container_name: netdata
-    hostname: "${LINUX_DASH_HOST}.${DOMAIN_NAME}"
+    hostname: "${NETDATA_HOST}.${DOMAIN_NAME}"
     ports:
       - 19999
     environment:
       - PUID=1000
       - PGID=1000
+      - NETDATA_CLAIM_TOKEN=${NETDATA_CLAIM_TOKEN}
+      - NETDATA_CLAIM_URL=https://app.netdata.cloud
     labels:
       - traefik.enable=true
-      - traefik.http.routers.netdata.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.netdata.rule=Host(`${NETDATA_HOST}.${DOMAIN_NAME}`)
       - traefik.http.routers.netdata.entrypoints=websecure
       - traefik.http.routers.netdata.tls.certresolver=mydnschallenge
       - traefik.http.services.netdata.loadbalancer.server.port=19999
