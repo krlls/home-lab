@@ -7,12 +7,11 @@ networks:
 
 services:
   linux_dash:
-    image: imightbebob/linux-dash:x86
-    container_name: linux_dash
-    privileged: true
+    image: netdata/netdata:stable
+    container_name: netdata
     hostname: "${LINUX_DASH_HOST}.${DOMAIN_NAME}"
     ports:
-      - 8080
+      - 19999
     labels:
       - traefik.enable=true
       - traefik.http.routers.linux_dash.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
@@ -22,5 +21,18 @@ services:
       - traefik.http.middlewares.dash-auth.basicauth.users=ksmi:$$2y$$05$$13/ksXQc0vMy2sf0IBYQJe2R0iAylI2ZlgNsaRgLI/UP3bplGg9xu
       - traefik.http.routers.linux_dash.middlewares=dash-auth
 
-      - traefik.http.services.linux_dash.loadbalancer.server.port=8080
-    restart: always
+      - traefik.http.services.linux_dash.loadbalancer.server.port=19999
+    cap_add:
+      - SYS_PTRACE
+    security_opt:
+      - apparmor:unconfined
+    volumes:
+      - ../data/netdata/netdataconfig:/etc/netdata
+      - ../data/netdata/netdatalib:/var/lib/netdata
+      - ../data/netdata/netdatacache:/var/cache/netdata
+      - /etc/passwd:/host/etc/passwd:ro
+      - /etc/group:/host/etc/group:ro
+      - /proc:/host/proc:ro
+      - /sys:/host/sys:ro
+      - /etc/os-release:/host/etc/os-release:ro
+    restart: unless-stopped
