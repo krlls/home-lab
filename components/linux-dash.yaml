@@ -9,7 +9,7 @@ services:
       - 8080
     labels:
       - traefik.enable=true
-      - traefik.http.middlewares.dash-auth.basicauth.users=ksmi:${LINUX_DASH_PASS}
+      - traefik.http.routers.whoami.middlewares=dash-auth
       - traefik.http.routers.linux_dash.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
       - traefik.http.routers.linux_dash.entrypoints=websecure
       - traefik.http.routers.linux_dash.tls.certresolver=mydnschallenge
