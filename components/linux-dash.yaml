@@ -12,6 +12,9 @@ services:
     hostname: "${LINUX_DASH_HOST}.${DOMAIN_NAME}"
     ports:
       - 19999
+    environment:
+      - PUID=1000
+      - PGID=1000
     labels:
       - traefik.enable=true
       - traefik.http.routers.netdata.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
