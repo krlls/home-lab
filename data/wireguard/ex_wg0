@@ -1,0 +1,10 @@
+[Interface]
+PrivateKey = <client private key>
+Address = 10.0.0.6/32
+DNS = 77.244.75.110
+
+[Peer]
+PublicKey = 7bHwfTfwz7qFAEtmvIcFGoSWH7lOsf0AuFUTxDSSQzc=
+Endpoint = 185.123.53.148:51830
+AllowedIPs = 0.0.0.0/0
+PersistentKeepalive = 20
