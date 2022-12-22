@@ -9,9 +9,9 @@ services:
       - 8080
     labels:
       - traefik.enable=true
-      - traefik.http.middlewares.test-auth.basicauth.users=ksmi:${LINUX_DASH_PASS}
-      - traefik.http.routers.ksmi.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
-      - traefik.http.routers.ksmi.entrypoints=websecure
-      - traefik.http.routers.ksmi.tls.certresolver=mydnschallenge
-      - traefik.http.services.ksmi.loadbalancer.server.port=8080
+      - traefik.http.middlewares.dash-auth.basicauth.users=ksmi:${LINUX_DASH_PASS}
+      - traefik.http.routers.linux_dash.rule=Host(`${LINUX_DASH_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.linux_dash.entrypoints=websecure
+      - traefik.http.routers.linux_dash.tls.certresolver=mydnschallenge
+      - traefik.http.services.linux_dash.loadbalancer.server.port=8080
     restart: always
