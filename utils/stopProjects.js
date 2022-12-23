@@ -14,7 +14,7 @@ function startProjects(componentsList) {
     return previousValue + ` -f ./components/${file}`
   }, '')
 
-  const cmd = `docker-compose${cmpStr} down`
+  const cmd = `docker compose${cmpStr} down`
 
   exec(cmd, (err, stdout) => {
     if (err) {
