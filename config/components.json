@@ -74,6 +74,10 @@
     {
       "name": "wireguard_server",
       "file": "wireguard-server.yaml"
+    },
+    {
+      "name": "netdata",
+      "file": "netdata.yaml"
     }
   ]
 }

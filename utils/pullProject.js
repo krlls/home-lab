@@ -18,7 +18,7 @@ function pullProject(componentsList) {
 
   const cmpStr = ` -f ./components/${project.file}`
 
-  const cmd = `docker-compose${cmpStr} pull`
+  const cmd = `docker compose${cmpStr} pull`
 
   exec(cmd, (err, stdout) => {
     if (err) {
