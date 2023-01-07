@@ -58,6 +58,10 @@
       "file": "sonarr.yaml"
     },
     {
+      "name": "lidarr",
+      "file": "lidarr.yaml"
+    },
+    {
       "name": "windscribe",
       "file": "windscribe.yaml",
       "disabled": true

@@ -35,7 +35,7 @@ services:
     volumes:
       - /home/ksmi/a/photoprism/converted:/photoprism/converted/
       - /home/ksmi/a/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
-      - /home/ksmi/a/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
+#      - /home/ksmi/a/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
       - ../data/photoprism/storage:/photoprism/storage
       - ../data/photoprism/scripts:/photoprism/scripts
     labels:

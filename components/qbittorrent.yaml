@@ -25,7 +25,8 @@ services:
       - ../data/qbittorrent/webgui/:/webgui
       - /home/ksmi/a/torrent/movies:/downloads/movies
       - /home/ksmi/a/torrent/tv/:/downloads/serials
-      - /home/ksmi/a/plex/music/:/downloads/music
+      - /home/ksmi/a/torrent/seedMusic:/downloads/seedMusic
+      - /home/ksmi/a/torrent/music/:/downloads/music
     ports:
       - 9092:9092
       - 6881:6881
