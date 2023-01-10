@@ -1,10 +1,5 @@
 version: "3.7"
 
-networks:
-  default:
-    name: pub_net
-    external: true
-
 services:
   wireguard_server:
     container_name: wireguard_server
