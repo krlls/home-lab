@@ -21,5 +21,4 @@ services:
       - ../data/traefik/etc/traefik:/etc/traefik/
       - ../data/traefik/srv/letsencrypt:/letsencrypt
     labels:
-      - traefik.http.middlewares.locallist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32
       - traefik.http.middlewares.vpnlist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32, 185.123.53.148/32
