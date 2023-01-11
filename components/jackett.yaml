@@ -22,7 +22,7 @@ services:
       - traefik.http.routers.jackett.rule=Host(`${JACKETT_HOST}.${DOMAIN_NAME}`)
       - traefik.http.routers.jackett.entrypoints=websecure
       - traefik.http.routers.jackett.tls.certresolver=mydnschallenge
-      - traefik.http.middlewares.jackettlist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32
+      - traefik.http.middlewares.jackettlist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32, 185.123.53.148/32
       - traefik.http.routers.jackett.middlewares=jackettlist
       - traefik.http.services.jackett.loadbalancer.server.port=9117
     restart: unless-stopped

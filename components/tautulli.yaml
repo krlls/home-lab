@@ -23,7 +23,7 @@ services:
       - traefik.http.routers.tautulli.rule=Host(`${TAUTULLI_HOST}.${DOMAIN_NAME}`)
       - traefik.http.routers.tautulli.entrypoints=websecure
       - traefik.http.routers.tautulli.tls.certresolver=mydnschallenge
-      - traefik.http.middlewares.tautullilist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32
+      - traefik.http.middlewares.tautullilist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32, 185.123.53.148/32
       - traefik.http.routers.tautulli.middlewares=tautullilist
       - traefik.http.services.tautulli.loadbalancer.server.port=8181
     restart: unless-stopped
