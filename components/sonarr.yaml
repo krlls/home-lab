@@ -25,5 +25,7 @@ services:
       - traefik.http.routers.sonarr.rule=Host(`${SONARR_HOST}.${DOMAIN_NAME}`)
       - traefik.http.routers.sonarr.entrypoints=websecure
       - traefik.http.routers.sonarr.tls.certresolver=mydnschallenge
+      - traefik.http.middlewares.sonarrlist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32, 185.123.53.148/32
+      - traefik.http.routers.sonarr.middlewares=sonarrlist
       - traefik.http.services.sonarr.loadbalancer.server.port=8989
     restart: unless-stopped
