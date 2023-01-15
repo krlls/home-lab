@@ -46,6 +46,8 @@ services:
       traefik.http.routers.photoprism.rule: Host(`${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}`)
       traefik.http.routers.photoprism.entrypoints: websecure
       traefik.http.routers.photoprism.tls.certresolver: mydnschallenge
+      traefik.http.middlewares.photoprismlist.ipwhitelist.sourcerange: 192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32
+      traefik.http.routers.photoprism.middlewares: photoprismlist
       traefik.http.services.photoprism.loadbalancer.server.port: 2342
     restart: unless-stopped
 

@@ -5,22 +5,19 @@ services:
     container_name: wireguard_server
     hostname: wireguard_server
     image: linuxserver/wireguard
+    network_mode: 'host'
     environment:
       - PUID=1000
       - PGID=1000
       - TZ=Europe/London
-      - SERVERPORT=51820
-      - PEERS=ksmimac,ksmiphone,promfismac,promfisphone
-      - PEERDNS=1.1.1.1
-      - INTERNAL_SUBNET=10.13.13.0
-      - ALLOWEDIPS=0.0.0.0/0
+      - SERVERPORT=51830
+      - PEERS=ksmimac,ksmiphone,promfismac,promfisphone,crystalksmiphone,crystalksmimac
+      - PEERDNS=77.244.75.110
+      - INTERNAL_SUBNET=10.13.13.0/24
+      - ALLOWEDIPS=0.0.0.0/0,192.168.0.0/24
       - LOG_CONFS=true
     volumes:
       - ../data/wireguard-server:/config
-    ports:
-      - 51830:51820/udp
-    sysctls:
-      - net.ipv4.conf.all.src_valid_mark=1
     cap_add:
       - NET_ADMIN
       - SYS_MODULE

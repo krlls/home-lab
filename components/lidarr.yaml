@@ -25,5 +25,7 @@ services:
       - traefik.http.routers.lidarr.rule=Host(`${LIDARR_HOST}.${DOMAIN_NAME}`)
       - traefik.http.routers.lidarr.entrypoints=websecure
       - traefik.http.routers.lidarr.tls.certresolver=mydnschallenge
+      - traefik.http.middlewares.lidarrlist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32, 185.123.53.148/32
+      - traefik.http.routers.lidarr.middlewares=lidarrlist
       - traefik.http.services.lidarr.loadbalancer.server.port=8686
     restart: unless-stopped
