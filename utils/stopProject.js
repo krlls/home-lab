@@ -8,7 +8,6 @@ function stopProject(componentsList) {
   const projectNames = componentsList.map((p) => p.name).join(', ')
 
   if (!project) {
-
     console.error("\x1b[31m", 'ERROR: Select project name: `make component.stop component=<name>`', '\x1b[0m')
     console.log('\x1b[33m', 'Names:', projectNames, '\x1b[0m')
     return
@@ -22,7 +21,6 @@ function stopProject(componentsList) {
   console.log('Components:', "\x1b[32m", project.name,'\x1b[0m')
 
   const cmpStr = ` -f ./components/${project.file}`
-
   const cmd = `docker compose${cmpStr} down`
 
   exec(cmd, (err, stdout) => {

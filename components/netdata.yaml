@@ -24,6 +24,9 @@ services:
       - traefik.http.middlewares.netdata-auth.basicauth.users=ksmi:$$2y$$05$$13/ksXQc0vMy2sf0IBYQJe2R0iAylI2ZlgNsaRgLI/UP3bplGg9xu
       - traefik.http.routers.netdata.middlewares=netdata-auth
 
+      - traefik.http.middlewares.netdatalist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32
+      - traefik.http.routers.netdata.middlewares=netdatalist
+
       - traefik.http.services.netdata.loadbalancer.server.port=19999
     cap_add:
       - SYS_PTRACE
