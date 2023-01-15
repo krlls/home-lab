@@ -21,7 +21,6 @@ function stopProject(componentsList) {
   console.log('Components:', "\x1b[32m", project.name,'\x1b[0m')
 
   const cmpStr = ` -f ./components/${project.file}`
-
   const cmd = `docker compose${cmpStr} down`
 
   exec(cmd, (err, stdout) => {
