@@ -33,5 +33,5 @@ providers:
     endpoint: 'unix:///var/run/docker.sock'
     exposedbydefault: false
 
-log:
-  level: DEBUG
+#log:
+#  level: DEBUG

@@ -19,7 +19,6 @@ services:
     environment:
       - OTR_PORT=0 # disable mqtt if 0
       - OTR_HOST=owntracks-mqtt
-      - OTR_HTTPPORT=8083
       - PUID=1000
       - PGID=1000
       - OTR_STORAGEDIR=/store
