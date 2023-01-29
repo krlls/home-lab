@@ -16,7 +16,7 @@ services:
       - ../data/owntracks/store:/store
     restart: unless-stopped
     environment:
-      - OTR_HOST=mosquitto
+      - OTR_HOST=192.168.0.92
       - OTR_PORT=1883
       - VIRTUAL_PORT=8083
       - PUID=1000
