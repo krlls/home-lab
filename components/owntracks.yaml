@@ -32,9 +32,9 @@ services:
       - 1883
       - 9001
     volumes:
-      - ../data/mosquitto/data:/mosquitto/data
-      - ../data/mosquitto/logs:/mosquitto/logs
-      - ../data/mosquitto/conf:/mosquitto/config
+      - ../data/mosquitto/data/:/mosquitto/data/
+      - ../data/mosquitto/logs/:/mosquitto/logs/
+      - ../data/mosquitto/conf/:/mosquitto/config/
     restart: always
     labels:
       - traefik.enable=true
