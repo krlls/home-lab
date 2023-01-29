@@ -82,6 +82,10 @@
     {
       "name": "netdata",
       "file": "netdata.yaml"
+    },
+    {
+      "name": "owntracks",
+      "file": "owntracks.yaml"
     }
   ]
 }
