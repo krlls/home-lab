@@ -1,0 +1,49 @@
+version: "3.7"
+
+networks:
+  default:
+    name: traefik-network
+    external: true
+
+services:
+  owntracks:
+    container_name: owntracks
+    image: owntracks/recorder
+    ports:
+      - 8083
+    volumes:
+      - ../data/owntracks/config:/owntracks
+      - ../data/owntracks/store:/store
+    restart: unless-stopped
+    environment:
+      - OTR_HOST=mosquitto
+    labels:
+      - traefik.enable=true
+      - traefik.http.routers.owntracks.rule=Host(`${OWNTRACKS_HOST}.${DOMAIN_NAME}`)
+      - traefik.http.routers.owntracks.entrypoints=websecure
+      - traefik.http.routers.owntracks.tls.certresolver=mydnschallenge
+#      - traefik.http.middlewares.owntrackslist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32, 185.123.53.148/32
+#      - traefik.http.routers.owntracks.middlewares=owntrackslist
+      - traefik.http.services.owntracks.loadbalancer.server.port=8083
+
+  mosquitto:
+    image: eclipse-mosquitto
+    ports:
+      - 1883
+      - 9001
+    volumes:
+      - ../data/mosquitto/data:/mosquitto/data
+      - ../data/mosquitto/logs:/mosquitto/logs
+      - ../data/mosquitto/conf:/mosquitto/config
+      - ../data/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
+    restart: always
+    labels:
+      - traefik.enable=true
+      - traefik.tcp.services.mosquitto.loadbalancer.server.port=1883
+      - traefik.tcp.services.mosquitto_websocket.loadbalancer.server.port=9001
+      - traefik.tcp.routers.tcpr_mosquitto.entrypoints=mosquitto
+      - traefik.tcp.routers.tcpr_mosquitto.rule=HostSNI(`*`)
+      - traefik.tcp.routers.tcpr_mosquitto.service=mosquitto
+      - traefik.tcp.routers.tcpr_mosquitto_websocket.entrypoints=websocket
+      - traefik.tcp.routers.tcpr_mosquitto_websocket.rule=HostSNI(`*`)
+      - traefik.tcp.routers.tcpr_mosquitto_websocket.service=mosquitto_websocket
