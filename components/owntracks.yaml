@@ -17,6 +17,10 @@ services:
     restart: unless-stopped
     environment:
       - OTR_HOST=mosquitto
+      - OTR_PORT=1883
+      - VIRTUAL_PORT=8083
+      - PUID=1000
+      - PGID=1000
     labels:
       - traefik.enable=true
       - traefik.http.routers.owntracks.rule=Host(`${OWNTRACKS_HOST}.${DOMAIN_NAME}`)
