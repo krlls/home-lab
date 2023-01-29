@@ -35,6 +35,7 @@ services:
       - ../data/mosquitto/data/:/mosquitto/data/
       - ../data/mosquitto/logs/:/mosquitto/logs/
       - ../data/mosquitto/conf/:/mosquitto/config/
+      - ../data/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
     restart: always
     labels:
       - traefik.enable=true
