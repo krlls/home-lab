@@ -27,6 +27,8 @@ services:
       - traefik.http.services.owntracks.loadbalancer.server.port=8083
 
   mosquitto:
+    container_name: mosquitto
+    hostname: mosquitto
     image: eclipse-mosquitto
     ports:
       - 1883
@@ -35,7 +37,7 @@ services:
       - ../data/mosquitto/data/:/mosquitto/data/
       - ../data/mosquitto/logs/:/mosquitto/logs/
       - ../data/mosquitto/conf/:/mosquitto/config/
-      - ../data/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf:ro
+      - ../data/mosquitto/config/mosquitto.conf:/mosquitto/config/mosquitto.conf
     restart: always
     labels:
       - traefik.enable=true
