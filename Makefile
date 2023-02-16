@@ -26,10 +26,9 @@ component.restart:
 	make component.start component=$(component)
 
 upgrade:
-	make stop
 	make sources.update
 	node ./utils/pullProjects.js
-	make start
+	make restart
 
 component.upgrade:
 	make component.stop component=$(component)
