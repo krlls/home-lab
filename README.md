@@ -25,7 +25,6 @@ It currently hosts several services that make my life more fun and easier:
 - **[Traefik Proxy](https://traefik.io/traefik/ "Traefik proxy")** - I use it as a reverse proxy for service routing, HTTPS connection and certificate issuance.
 - **[Duplicati](https://www.duplicati.com/ "Duplicati")** - I use it for file-cloud backups.
 - **[Ksmi-Site](http://ksmi.me "Ksmi-Site")** - My personal site.
-- **[YouTrack](https://www.jetbrains.com/youtrack/ "YouTrack")** - I use it as a task tracker for personal projects.
 - **[AdGuard Home](https://adguard.com/adguard-home/overview.html "AdGuard Home")** - Network-wide software for blocking ads & tracking.
 - **[Homer](https://github.com/bastienwirtz/homer "Homer")** - A simple static homepage for your serveRr to keep your services on hand, from a simple yaml configuration file.
 - **[Netdata](https://www.netdata.cloud/ "Netdata")** - Server monitoring.
