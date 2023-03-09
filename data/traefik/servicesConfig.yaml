@@ -127,6 +127,28 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    torrent:
+      rule: "Host(`{{env "TORRENT_TRAEFIK_HOST"}}`)"
+      service: torrent-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    tautulli:
+      rule: "Host(`{{env "TAUTULLI_TRAEFIK_HOST"}}`)"
+      service: tautulli-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -178,7 +200,14 @@ http:
       loadBalancer:
         servers:
           - url: "http://photoprism:2342"
-
+    torrent-service:
+      loadBalancer:
+        servers:
+          - url: "http://qbittorrent:9092"
+    tautulli-service:
+      loadBalancer:
+        servers:
+          - url: "http://tautulli:8181"
 
   middlewares:
     vpn-and-local-white-list:
