@@ -32,6 +32,8 @@ providers:
   docker:
     endpoint: 'unix:///var/run/docker.sock'
     exposedbydefault: false
+  file:
+    filename: /etc/traefik/servicesConfig.yaml
 
 log:
   level: DEBUG

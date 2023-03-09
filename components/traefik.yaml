@@ -7,7 +7,6 @@ networks:
 
 services:
   traefik:
-    restart: unless-stopped
     image: traefik:latest
     read_only: true
     container_name: traefik
@@ -18,5 +17,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../data/traefik/traefik.yaml:/traefik.yaml:ro
+      - ../data/traefik/traefik.yaml:/traefik.yaml:ro
       - ../data/traefik/etc/traefik:/etc/traefik/
       - ../data/traefik/srv/letsencrypt:/letsencrypt
+    restart: unless-stopped
