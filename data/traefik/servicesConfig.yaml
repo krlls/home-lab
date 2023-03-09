@@ -1,6 +1,5 @@
 http:
   routers:
-
     ksmi-site:
       rule: "Host(`{{env "SITE_TRAEFIK_HOST"}}`)"
       service: ksmi-service
@@ -61,6 +60,39 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    lidarr:
+      rule: "Host(`{{env "LIDARR_TRAEFIK_HOST"}}`)"
+      service: lidarr-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    sonarr:
+      rule: "Host(`{{env "SONARR_TRAEFIK_HOST"}}`)"
+      service: sonarr-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    radarr:
+      rule: "Host(`{{env "RADARR_TRAEFIK_HOST"}}`)"
+      service: radarr-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -88,6 +120,19 @@ http:
       loadBalancer:
         servers:
           - url: "http://jackett:9117"
+    lidarr-service:
+      loadBalancer:
+        servers:
+          - url: "http://lidarr:8686"
+    sonarr-service:
+      loadBalancer:
+        servers:
+          - url: "http://sonarr:8989"
+    radarr-service:
+      loadBalancer:
+        servers:
+          - url: "http://radarr:7878"
+
 
   middlewares:
     vpn-and-local-white-list:
