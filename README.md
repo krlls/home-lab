@@ -126,8 +126,6 @@ Within this framework I'm sticking to using images with the **latest** tag. This
 > But I advise not to use this approach in production in commercial projects since it will cause probable failures.
 
 ### RoadMap
-1. Put all absolute volume paths in environment variables
-2. Create a script to generate `.env`
-3. Put the Traefik configuration into `.yaml` files (separate from the docker).
+1. Create a script to generate `.env`
 
 
