@@ -21,6 +21,7 @@ services:
       - ../data/traefik/etc/traefik:/etc/traefik/
       - ../data/traefik/srv/letsencrypt:/letsencrypt
     environment:
-      - SITE_HOST=${DOMAIN_NAME}
-      - ADGUARD_HOST=${ADGUARD_HOST}.${DOMAIN_NAME}
+      - SITE_TRAEFIK_HOST=${DOMAIN_NAME}
+      - ADGUARD_TRAEFIK_HOST=${ADGUARD_HOST}.${DOMAIN_NAME}
+      - PLEX_TRAEFIK_HOST=${PLEX_HOST}.${DOMAIN_NAME}
     restart: unless-stopped
