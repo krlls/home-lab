@@ -39,6 +39,17 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    duplicati:
+      rule: "Host(`{{env "DUPLICATI_TRAEFIK_HOST"}}`)"
+      service: duplicati-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -58,6 +69,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://homer:8080"
+    duplicati-service:
+      loadBalancer:
+        servers:
+          - url: "http://duplicati:8200"
 
 
   middlewares:
