@@ -3,7 +3,7 @@ http:
     ksmi:
       entryPoints:
         - "websecure"
-      rule: "Host(`k.ksmi.me`)"
+      rule: "Host(`ksmi.me`)"
       tls:
         certresolver: mydnschallenge
       service: ksmi
