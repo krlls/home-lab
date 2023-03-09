@@ -2,7 +2,7 @@ http:
   routers:
     ksmi:
       entryPoints:
-        - "websecure"
+        - "http"
       rule: "Host(`ksmi.me`)"
       service: ksmi_site
       tls:
