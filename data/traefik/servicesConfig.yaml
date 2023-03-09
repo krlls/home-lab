@@ -93,6 +93,29 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    netdata:
+      rule: "Host(`{{env "NETDATA_TRAEFIK_HOST"}}`)"
+      service: netdata-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    nextcloud:
+      rule: "Host(`{{env "NEXTCLOUD_TRAEFIK_HOST"}}`)"
+      service: nextcloud-service
+      middlewares:
+        - local-white-list
+        - cloud
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -132,6 +155,14 @@ http:
       loadBalancer:
         servers:
           - url: "http://radarr:7878"
+    netdata-service:
+      loadBalancer:
+        servers:
+          - url: "http://netdata:19999"
+    nextcloud-service:
+      loadBalancer:
+        servers:
+          - url: "http://nextcloud_app:80"
 
 
   middlewares:
@@ -148,4 +179,10 @@ http:
           - "192.168.0.0/24"
           - "10.13.13.0/24"
           - "127.0.0.1/32"
-
+    cloud:
+      headers:
+        STSPreload: true
+        STSSeconds: 15552000
+      replacepathregex:
+        regex: "^/.well-known/ca(l|rd)dav"
+        replacement: "/remote.php/dav/"
