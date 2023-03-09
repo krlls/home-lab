@@ -22,4 +22,5 @@ services:
       - ../data/traefik/srv/letsencrypt:/letsencrypt
     environment:
       - SITE_HOST=${DOMAIN_NAME}
+      - ADGUARD_HOST=${ADGUARD_HOST}.${DOMAIN_NAME}
     restart: unless-stopped

@@ -1,17 +1,31 @@
 http:
   routers:
+
     ksmi-site:
+      rule: "Host(`{{env "SITE_HOST"}}`)"
+      service: ksmi-service
       entryPoints:
         - "websecure"
-      rule: "Host(`{{env "SITE_HOST"}}`)"
-      service: "ksmi-site"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    adguard:
+      rule: "Host(`{{env "ADGUARD_HOST"}}`)"
+      service: adguard-service
+      entryPoints:
+        - "websecure"
       tls:
         certresolver:
           - "mydnschallenge"
 
   services:
-    ksmi-site:
+    ksmi-service:
       loadBalancer:
         servers:
           - url: "http://ksmi_site:3000"
+    adguard-service:
+      loadBalancer:
+        servers:
+          - url: "http://adguard:80"
 
