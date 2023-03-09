@@ -9,9 +9,6 @@ services:
   nextcloud_app:
     image: nextcloud
     container_name: nextcloud_app
-    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
-    ports:
-      - 80
     links:
       - nextcloud_db
       - nextcloud_redis
