@@ -26,7 +26,7 @@ services:
       PHOTOPRISM_DATABASE_SERVER: photoprism_db
       PHOTOPRISM_SITE_TITLE: "PhotoPrism"
       PHOTOPRISM_SITE_CAPTION: "Browse Your Life"
-#      PHOTOPRISM_READONLY: "true"
+      PHOTOPRISM_READONLY: "true"
       PHOTOPRISM_UPLOAD_NSFW: "true"
       PHOTOPRISM_SITE_DESCRIPTION: ""
       PHOTOPRISM_SITE_AUTHOR: ""
@@ -42,13 +42,6 @@ services:
       ofelia.enabled: "true"
       ofelia.job-exec.photoprism_index.schedule: "@every 1h"
       ofelia.job-exec.photoprism_index.command: "photoprism index --cleanup"
-      traefik.enable: true
-      traefik.http.routers.photoprism.rule: Host(`${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}`)
-      traefik.http.routers.photoprism.entrypoints: websecure
-      traefik.http.routers.photoprism.tls.certresolver: mydnschallenge
-      traefik.http.middlewares.photoprismlist.ipwhitelist.sourcerange: 192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32
-      traefik.http.routers.photoprism.middlewares: photoprismlist
-      traefik.http.services.photoprism.loadbalancer.server.port: 2342
     restart: unless-stopped
 
   photoprism_db:
