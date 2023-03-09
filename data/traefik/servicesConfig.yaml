@@ -4,13 +4,13 @@ http:
       entryPoints:
         - "websecure"
       rule: "Host(`ksmi.me`)"
+      service: ksmi_site
       tls:
         certresolver: mydnschallenge
-      service: ksmi_site
 
   services:
     ksmi_site:
       loadBalancer:
         servers:
-          - url: "http://ksmi.me:3000"
+          - url: "http://ksmi_site:3000"
 
