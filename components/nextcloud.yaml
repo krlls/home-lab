@@ -9,6 +9,9 @@ services:
   nextcloud_app:
     image: nextcloud
     container_name: nextcloud_app
+    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
+    ports:
+      - 80
     links:
       - nextcloud_db
       - nextcloud_redis
@@ -16,6 +19,7 @@ services:
       - ../data/nextcloud/app:/var/www/html
       - /home/ksmi/a/nextcloud/data:/var/www/html/data
       - ../data/nextcloud/scripts/custom-entrypoint.sh:/custom-entrypoint.sh:ro
+    restart: always
     environment:
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
       - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
@@ -26,7 +30,6 @@ services:
       - nextcloud_db
       - nextcloud_redis
     entrypoint: sh -c "/custom-entrypoint.sh"
-    restart: always
 
   nextcloud_redis:
     image: redis
