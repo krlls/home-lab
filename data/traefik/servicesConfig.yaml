@@ -57,7 +57,7 @@ http:
     homer-service:
       loadBalancer:
         servers:
-          - url: "http://homer:80"
+          - url: "http://homer:8080"
 
 
   middlewares:
