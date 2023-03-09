@@ -50,6 +50,17 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    jackett:
+      rule: "Host(`{{env "JACKETT_TRAEFIK_HOST"}}`)"
+      service: jackett-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -73,13 +84,25 @@ http:
       loadBalancer:
         servers:
           - url: "http://duplicati:8200"
-
+    jackett-service:
+      loadBalancer:
+        servers:
+          - url: "http://jackett:9117"
 
   middlewares:
+    vpn-and-local-white-list:
+      chain:
+        middlewares:
+          - local-white-list
+          - vpn-white-list
     local-white-list:
       ipwhitelist:
         sourcerange:
           - "192.168.0.0/24"
           - "10.13.13.0/24"
           - "127.0.0.1/32"
+    vpn-white-list:
+      ipwhitelist:
+        sourcerange:
+          - "185.123.53.148/32"
 
