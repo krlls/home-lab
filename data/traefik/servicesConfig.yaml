@@ -91,18 +91,16 @@ http:
 
   middlewares:
     vpn-and-local-white-list:
-      chain:
-        middlewares:
-          - local-white-list
-          - vpn-white-list
+      ipwhitelist:
+        sourcerange:
+          - "185.123.53.148/32"
+          - "192.168.0.0/24"
+          - "10.13.13.0/24"
+          - "127.0.0.1/32"
     local-white-list:
       ipwhitelist:
         sourcerange:
           - "192.168.0.0/24"
           - "10.13.13.0/24"
           - "127.0.0.1/32"
-    vpn-white-list:
-      ipwhitelist:
-        sourcerange:
-          - "185.123.53.148/32"
 
