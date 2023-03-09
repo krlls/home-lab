@@ -41,6 +41,6 @@ http:
       loadBalancer:
         servers:
           - url: "http://plex:32400"
-          - url: "http://plex:32469"
-          - url: "http://plex:1900"
+#          - url: "http://plex:32469"
+#          - url: "http://plex:1900"
 
