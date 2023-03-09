@@ -109,7 +109,7 @@ http:
       service: nextcloud-service
       middlewares:
         - local-white-list
-        - cloud
+#        - cloud
       entryPoints:
         - "websecure"
       tls:
@@ -194,10 +194,10 @@ http:
           - "192.168.0.0/24"
           - "10.13.13.0/24"
           - "127.0.0.1/32"
-    cloud:
-      headers:
-        STSPreload: true
-        STSSeconds: 15552000
-      replacepathregex:
-        regex: "^/.well-known/ca(l|rd)dav"
-        replacement: "/remote.php/dav/"
+#    cloud:
+#      headers:
+#        STSPreload: true
+#        STSSeconds: 15552000
+#      replacepathregex:
+#        regex: "^/.well-known/ca(l|rd)dav"
+#        replacement: "/remote.php/dav/"
