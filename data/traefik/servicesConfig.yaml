@@ -11,5 +11,6 @@ http:
   services:
     ksmi_site:
       loadBalancer:
-        server:
-          port: 3000
+        servers:
+          - url: "http://ksmi_site:3000"
+
