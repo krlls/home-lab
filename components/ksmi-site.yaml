@@ -9,5 +9,5 @@ services:
   ksmi_site:
     image: ksmi/ksmi_site:latest
     container_name: ksmi_site
-#    hostname: "${DOMAIN_NAME}"
+    hostname: "${DOMAIN_NAME}"
     restart: always

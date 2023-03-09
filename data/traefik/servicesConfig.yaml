@@ -3,7 +3,7 @@ http:
     ksmi-site:
       entryPoints:
         - "websecure"
-      rule: "Host(`ksmi.me`)"
+#      rule: "Host(`ksmi.me`)"
       service: "ksmi-site"
       tls:
         certresolver:
