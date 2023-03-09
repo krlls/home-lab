@@ -11,10 +11,10 @@ services:
       - PGID=1000
       - TZ=Europe/London
       - SERVERPORT=51830
-      - PEERS=ksmimac,ksmiphone,promfismac,promfisphone,crystalksmiphone,crystalksmimac
-      - PEERDNS=77.244.75.110
-      - INTERNAL_SUBNET=10.13.13.0/24
-      - ALLOWEDIPS=0.0.0.0/0,192.168.0.0/24
+      - PEERS=${VPN_PEERS}
+      - PEERDNS=${VPN_PEERDNS}
+      - INTERNAL_SUBNET=${VPN_INTERNAL_SUBNET}
+      - ALLOWEDIPS=${VPN_ALLOWEDIPS}
       - LOG_CONFS=true
     volumes:
       - ../data/wireguard-server:/config

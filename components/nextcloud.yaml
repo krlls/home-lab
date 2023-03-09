@@ -9,21 +9,6 @@ services:
   nextcloud_app:
     image: nextcloud
     container_name: nextcloud_app
-    hostname: "${NEXT_CLOUD_HOST}.${DOMAIN_NAME}"
-    labels:
-      - traefik.enable=true
-      - traefik.http.routers.${NEXT_CLOUD_HOST}.rule=Host(`${NEXT_CLOUD_HOST}.${DOMAIN_NAME}`)
-      - traefik.http.routers.${NEXT_CLOUD_HOST}.entrypoints=websecure
-      - traefik.http.routers.${NEXT_CLOUD_HOST}.tls.certresolver=mydnschallenge
-      - traefik.http.services.${NEXT_CLOUD_HOST}.loadbalancer.server.port=80
-      - traefik.http.middlewares.cloud.headers.STSPreload=true
-      - traefik.http.middlewares.cloud.headers.STSSeconds=15552000
-      - traefik.http.middlewares.cloud-dav.replacepathregex.regex=^/.well-known/ca(l|rd)dav
-      - traefik.http.middlewares.cloud-dav.replacepathregex.replacement=/remote.php/dav/
-      - traefik.http.middlewares.nextcloudlist.ipwhitelist.sourcerange=192.168.0.0/24, 10.13.13.0/24, 127.0.0.1/32
-      - traefik.http.routers.${NEXT_CLOUD_HOST}.middlewares=cloud,cloud-dav,nextcloudlist
-    ports:
-      - 80
     links:
       - nextcloud_db
       - nextcloud_redis
