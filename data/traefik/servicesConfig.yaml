@@ -28,6 +28,17 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    homer:
+      rule: "Host(`{{env "HOMER_TRAEFIK_HOST"}}`)"
+      service: homer-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -43,4 +54,17 @@ http:
           - url: "http://plex:32400"
 #          - url: "http://plex:32469"
 #          - url: "http://plex:1900"
+    homer-service:
+      loadBalancer:
+        servers:
+          - url: "http://homer:80"
+
+
+  middlewares:
+    local-white-list:
+      ipwhitelist:
+        sourcerange:
+          - "192.168.0.0/24"
+          - "10.13.13.0/24"
+          - "127.0.0.1/32"
 
