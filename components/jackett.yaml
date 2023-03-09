@@ -9,7 +9,6 @@ services:
   jackett:
     image: lscr.io/linuxserver/jackett:latest
     container_name: jackett
-    hostname: "${JACKETT_HOST}.${DOMAIN_NAME}"
     environment:
       - PUID=1000
       - PGID=1000

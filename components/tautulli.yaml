@@ -9,7 +9,6 @@ services:
   tautulli:
     image: ghcr.io/tautulli/tautulli
     container_name: tautulli
-    hostname: "${TAUTULLI_HOST}.${DOMAIN_NAME}"
     volumes:
       - ../data/tautulli/config:/config
     environment:

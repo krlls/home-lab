@@ -9,7 +9,6 @@ services:
   radarr:
     image: lscr.io/linuxserver/radarr:latest
     container_name: radarr
-    hostname: "${RADARR_HOST}.${DOMAIN_NAME}"
     environment:
       - PUID=1000
       - PGID=1000

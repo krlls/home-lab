@@ -9,7 +9,6 @@ services:
   plex:
     image: linuxserver/plex
     container_name: plex
-    hostname: "${PLEX_HOST}.${DOMAIN_NAME}"
     environment:
       - PUID=1000
       - PGID=1000
