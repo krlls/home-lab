@@ -6,10 +6,10 @@ http:
       rule: "Host(`ksmi.me`)"
       tls:
         certresolver: mydnschallenge
-      service: ksmi
+      service: ksmi_site
 
   services:
-    ksmi:
+    ksmi_site:
       loadBalancer:
         server:
           port: 3000
