@@ -177,7 +177,7 @@ http:
     photoprism-service:
       loadBalancer:
         servers:
-          - url: "http://nextcloud_app:2342"
+          - url: "http://photoprism:2342"
 
 
   middlewares:
