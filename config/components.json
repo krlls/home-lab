@@ -13,11 +13,6 @@
       "file": "plex.yaml"
     },
     {
-      "disabled": true,
-      "name": "youtrack",
-      "file": "youtrack.yaml"
-    },
-    {
       "name": "nextcloud",
       "file": "nextcloud.yaml"
     },

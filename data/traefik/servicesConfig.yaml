@@ -1,0 +1,238 @@
+http:
+  routers:
+    ksmi-site:
+      rule: "Host(`{{env "SITE_TRAEFIK_HOST"}}`)"
+      service: ksmi-service
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    adguard:
+      rule: "Host(`{{env "ADGUARD_TRAEFIK_HOST"}}`)"
+      service: adguard-service
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    plex:
+      rule: "Host(`{{env "PLEX_TRAEFIK_HOST"}}`)"
+      service: plex-service
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    homer:
+      rule: "Host(`{{env "HOMER_TRAEFIK_HOST"}}`)"
+      service: homer-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    duplicati:
+      rule: "Host(`{{env "DUPLICATI_TRAEFIK_HOST"}}`)"
+      service: duplicati-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    jackett:
+      rule: "Host(`{{env "JACKETT_TRAEFIK_HOST"}}`)"
+      service: jackett-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    lidarr:
+      rule: "Host(`{{env "LIDARR_TRAEFIK_HOST"}}`)"
+      service: lidarr-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    sonarr:
+      rule: "Host(`{{env "SONARR_TRAEFIK_HOST"}}`)"
+      service: sonarr-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    radarr:
+      rule: "Host(`{{env "RADARR_TRAEFIK_HOST"}}`)"
+      service: radarr-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    netdata:
+      rule: "Host(`{{env "NETDATA_TRAEFIK_HOST"}}`)"
+      service: netdata-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    nextcloud:
+      rule: "Host(`{{env "NEXTCLOUD_TRAEFIK_HOST"}}`)"
+      service: nextcloud-service
+      middlewares:
+        - local-white-list
+        - nextcloud-middleware
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    photoprism:
+      rule: "Host(`{{env "PHOTOPRISM_TRAEFIK_HOST"}}`)"
+      service: photoprism-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    torrent:
+      rule: "Host(`{{env "TORRENT_TRAEFIK_HOST"}}`)"
+      service: torrent-service
+      middlewares:
+        - vpn-and-local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+    tautulli:
+      rule: "Host(`{{env "TAUTULLI_TRAEFIK_HOST"}}`)"
+      service: tautulli-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
+  services:
+    ksmi-service:
+      loadBalancer:
+        servers:
+          - url: "http://ksmi_site:3000"
+    adguard-service:
+      loadBalancer:
+        servers:
+          - url: "http://adguard:80"
+    plex-service:
+      loadBalancer:
+        servers:
+          - url: "http://plex:32400"
+#          - url: "http://plex:32469"
+#          - url: "http://plex:1900"
+    homer-service:
+      loadBalancer:
+        servers:
+          - url: "http://homer:8080"
+    duplicati-service:
+      loadBalancer:
+        servers:
+          - url: "http://duplicati:8200"
+    jackett-service:
+      loadBalancer:
+        servers:
+          - url: "http://jackett:9117"
+    lidarr-service:
+      loadBalancer:
+        servers:
+          - url: "http://lidarr:8686"
+    sonarr-service:
+      loadBalancer:
+        servers:
+          - url: "http://sonarr:8989"
+    radarr-service:
+      loadBalancer:
+        servers:
+          - url: "http://radarr:7878"
+    netdata-service:
+      loadBalancer:
+        servers:
+          - url: "http://netdata:19999"
+    nextcloud-service:
+      loadBalancer:
+        servers:
+          - url: "http://nextcloud_app:80"
+    photoprism-service:
+      loadBalancer:
+        servers:
+          - url: "http://photoprism:2342"
+    torrent-service:
+      loadBalancer:
+        servers:
+          - url: "http://qbittorrent:9092"
+    tautulli-service:
+      loadBalancer:
+        servers:
+          - url: "http://tautulli:8181"
+
+  middlewares:
+    vpn-and-local-white-list:
+      ipwhitelist:
+        sourcerange:
+          - "185.123.53.148/32"
+          - "192.168.0.0/24"
+          - "10.13.13.0/24"
+          - "127.0.0.1/32"
+    local-white-list:
+      ipwhitelist:
+        sourcerange:
+          - "192.168.0.0/24"
+          - "10.13.13.0/24"
+          - "127.0.0.1/32"
+    nextcloud-middleware:
+      chain:
+        middlewares:
+          - cloud-headers
+          - cloud-regex
+    cloud-headers:
+      headers:
+        stsPreload: true
+        stsSeconds: 15552000
+    cloud-regex:
+      replacepathregex:
+        regex: "^/.well-known/ca(l|rd)dav"
+        replacement: "/remote.php/dav/"

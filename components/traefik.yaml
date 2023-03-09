@@ -7,7 +7,6 @@ networks:
 
 services:
   traefik:
-    restart: unless-stopped
     image: traefik:latest
     read_only: true
     container_name: traefik
@@ -18,5 +17,22 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../data/traefik/traefik.yaml:/traefik.yaml:ro
+      - ../data/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
       - ../data/traefik/etc/traefik:/etc/traefik/
       - ../data/traefik/srv/letsencrypt:/letsencrypt
+    environment:
+      - SITE_TRAEFIK_HOST=${DOMAIN_NAME}
+      - ADGUARD_TRAEFIK_HOST=${ADGUARD_HOST}.${DOMAIN_NAME}
+      - PLEX_TRAEFIK_HOST=${PLEX_HOST}.${DOMAIN_NAME}
+      - HOMER_TRAEFIK_HOST=${HOMER_HOST}.${DOMAIN_NAME}
+      - DUPLICATI_TRAEFIK_HOST=${DUPLICATI_HOST}.${DOMAIN_NAME}
+      - JACKETT_TRAEFIK_HOST=${JACKETT_HOST}.${DOMAIN_NAME}
+      - LIDARR_TRAEFIK_HOST=${LIDARR_HOST}.${DOMAIN_NAME}
+      - SONARR_TRAEFIK_HOST=${SONARR_HOST}.${DOMAIN_NAME}
+      - RADARR_TRAEFIK_HOST=${RADARR_HOST}.${DOMAIN_NAME}
+      - NETDATA_TRAEFIK_HOST=${NETDATA_HOST}.${DOMAIN_NAME}
+      - NEXTCLOUD_TRAEFIK_HOST=${NEXT_CLOUD_HOST}.${DOMAIN_NAME}
+      - PHOTOPRISM_TRAEFIK_HOST=${PHOTO_PRIZM_HOST}.${DOMAIN_NAME}
+      - TORRENT_TRAEFIK_HOST=${TORRENT_HOST}.${DOMAIN_NAME}
+      - TAUTULLI_TRAEFIK_HOST=${TAUTULLI_HOST}.${DOMAIN_NAME}
+    restart: unless-stopped
