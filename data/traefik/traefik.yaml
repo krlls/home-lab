@@ -29,11 +29,11 @@ certificatesResolvers:
         entryPoint: web
 
 providers:
+  docker:
+    endpoint: 'unix:///var/run/docker.sock'
+    exposedbydefault: false
   file:
     filename: /etc/traefik/servicesConfig.yaml
-  docker:
-#    endpoint: 'unix:///var/run/docker.sock'
-    exposedbydefault: false
 
 log:
   level: DEBUG

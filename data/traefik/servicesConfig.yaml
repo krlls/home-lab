@@ -12,5 +12,5 @@ http:
     ksmi_site:
       loadBalancer:
         servers:
-          - url: "http://172.18.0.9:3000"
+          - url: "http://ksmi.me:3000"
 
