@@ -158,7 +158,4 @@ Within this framework I'm sticking to using images with the **latest** tag. This
 
 > But I advise not to use this approach in production in commercial projects since it will cause probable failures.
 
-### RoadMap
-1. Create a script to generate `.env`
-
 
