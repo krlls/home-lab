@@ -28,10 +28,8 @@ services:
       - "32414:32414/udp"
     volumes:
       - ../data/plex/config:/config
-      - /home/ksmi/a/plex/tv:/tv
-      - /home/ksmi/a/plex/movies:/movies
-      - /home/ksmi/a/plex/movies:/moviesHHD
-      - /home/ksmi/a/plex/tv:/serialsHHD
-      - /home/ksmi/a/plex/music/:/music
-      - /home/ksmi/a/plex/likedMusic/:/likedMusic
+      - ${CONTENT_DIR}/plex/tv:/tv
+      - ${CONTENT_DIR}/plex/movies:/movies
+      - ${CONTENT_DIR}/plex/music/:/music
+      - ${CONTENT_DIR}/plex/likedMusic/:/likedMusic
     restart: unless-stopped
