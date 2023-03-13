@@ -32,9 +32,9 @@ services:
       PHOTOPRISM_SIDECAR_PATH: "/photoprism/converted"
     working_dir: "/photoprism"
     volumes:
-      - /home/ksmi/a/photoprism/converted:/photoprism/converted/
-      - /home/ksmi/a/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
-#      - /home/ksmi/a/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
+      - ${CONTENT_DIR}/photoprism/converted:/photoprism/converted/
+      - ${CONTENT_DIR}/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
+#      - ${CONTENT_DIR}/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
       - ../data/photoprism/storage:/photoprism/storage
       - ../data/photoprism/scripts:/photoprism/scripts
     labels:

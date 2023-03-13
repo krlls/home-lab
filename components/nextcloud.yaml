@@ -14,8 +14,8 @@ services:
       - nextcloud_redis
     volumes:
       - ../data/nextcloud/app:/var/www/html
-      - /home/ksmi/a/nextcloud/data:/var/www/html/data
       - ../data/nextcloud/scripts/custom-entrypoint.sh:/custom-entrypoint.sh:ro
+      - ${CONTENT_DIR}/nextcloud/data:/var/www/html/data
     restart: always
     environment:
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
