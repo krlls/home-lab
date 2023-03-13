@@ -35,8 +35,8 @@ services:
       - ${CONTENT_DIR}/photoprism/converted:/photoprism/converted/
       - ${CONTENT_DIR}/nextcloud/data/ksmi/files/Photos:/photoprism/originals/ksmi:ro
 #      - ${CONTENT_DIR}/nextcloud/data/promfis/files/Photos:/photoprism/originals/promfis:ro
-      - ${DATA_DIR}/photoprism/storage:/photoprism/storage
-      - ${DATA_DIR}/photoprism/scripts:/photoprism/scripts
+      - ../data/photoprism/storage:/photoprism/storage
+      - ../data/photoprism/scripts:/photoprism/scripts
     labels:
       ofelia.enabled: "true"
       ofelia.job-exec.photoprism_index.schedule: "@every 1h"
@@ -56,7 +56,7 @@ services:
       MYSQL_USER: ${PHOTO_PRISM_DATABASE_USER}
       MYSQL_PASSWORD: ${PHOTO_PRISM_DATABASE_PASSWORD}
     volumes:
-      - ${DATA_DIR}/photoprism/photoprism-db:/var/lib/mysql
+      - ../data/photoprism/photoprism-db:/var/lib/mysql
     restart: unless-stopped
 
   ofelia:

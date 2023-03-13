@@ -13,5 +13,5 @@ services:
     environment:
       - INIT_ASSETS=1
     volumes:
-      - ${DATA_DIR}/homer/assets:/www/assets
+      - ../data/homer/assets:/www/assets
     restart: unless-stopped

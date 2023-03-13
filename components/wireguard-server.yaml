@@ -17,7 +17,7 @@ services:
       - ALLOWEDIPS=${VPN_ALLOWEDIPS}
       - LOG_CONFS=true
     volumes:
-      - ${DATA_DIR}/wireguard-server:/config
+      - ../data/wireguard-server:/config
     cap_add:
       - NET_ADMIN
       - SYS_MODULE

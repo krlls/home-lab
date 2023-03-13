@@ -27,7 +27,7 @@ services:
       - "32413:32413/udp"
       - "32414:32414/udp"
     volumes:
-      - ${DATA_DIR}/config:/config
+      - ../data/config:/config
       - ${CONTENT_DIR}/plex/tv:/tv
       - ${CONTENT_DIR}/plex/movies:/movies
       - ${CONTENT_DIR}/plex/movies:/moviesHHD

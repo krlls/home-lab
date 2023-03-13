@@ -15,8 +15,8 @@ services:
       - TZ=Europe/London
       - WEBUI_PORT=9092
     volumes:
-      - ${DATA_DIR}/qbittorrent/config/:/config
-      - ${DATA_DIR}/qbittorrent/webgui/:/webgui
+      - ../data/qbittorrent/config/:/config
+      - ../data/qbittorrent/webgui/:/webgui
       - ${CONTENT_DIR}/torrent/movies:/downloads/movies
       - ${CONTENT_DIR}/torrent/tv/:/downloads/serials
       - ${CONTENT_DIR}/torrent/seedMusic:/downloads/seedMusic

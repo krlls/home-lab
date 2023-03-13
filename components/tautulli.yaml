@@ -10,7 +10,7 @@ services:
     image: ghcr.io/tautulli/tautulli
     container_name: tautulli
     volumes:
-      - ${DATA_DIR}/tautulli/config:/config
+      - ../data/tautulli/config:/config
     environment:
       - PUID=1000
       - PGID=1000

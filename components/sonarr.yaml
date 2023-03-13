@@ -14,7 +14,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ${DATA_DIR}/sonarr/config:/config
+      - ../data/sonarr/config:/config
       - ${CONTENT_DIR}/torrent/tv:/downloads
       - ${CONTENT_DIR}/plex/tv:/tv
     restart: unless-stopped
