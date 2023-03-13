@@ -105,10 +105,43 @@ In `./сonfig/components.json` you must register a new component, this will link
 #### 2. Add component data
 Create the directory `./data/<component_name>` and mount all the necessary volumes, this will organize the container data for future use.
 
-#### 3. Add .env
+
+#### 3. Add Traefik configuration
+The file `data/traefik/servicesConfig.yaml` contains the configuration for the correct routing of traffic to services. To add a new service, you need to create `router` and `service`  for it.
+To do this, you need to add to the `routers`:
+```yaml  
+http:  
+  routers:
+      ...
+      <SERVICE_NAME>:  #custom router name
+          rule: "Host(`{{env "<SERVICE_URL>"}}`)" #replace
+          service: <SERVICE_NAME>  #replace
+          entryPoints:  
+             - "websecure"  
+          tls:  
+              certresolver:  
+                 - "mydnschallenge"
+```
+And create a service, for this add to the `services`:
+```yaml  
+http:  
+  services:
+    ...
+    <SERVICE_NAME>: #replace
+      loadBalancer:  
+      servers:  
+         - url: "http://<ALIAS>:<PORT>" #replace to container name and port
+```
+
+> The environment variable `SERVICE_URL`  in the example above must be
+> thrown in the Traefik in the docker-compose file and use its name
+> here, for example `TORRENT_TRAEFIK_HOST`
+
+
+#### 4. Add .env
 Put all the important data (what should not be in the git index) in the `./config/.env` file.
 
-#### 4. Component  start
+#### 5. Component  start
 After that, you will need to restart the entire infrastructure or just this component:
 ```shell
 $ make restart 
