@@ -30,8 +30,6 @@ services:
       - ../data/plex/config:/config
       - ${CONTENT_DIR}/plex/tv:/tv
       - ${CONTENT_DIR}/plex/movies:/movies
-      - ${CONTENT_DIR}/plex/movies:/moviesHHD
-      - ${CONTENT_DIR}/plex/tv:/serialsHHD
       - ${CONTENT_DIR}/plex/music/:/music
       - ${CONTENT_DIR}/plex/likedMusic/:/likedMusic
     restart: unless-stopped
