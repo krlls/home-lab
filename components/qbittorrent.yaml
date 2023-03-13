@@ -17,10 +17,10 @@ services:
     volumes:
       - ../data/qbittorrent/config/:/config
       - ../data/qbittorrent/webgui/:/webgui
-      - /home/ksmi/a/torrent/movies:/downloads/movies
-      - /home/ksmi/a/torrent/tv/:/downloads/serials
-      - /home/ksmi/a/torrent/seedMusic:/downloads/seedMusic
-      - /home/ksmi/a/torrent/music/:/downloads/music
+      - ${CONTENT_DIR}/torrent/movies:/downloads/movies
+      - ${CONTENT_DIR}/torrent/tv/:/downloads/serials
+      - ${CONTENT_DIR}/torrent/seedMusic:/downloads/seedMusic
+      - ${CONTENT_DIR}/torrent/music/:/downloads/music
     ports:
       - 9092:9092
       - 6881:6881

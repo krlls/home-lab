@@ -20,5 +20,5 @@ services:
       - ../data/duplicati/config:/config
       - ../data/duplicati/backups:/backups
       - ../data/duplicati/telegram:/telegram
-      - /home/ksmi/a/nextcloud:/source/nextcloud
+      - ${CONTENT_DIR}/nextcloud:/source/nextcloud
     restart: unless-stopped
