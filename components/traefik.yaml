@@ -16,10 +16,10 @@ services:
       - "8081:8080"
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
-      - ../data/traefik/traefik.yaml:/traefik.yaml:ro
-      - ../data/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
-      - ../data/traefik/etc/traefik:/etc/traefik/
-      - ../data/traefik/srv/letsencrypt:/letsencrypt
+      - ${DATA_DIR}/traefik/traefik.yaml:/traefik.yaml:ro
+      - ${DATA_DIR}/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
+      - ${DATA_DIR}/traefik/etc/traefik:/etc/traefik/
+      - ${DATA_DIR}/traefik/srv/letsencrypt:/letsencrypt
     environment:
       - SITE_TRAEFIK_HOST=${DOMAIN_NAME}
       - ADGUARD_TRAEFIK_HOST=${ADGUARD_HOST}.${DOMAIN_NAME}

@@ -13,7 +13,7 @@ services:
       - LOG_LEVEL=debug
       - TZ=Europe/London
     volumes:
-      - ../data/overseerr/config:/app/config
+      - ${DATA_DIR}/overseerr/config:/app/config
     ports:
       - 5055
     labels:

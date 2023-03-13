@@ -14,6 +14,6 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ../data/jackett/config:/config
-      - ../data/jackett/downloads:/downloads
+      - ${DATA_DIR}/jackett/config:/config
+      - ${DATA_DIR}/jackett/downloads:/downloads
     restart: unless-stopped

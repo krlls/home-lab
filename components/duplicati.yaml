@@ -17,8 +17,8 @@ services:
       - TELEGRAM_TOKEN=${TELEGRAM_TOKEN}
       - TELEGRAM_CHATID=${TELEGRAM_CHATID}
     volumes:
-      - ../data/duplicati/config:/config
-      - ../data/duplicati/backups:/backups
-      - ../data/duplicati/telegram:/telegram
-      - /home/ksmi/a/nextcloud:/source/nextcloud
+      - ${DATA_DIR}/duplicati/config:/config
+      - ${DATA_DIR}/duplicati/backups:/backups
+      - ${DATA_DIR}/duplicati/telegram:/telegram
+      - ${CONTENT_DIR}/nextcloud:/source/nextcloud
     restart: unless-stopped

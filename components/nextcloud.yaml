@@ -13,9 +13,9 @@ services:
       - nextcloud_db
       - nextcloud_redis
     volumes:
-      - ../data/nextcloud/app:/var/www/html
-      - /home/ksmi/a/nextcloud/data:/var/www/html/data
-      - ../data/nextcloud/scripts/custom-entrypoint.sh:/custom-entrypoint.sh:ro
+      - ${DATA_DIR}/nextcloud/app:/var/www/html
+      - ${CONTENT_DIR}/nextcloud/data:/var/www/html/data
+      - ${DATA_DIR}/nextcloud/scripts/custom-entrypoint.sh:/custom-entrypoint.sh:ro
     restart: always
     environment:
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
@@ -40,7 +40,7 @@ services:
     command: --transaction-isolation=READ-COMMITTED --binlog-format=ROW
     restart: always
     volumes:
-      - ../data/nextcloud-db/db:/var/lib/mysql
+      - ${DATA_DIR}/nextcloud-db/db:/var/lib/mysql
     environment:
       - MYSQL_ROOT_PASSWORD=${NEXT_CLOUD_MYSQL_ROOT_PASSWORD}
       - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
@@ -57,7 +57,7 @@ services:
     volumes:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - /etc/localtime:/etc/localtime:ro
-      - ../data/nextcloud/cron/jobs.sh:/cron-scripts/jobs.sh:ro
+      - ${DATA_DIR}/nextcloud/cron/jobs.sh:/cron-scripts/jobs.sh:ro
     environment:
       - NEXTCLOUD_CONTAINER_NAME=nextcloud_app
       - NEXTCLOUD_EXEC_SHELL=sh

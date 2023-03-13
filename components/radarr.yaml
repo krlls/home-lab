@@ -14,7 +14,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ../data/radarr/config:/config
-      - /home/ksmi/a/torrent/movies:/downloads
-      - /home/ksmi/a/plex/movies:/movies
+      - ${DATA_DIR}/radarr/config:/config
+      - ${CONTENT_DIR}/torrent/movies:/downloads
+      - ${CONTENT_DIR}/plex/movies:/movies
     restart: unless-stopped

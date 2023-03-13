@@ -14,7 +14,7 @@ services:
       - PGID=1000
       - TZ=Europe/London
     volumes:
-      - ../data/lidarr/config:/config
-      - /home/ksmi/a/torrent/music:/downloads
-      - /home/ksmi/a/plex/music:/music
+      - ${DATA_DIR}/lidarr/config:/config
+      - ${CONTENT_DIR}/torrent/music:/downloads
+      - ${CONTENT_DIR}/plex/music:/music
     restart: unless-stopped
