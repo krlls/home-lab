@@ -149,6 +149,17 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    overseerr:
+      rule: "Host(`{{env "OVERSEERR_TRAEFIK_HOST"}}`)"
+      service: overseer-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -206,6 +217,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://tautulli:8181"
+    overseer-service:
+      loadBalancer:
+        servers:
+          - url: "http://overseerr:5055"
 
   middlewares:
     vpn-and-local-white-list:
