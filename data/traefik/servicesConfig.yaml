@@ -252,5 +252,5 @@ http:
         replacement: "/remote.php/dav/"
     cloud-ratelimit:
       rateLimit:
-        average: 30
-        burst: 50
+        average: 10
+        burst: 20
