@@ -18,6 +18,8 @@ services:
       - ${CONTENT_DIR}/nextcloud/data:/var/www/html/data
     restart: always
     environment:
+      - PHP_MEMORY_LIMIT=2G
+      - PHP_UPLOAD_LIMIT=2G
       - REDIS_HOST_PASSWORD=${REDIS_PASSWORD}
       - MYSQL_PASSWORD=${NEXT_CLOUD_MYSQL_PASSWORD}
       - MYSQL_DATABASE=${NEXT_CLOUD_MYSQL_DATABASE}
