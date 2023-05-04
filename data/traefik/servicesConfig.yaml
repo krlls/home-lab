@@ -142,7 +142,7 @@ http:
       rule: "Host(`{{env "TAUTULLI_TRAEFIK_HOST"}}`)"
       service: tautulli-service
       middlewares:
-        - local-white-list
+        - vpn-and-local-white-list
       entryPoints:
         - "websecure"
       tls:
@@ -235,6 +235,7 @@ http:
         sourcerange:
           - "192.168.0.0/24"
           - "10.13.13.0/24"
+          - "172.18.0.0/24"
           - "127.0.0.1/32"
     nextcloud-middleware:
       chain:

@@ -63,8 +63,7 @@
     },
     {
       "name": "overseerr",
-      "file": "overseerr.yaml",
-      "disabled": true
+      "file": "overseerr.yaml"
     },
     {
       "name": "wireguard",
