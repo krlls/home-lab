@@ -241,7 +241,6 @@ http:
         middlewares:
           - cloud-headers
           - cloud-regex
-          - cloud-ratelimit
     cloud-headers:
       headers:
         stsPreload: true
@@ -250,7 +249,3 @@ http:
       replacepathregex:
         regex: "^/.well-known/ca(l|rd)dav"
         replacement: "/remote.php/dav/"
-    cloud-ratelimit:
-      rateLimit:
-        average: 10
-        burst: 20
