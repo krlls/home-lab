@@ -142,7 +142,7 @@ http:
       rule: "Host(`{{env "TAUTULLI_TRAEFIK_HOST"}}`)"
       service: tautulli-service
       middlewares:
-        - local-white-list
+        - vpn-and-local-white-list
       entryPoints:
         - "websecure"
       tls:
