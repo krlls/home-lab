@@ -7,8 +7,6 @@ networks:
 
 services:
   overseerr:
-    dns:
-      - 77.244.75.110
     image: sctx/overseerr:latest
     container_name: overseerr
     environment:
