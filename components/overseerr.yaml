@@ -10,7 +10,7 @@ services:
     image: sctx/overseerr:latest
     container_name: overseerr
     dns:
-      - ${PUBLICHOST}
+      - 77.244.75.110
     environment:
       - LOG_LEVEL=debug
       - TZ=Europe/London
