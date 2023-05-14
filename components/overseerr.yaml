@@ -9,6 +9,7 @@ services:
   overseerr:
     image: sctx/overseerr:latest
     container_name: overseerr
+    dns: ${PUBLICHOST}
     environment:
       - LOG_LEVEL=debug
       - TZ=Europe/London
