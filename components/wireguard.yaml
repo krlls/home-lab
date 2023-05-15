@@ -1,9 +1,9 @@
 version: "3.7"
 
-networks:
-  default:
-    name: traefik-network
-    external: true
+#networks:
+#  default:
+#    name: traefik-network
+#    external: true
 
 services:
   wireguard:
