@@ -10,3 +10,7 @@ services:
     image: ksmi/ksmi_site:latest
     container_name: ksmi_site
     restart: always
+  ksmi_two:
+    image: ksmi/ksmi_site:latest
+    container_name: ksmi_two
+    restart: always

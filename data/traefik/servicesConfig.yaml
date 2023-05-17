@@ -9,6 +9,15 @@ http:
         certresolver:
           - "mydnschallenge"
 
+    ksmi-two:
+      rule: "Host(`test.ksmi.me`)"
+      service: ksmi-two
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
+
     adguard:
       rule: "Host(`{{env "ADGUARD_TRAEFIK_HOST"}}`)"
       service: adguard-service
@@ -165,6 +174,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://ksmi_site:3000"
+    ksmi-two:
+      loadBalancer:
+        servers:
+          - url: "http://ksmi_two:3000"
     adguard-service:
       loadBalancer:
         servers:
