@@ -19,7 +19,6 @@ services:
       - ../data/traefik/traefik.yaml:/traefik.yaml:ro
       - ../data/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
       - ../data/traefik/etc/traefik:/etc/traefik/
-      - ../data/traefik/srv/letsencrypt:/letsencrypt
     environment:
       - CLOUDFLARE_EMAIL=CLOUDFLARE_ACCOUNT_EMAIL_ADDRESS
       - CLOUDFLARE_DNS_API_TOKEN=CLOUDFLARE_GLOBAL_TOKEN
