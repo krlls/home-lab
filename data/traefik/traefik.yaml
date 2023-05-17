@@ -20,13 +20,19 @@ entryPoints:
     address: ':443'
 
 certificatesResolvers:
-  mydnschallenge:
+  cloudflare:
     acme:
       dnsChallenge:
         provider: cloudflare
-        delayBeforeCheck: 0
       email: krrllsm@gmail.com
-      storage: /etc/traefik/CloudflareAcme.json
+      storage: /etc/traefik/cloudflareacme.json
+      tlsChallenge: { }
+      httpChallenge:
+        entryPoint: web
+  mydnschallenge:
+    acme:
+      email: krrllsm@gmail.com
+      storage: /etc/traefik/acme.json
       tlsChallenge: {}
       httpChallenge:
         entryPoint: web
