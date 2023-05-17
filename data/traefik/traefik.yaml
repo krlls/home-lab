@@ -1,12 +1,6 @@
 global:
   checkNewVersion: false
 
-file:
-  watch: true
-
-api:
-  dashboard: true
-
 entryPoints:
   web:
     address: :80
@@ -22,7 +16,7 @@ entryPoints:
 certificatesResolvers:
   mydnschallenge:
     acme:
-      email: krrllsm@gmail.com
+      email: info@ksmi.me
       storage: /etc/traefik/acme.json
       tlsChallenge: {}
       httpChallenge:
@@ -36,4 +30,4 @@ providers:
     filename: /servicesConfig.yaml
 
 log:
-  level: DEBUG
+  level: WARN

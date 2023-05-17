@@ -7,7 +7,7 @@ networks:
 
 services:
   traefik:
-    image: traefik:latest
+    image: traefik:2.9.4
     read_only: true
     container_name: traefik
     ports:
@@ -19,7 +19,6 @@ services:
       - ../data/traefik/traefik.yaml:/traefik.yaml:ro
       - ../data/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
       - ../data/traefik/etc/traefik:/etc/traefik/
-      - ../data/traefik/srv/letsencrypt:/letsencrypt
     environment:
       - SITE_TRAEFIK_HOST=${DOMAIN_NAME}
       - ADGUARD_TRAEFIK_HOST=${ADGUARD_HOST}.${DOMAIN_NAME}
