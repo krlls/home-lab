@@ -26,7 +26,7 @@ certificatesResolvers:
         provider: cloudflare
         delayBeforeCheck: 0
       email: krrllsm@gmail.com
-      storage: /etc/traefik/acme.json
+      storage: /etc/traefik/CloudflareAcme.json
       tlsChallenge: {}
       httpChallenge:
         entryPoint: web
