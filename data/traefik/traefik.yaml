@@ -22,6 +22,12 @@ entryPoints:
 certificatesResolvers:
   mydnschallenge:
     acme:
+      dnsChallenge:
+        provider: cloudflare
+        delayBeforeCheck: 0
+        resolvers:
+          - "1.1.1.1:53"
+          - "8.8.8.8:53"
       email: krrllsm@gmail.com
       storage: /etc/traefik/crt/acme.json
       tlsChallenge: {}
