@@ -20,7 +20,7 @@ entryPoints:
     address: ':443'
 
 certificatesResolvers:
-  mydnschallenge:
+  letsencript:
     acme:
       caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
       dnsChallenge:

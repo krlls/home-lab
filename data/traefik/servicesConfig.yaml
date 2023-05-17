@@ -7,7 +7,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     ksmi-two:
       rule: "Host(`test.ksmi.me`)"
@@ -16,7 +16,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     adguard:
       rule: "Host(`{{env "ADGUARD_TRAEFIK_HOST"}}`)"
@@ -25,7 +25,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     plex:
       rule: "Host(`{{env "PLEX_TRAEFIK_HOST"}}`)"
@@ -34,7 +34,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     homer:
       rule: "Host(`{{env "HOMER_TRAEFIK_HOST"}}`)"
@@ -45,7 +45,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - mydnschallenge
+          - letsencript
 
     duplicati:
       rule: "Host(`{{env "DUPLICATI_TRAEFIK_HOST"}}`)"
@@ -56,7 +56,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     jackett:
       rule: "Host(`{{env "JACKETT_TRAEFIK_HOST"}}`)"
@@ -67,7 +67,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     lidarr:
       rule: "Host(`{{env "LIDARR_TRAEFIK_HOST"}}`)"
@@ -78,7 +78,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     sonarr:
       rule: "Host(`{{env "SONARR_TRAEFIK_HOST"}}`)"
@@ -89,7 +89,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     radarr:
       rule: "Host(`{{env "RADARR_TRAEFIK_HOST"}}`)"
@@ -100,7 +100,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     netdata:
       rule: "Host(`{{env "NETDATA_TRAEFIK_HOST"}}`)"
@@ -111,7 +111,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     nextcloud:
       rule: "Host(`{{env "NEXTCLOUD_TRAEFIK_HOST"}}`)"
@@ -123,7 +123,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     photoprism:
       rule: "Host(`{{env "PHOTOPRISM_TRAEFIK_HOST"}}`)"
@@ -134,7 +134,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     torrent:
       rule: "Host(`{{env "TORRENT_TRAEFIK_HOST"}}`)"
@@ -145,7 +145,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     tautulli:
       rule: "Host(`{{env "TAUTULLI_TRAEFIK_HOST"}}`)"
@@ -156,7 +156,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
     overseerr:
       rule: "Host(`{{env "OVERSEERR_TRAEFIK_HOST"}}`)"
@@ -167,7 +167,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "mydnschallenge"
+          - "letsencript"
 
   services:
     ksmi-service:
