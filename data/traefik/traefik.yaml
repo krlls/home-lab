@@ -22,6 +22,7 @@ entryPoints:
 certificatesResolvers:
   mydnschallenge:
     acme:
+      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
       dnsChallenge:
         provider: cloudflare
         delayBeforeCheck: "0"
@@ -30,7 +31,6 @@ certificatesResolvers:
           - "8.8.8.8:53"
       email: krrllsm@gmail.com
       storage: /crt/acme.json
-      tlsChallenge: {}
       httpChallenge:
         entryPoint: web
 
