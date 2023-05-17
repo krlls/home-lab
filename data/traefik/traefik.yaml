@@ -18,6 +18,7 @@ certificatesResolvers:
     acme:
       email: info@ksmi.me
       storage: /etc/traefik/acme.json
+      tlsChallenge: {}
       httpChallenge:
         entryPoint: web
 
