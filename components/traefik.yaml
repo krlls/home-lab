@@ -18,7 +18,7 @@ services:
       - /var/run/docker.sock:/var/run/docker.sock:ro
       - ../data/traefik/traefik.yaml:/traefik.yaml:ro
       - ../data/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
-      - ../data/traefik/acme.json:/acme.json
+      - ../data/traefik/crt:/etc/traefik/crt
     environment:
       - CLOUDFLARE_EMAIL=CLOUDFLARE_ACCOUNT_EMAIL_ADDRESS
       - CLOUDFLARE_DNS_API_TOKEN=CLOUDFLARE_GLOBAL_TOKEN

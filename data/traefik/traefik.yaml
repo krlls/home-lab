@@ -23,7 +23,7 @@ certificatesResolvers:
   mydnschallenge:
     acme:
       email: krrllsm@gmail.com
-      storage: /acme.json
+      storage: /etc/traefik/crt/acme.json
       tlsChallenge: {}
       httpChallenge:
         entryPoint: web
