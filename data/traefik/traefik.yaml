@@ -28,7 +28,7 @@ certificatesResolvers:
           - "1.1.1.1:53"
           - "8.8.8.8:53"
       email: krrllsm@gmail.com
-      storage: acme.json
+      storage: /etc/traefik/acme.json
       tlsChallenge: {}
       httpChallenge:
         entryPoint: web
