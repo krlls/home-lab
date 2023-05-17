@@ -102,7 +102,7 @@ http:
         - "websecure"
       tls:
         certresolver:
-          - "cloudflare"
+          - "mydnschallenge"
 
     nextcloud:
       rule: "Host(`{{env "NEXTCLOUD_TRAEFIK_HOST"}}`)"
