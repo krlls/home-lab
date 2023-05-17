@@ -22,10 +22,9 @@ entryPoints:
 certificatesResolvers:
   letsencript:
     acme:
-      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory"
       dnsChallenge:
         provider: cloudflare
-        delayBeforeCheck: "0"
+        delayBeforeCheck: "100"
         resolvers:
           - "1.1.1.1:53"
           - "8.8.8.8:53"
