@@ -93,7 +93,7 @@ In `./сonfig/components.json` you must register a new component, this will link
 ```json
 {
   "components": [
-....
+    ....
     {
       "name": "<component_name>",
       "file": "<component_name>.yaml"
@@ -110,27 +110,27 @@ Create the directory `./data/<component_name>` and mount all the necessary volum
 The file `data/traefik/servicesConfig.yaml` contains the configuration for the correct routing of traffic to services. To add a new service, you need to create `router` and `service`  for it.
 To do this, you need to add to the `routers`:
 ```yaml  
-http:  
+http:
   routers:
-      ...
-      <SERVICE_NAME>:  #custom router name
-          rule: "Host(`{{env "<SERVICE_URL>"}}`)" #replace
-          service: <SERVICE_NAME>  #replace
-          entryPoints:  
-             - "websecure"  
-          tls:  
-              certresolver:  
-                 - "mydnschallenge"
+    ...
+    <SERVICE_NAME>:  #custom router name
+      rule: "Host(`{{env "<SERVICE_URL>"}}`)" #replace
+      service: <SERVICE_NAME>  #replace
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver:
+          - "mydnschallenge"
 ```
 And create a service, for this add to the `services`:
 ```yaml  
-http:  
+http:
   services:
     ...
     <SERVICE_NAME>: #replace
-      loadBalancer:  
-      servers:  
-         - url: "http://<ALIAS>:<PORT>" #replace to container name and port
+      loadBalancer:
+      servers:
+        - url: "http://<ALIAS>:<PORT>" #replace to container name and port
 ```
 
 > The environment variable `SERVICE_URL`  in the example above must be
