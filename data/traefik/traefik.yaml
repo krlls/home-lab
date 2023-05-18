@@ -24,9 +24,6 @@ certificatesResolvers:
           - "8.8.8.8:53"
       email: krrllsm@ksmi.me
       storage: /etc/traefik/acme.json
-      tlsChallenge: {}
-      httpChallenge:
-        entryPoint: web
 
 providers:
   docker:
