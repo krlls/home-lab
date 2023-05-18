@@ -7,7 +7,7 @@ networks:
 
 services:
   traefik:
-    image: traefik:2.9.4
+    image: traefik:latest
     read_only: true
     container_name: traefik
     ports:
