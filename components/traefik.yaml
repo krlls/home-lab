@@ -20,6 +20,8 @@ services:
       - ../data/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
       - ../data/traefik/etc/traefik:/etc/traefik/
     environment:
+      - CF_API_EMAIL=${CLOUDFLARE_ACCOUNT_EMAIL_ADDRESS}
+      - CF_API_KEY=${CLOUDFLARE_GLOBAL_TOKEN}
       - SITE_TRAEFIK_HOST=${DOMAIN_NAME}
       - ADGUARD_TRAEFIK_HOST=${ADGUARD_HOST}.${DOMAIN_NAME}
       - PLEX_TRAEFIK_HOST=${PLEX_HOST}.${DOMAIN_NAME}
