@@ -61,9 +61,7 @@ $ git clone https://github.com/krlls/homeServer/
 ```
 
 2. Create the environment file:
-   Copy `./
-
-config/temp.env` as `./config/.env` and replace the service data with your own:
+   Copy `./config/temp.env` as `./config/.env` and replace the service data with your own:
 ```shell
 $ cp ./config/temp.env ./config/.env
 $ nano ./config/.env
