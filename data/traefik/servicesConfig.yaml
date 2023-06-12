@@ -146,7 +146,7 @@ http:
         certresolver: "mydnschallenge"
 
     youtrack:
-      rule: "Host(`{{env "YOUTRACK_HOST"}}`)"
+      rule: "Host(`{{env "YOUTRACK_TRAEFIK_HOST"}}`)"
       service: youtrack-service
       entryPoints:
         - "websecure"
