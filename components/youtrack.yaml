@@ -7,7 +7,7 @@ networks:
 
 services:
   youtrack:
-    image: jetbrains/youtrack:latest
+    image: jetbrains/youtrack
     container_name: youtrack
     hostname: "${YOUTRACK_HOST}.${PROMFIS_DOMAIN}"
     environment:
