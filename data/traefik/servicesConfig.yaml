@@ -145,6 +145,14 @@ http:
       tls:
         certresolver: "mydnschallenge"
 
+    youtrack:
+      rule: "Host(`{{env "YOUTRACK_TRAEFIK_HOST"}}`)"
+      service: youtrack-service
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver: "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -206,6 +214,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://overseerr:5055"
+    youtrack-service:
+      loadBalancer:
+        servers:
+          - url: "http://youtrack:8080"
 
   middlewares:
     vpn-and-local-white-list:

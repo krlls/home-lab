@@ -76,6 +76,10 @@
     {
       "name": "netdata",
       "file": "netdata.yaml"
+    },
+    {
+      "name": "youtrack",
+      "file": "youtrack.yaml"
     }
   ]
 }
