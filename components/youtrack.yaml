@@ -1,0 +1,20 @@
+version: "3.7"
+
+networks:
+  default:
+    name: traefik-network
+    external: true
+
+services:
+  youtrack:
+    image: jetbrains/youtrack:2023.1.10518
+    container_name: youtrack
+    environment:
+      - PUID=1000
+      - PGID=1000
+    volumes:
+      - ../data/youtrack/app/srv/youtrack/data/:/opt/youtrack/data
+      - ../data/youtrack/app/srv/youtrack/conf/:/opt/youtrack/conf
+      - ../data/youtrack/app/srv/youtrack/logs/:/opt/youtrack/logs
+      - ../data/youtrack/app/srv/youtrack/backups/:/opt/youtrack/backups
+    restart: unless-stopped
