@@ -7,7 +7,7 @@ networks:
 
 services:
   youtrack:
-    image: jetbrains/youtrack:2023.1.10518
+    image: jetbrains/youtrack:2023.1.17582
     container_name: youtrack
     environment:
       - PUID=1000
