@@ -6,6 +6,7 @@ apt-get update
 #pip3 install numpy pillow scipy pywavelets pillow_heif cryptography pynacl hexhamming pywavelets
 
 # For fix warnings
-apt-get install -y libmagickcore-6.q16-6-extra ffmpeg
+apt-get install -y libmagickcore-6.q16-6-extra ffmpeg libbz2-dev
+docker-php-ext-install bz2
 
 /entrypoint.sh apache2-foreground
