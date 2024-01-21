@@ -80,6 +80,10 @@
     {
       "name": "youtrack",
       "file": "youtrack.yaml"
+    },
+    {
+      "name": "xray_proxy",
+      "file": "xray-proxy.yaml"
     }
   ]
 }
