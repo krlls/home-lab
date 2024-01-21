@@ -15,7 +15,7 @@ services:
       - ../data/xray-proxy:/etc/xray
     ports:
       - 10808:10808
-      - 9889:8888
+      - 9889:8888/udp
     cap_add:
       - NET_ADMIN
     restart: unless-stopped
