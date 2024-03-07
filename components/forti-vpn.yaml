@@ -3,7 +3,6 @@ version: "3.7"
 services:
   forti_vpn:
     privileged: true
-    network_mode: fortinet
     networks:
       fortinet:
         ipv4_address: 172.20.0.2
