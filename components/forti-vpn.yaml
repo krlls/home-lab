@@ -2,6 +2,7 @@ version: "3.7"
 
 services:
   forti_vpn:
+    privileged: true
     container_name: forti-vpn
     hostname: forti_vpn
     image: auchandirect/forticlient
