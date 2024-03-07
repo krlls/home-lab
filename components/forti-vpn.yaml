@@ -3,6 +3,10 @@ version: "3.7"
 services:
   forti_vpn:
     privileged: true
+    network_mode: fortinet
+    ipam:
+      config:
+        - subnet: 172.20.0.0/24
     container_name: forti-vpn
     hostname: forti_vpn
     image: auchandirect/forticlient
