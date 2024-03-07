@@ -1,0 +1,12 @@
+version: "3.7"
+
+services:
+  forti_vpn:
+    container_name: forti-vpn
+    hostname: forti_vpn
+    image: auchandirect/forticlient
+    environment:
+      - VPNADDR=${FORTI_VPNADDR}
+      - VPNUSER=${FORTI_VPNUSER}
+      - VPNPASS=${FORTI_VPNPASS}
+    restart: unless-stopped
