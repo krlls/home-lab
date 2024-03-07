@@ -14,3 +14,7 @@ services:
       - VPNUSER=${FORTI_VPNUSER}
       - VPNPASS=${FORTI_VPNPASS}
     restart: unless-stopped
+
+networks:
+  fortinet:
+    external: true
