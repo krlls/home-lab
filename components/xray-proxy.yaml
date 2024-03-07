@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  xray_proxy:
+    container_name: xray_proxy
+    hostname: xray_proxy
+    image: teddysun/xray
+    volumes:
+      - ../data/xray-proxy:/etc/xray
+    ports:
+      - 10808:10808
+      - 9889:8888/udp
+    cap_add:
+      - NET_ADMIN
+    restart: unless-stopped

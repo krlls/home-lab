@@ -21,8 +21,9 @@ This is my main server repository for home use. It currently hosts several servi
 ## VPN
 
 - **[WireGuard Proxy](https://www.wireguard.com/)** - WireGuard VPN client and Socks5 proxy for local use.
-- **[WireGuard Server](https://www.wireguard.com/)** - WireGuard VPN server for home IP (Does not allow access to the local network).
+- **[WireGuard Server](https://www.wireguard.com/)** - WireGuard VPN server for home IP
 - **[Windscribe](https://windscribe.net)** - VPN client + local proxy for any components (Blocked by Roskomnadzor).
+- **[XrayCore](https://github.com/XTLS/Xray-core)** - Xray is a tool for proxying and tunneling data, bypassing restrictions. I use it as a relay in my home lab setup (WireGuard -> XrayCore [home lab] -> Xray server [external server]).
 
 ## Other Applications
 
