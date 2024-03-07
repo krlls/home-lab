@@ -1,11 +1,5 @@
 version: "3.7"
 
-#networks:
-#  default:
-#    name: traefik-network
-#    external: true
-
-#xray docker run -d -p 1080:1080 --name xray --restart=always -v /Users/ksmi/xray:/etc/xray teddysun/xray
 services:
   xray_proxy:
     container_name: xray_proxy
