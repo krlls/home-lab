@@ -78,6 +78,7 @@
       "file": "netdata.yaml"
     },
     {
+      "disabled": true,
       "name": "youtrack",
       "file": "youtrack.yaml"
     },
