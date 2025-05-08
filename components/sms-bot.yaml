@@ -2,11 +2,10 @@ version: "3.7"
 
 services:
   sms_bot:
+    privileged: true
     image: ksmi/sms_bot
     container_name: sms_bot
     network_mode: host
-    volumes:
-      - /dev:/dev
     environment:
       - PUID=1000
       - PGID=1000
