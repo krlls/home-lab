@@ -153,6 +153,14 @@ http:
       tls:
         certresolver: "mydnschallenge"
 
+    couchdb:
+      rule: "Host(`{{env "COUCHDB_TRAEFIK_HOST"}}`)"
+      service: couchdb-service
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver: "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -218,6 +226,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://youtrack:8080"
+    couchdb-service:
+      loadBalancer:
+        servers:
+          - url: "http://couchdb:5984"
 
   middlewares:
     vpn-and-local-white-list:

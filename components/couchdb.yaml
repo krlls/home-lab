@@ -1,0 +1,20 @@
+version: "3.7"
+
+networks:
+  default:
+    name: traefik-network
+    external: true
+
+services:
+  couchdb:
+    image: couchdb:latest
+    container_name: couchdb
+    environment:
+      COUCHDB_USER: ${COUCHDB_USER}
+      COUCHDB_PASSWORD: ${COUCHDB_PASSWORD}
+    volumes:
+      - ../data/couchdb:/opt/couchdb/data
+      - ../data/couchdb:/opt/couchdb/etc/local.d
+    ports:
+      - "5984:5984"
+    restart: unless-stopped

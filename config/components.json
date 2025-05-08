@@ -85,6 +85,10 @@
     {
       "name": "xray_proxy",
       "file": "xray-proxy.yaml"
+    },
+    {
+      "name": "couchdb",
+      "file": "couchdb.yaml"
     }
   ]
 }
