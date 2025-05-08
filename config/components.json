@@ -92,7 +92,7 @@
     },
     {
       "name": "sms_bot",
-      "file": "sms_bot.yaml"
+      "file": "sms-bot.yaml"
     }
   ]
 }
