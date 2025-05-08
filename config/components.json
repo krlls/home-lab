@@ -89,6 +89,10 @@
     {
       "name": "couchdb",
       "file": "couchdb.yaml"
+    },
+    {
+      "name": "sms_bot",
+      "file": "sms_bot.yaml"
     }
   ]
 }

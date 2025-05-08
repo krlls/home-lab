@@ -1,0 +1,15 @@
+version: "3.7"
+
+services:
+  sms_bot:
+    image: ksmi/sms_bot
+    container_name: sms_bot
+    network_mode: host
+    volumes:
+      - /dev:/dev
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TELEGRAM_BOT_TOKEN=${SMS_BOT_TELEGRAM_BOT_TOKEN}
+      - CLIENTS=${SMS_BOT_CLIENTS}
+    restart: unless-stopped
