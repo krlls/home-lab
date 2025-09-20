@@ -1,0 +1,31 @@
+services:
+  searxng:
+    image: docker.io/searxng/searxng:latest
+    volumes:
+      - ../data/perplexica/searxng:/etc/searxng:rw
+    expose:
+      - 8080
+    networks:
+      - perplexica-network
+    restart: unless-stopped
+
+  perplexica:
+    image: itzcrazykns1337/perplexica:main
+    container_name: perplexica
+    environment:
+      - SEARXNG_API_URL=http://searxng:8080
+      - DATA_DIR=/home/perplexica
+    networks:
+      - perplexica-network
+    volumes:
+      - ../data/perplexica/data:/home/perplexica/data
+      - ../data/perplexica/uploads:/home/perplexica/uploads
+      - ../data/perplexica/config.toml:/home/perplexica/config.toml
+    restart: unless-stopped
+
+networks:
+  perplexica-network:
+
+volumes:
+  backend-dbstore:
+  uploads:
