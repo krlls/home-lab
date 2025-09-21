@@ -5,7 +5,7 @@ networks:
 
 services:
   searxng:
-    image: docker.io/searxng/searxng:latest
+    image: docker.io/searxng/searxng:2025.5.16-b8682ff
     container_name: searxng
     volumes:
       - ../data/perplexica/searxng:/etc/searxng:rw
