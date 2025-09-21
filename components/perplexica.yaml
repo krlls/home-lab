@@ -1,6 +1,7 @@
 services:
   searxng:
     image: docker.io/searxng/searxng:latest
+    container_name: searxng
     volumes:
       - ../data/perplexica/searxng:/etc/searxng:rw
     expose:
@@ -15,6 +16,8 @@ services:
     environment:
       - SEARXNG_API_URL=http://searxng:8080
       - DATA_DIR=/home/perplexica
+    expose:
+      - 3000
     networks:
       - perplexica-network
     volumes:
