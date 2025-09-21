@@ -7,7 +7,7 @@ services:
     expose:
       - 8080
     networks:
-      - perplexica-network
+      - traefik-network
     restart: unless-stopped
 
   perplexica:
@@ -19,7 +19,7 @@ services:
     expose:
       - 3000
     networks:
-      - perplexica-network
+      - traefik-network
     volumes:
       - ../data/perplexica/data:/home/perplexica/data
       - ../data/perplexica/uploads:/home/perplexica/uploads
