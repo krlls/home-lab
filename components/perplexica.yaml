@@ -7,6 +7,9 @@ services:
   searxng:
     image: docker.io/searxng/searxng:latest
     container_name: searxng
+    environment:
+      - SEARXNG_SECRET_KEY=${SEARXNG_SECRET_KEY}
+      - SEARXNG_PORT=8080
     volumes:
       - ../data/perplexica/searxng:/etc/searxng:rw
     expose:
