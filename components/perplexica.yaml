@@ -21,6 +21,7 @@ services:
     container_name: perplexica
     environment:
       - SEARXNG_API_URL=http://searxng:8080
+      - SEARXNG_SECRET=${SEARXNG_SECRET_KEY}
       - DATA_DIR=/home/perplexica
     expose:
       - 3000
