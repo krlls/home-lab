@@ -1,3 +1,8 @@
+networks:
+  default:
+    name: traefik-network
+    external: true
+
 services:
   searxng:
     image: docker.io/searxng/searxng:latest
@@ -6,8 +11,6 @@ services:
       - ../data/perplexica/searxng:/etc/searxng:rw
     expose:
       - 8080
-    networks:
-      - traefik-network
     restart: unless-stopped
 
   perplexica:
@@ -18,18 +21,11 @@ services:
       - DATA_DIR=/home/perplexica
     expose:
       - 3000
-    networks:
-      - traefik-network
     volumes:
       - ../data/perplexica/data:/home/perplexica/data
       - ../data/perplexica/uploads:/home/perplexica/uploads
       - ../data/perplexica/config.toml:/home/perplexica/config.toml
     restart: unless-stopped
-
-networks:
-  default:
-    name: traefik-network
-    external: true
 
 volumes:
   backend-dbstore:
