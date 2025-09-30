@@ -8,9 +8,9 @@ services:
     image: docker.io/searxng/searxng:latest
     container_name: searxng
     volumes:
-      - ../data/perplexica/searxng:/etc/searxng:rw
-    ports:
-      - 4000:8080
+      - ../data/perplexica/searxng:/etc/searxng:ro
+    expose:
+      - 8080
     restart: unless-stopped
 
   perplexica:
