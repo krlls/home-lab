@@ -93,6 +93,10 @@
     {
       "name": "sms_bot",
       "file": "sms-bot.yaml"
+    },
+    {
+      "name": "perplexica",
+      "file": "perplexica.yaml"
     }
   ]
 }

@@ -145,6 +145,16 @@ http:
       tls:
         certresolver: "mydnschallenge"
 
+    perplexica:
+      rule: "Host(`{{env "PERPLEXICA_TRAEFIK_HOST"}}`)"
+      service: perplexica-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver: "mydnschallenge"
+
     youtrack:
       rule: "Host(`{{env "YOUTRACK_TRAEFIK_HOST"}}`)"
       service: youtrack-service
@@ -230,6 +240,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://couchdb:5984"
+    perplexica-service:
+      loadBalancer:
+        servers:
+          - url: "http://perplexica:3000"
 
   middlewares:
     vpn-and-local-white-list:

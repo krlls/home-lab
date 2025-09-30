@@ -1,0 +1,32 @@
+networks:
+  default:
+    name: traefik-network
+    external: true
+
+services:
+  searxng:
+    image: docker.io/searxng/searxng:latest
+    container_name: searxng
+    volumes:
+      - ../data/perplexica/searxng:/etc/searxng:ro
+    expose:
+      - 8080
+    restart: unless-stopped
+
+  perplexica:
+    image: itzcrazykns1337/perplexica:main
+    container_name: perplexica
+    environment:
+      - SEARXNG_API_URL=http://searxng:8080
+      - DATA_DIR=/home/perplexica
+    expose:
+      - 3000
+    volumes:
+      - ../data/perplexica/data:/home/perplexica/data
+      - ../data/perplexica/uploads:/home/perplexica/uploads
+      - ../data/perplexica/config.toml:/home/perplexica/config.toml
+    restart: unless-stopped
+
+volumes:
+  backend-dbstore:
+  uploads:

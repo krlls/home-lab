@@ -4,7 +4,7 @@ services:
   xray_proxy:
     container_name: xray_proxy
     hostname: xray_proxy
-    image: teddysun/xray
+    image: teddysun/xray:1.8.24
     volumes:
       - ../data/xray-proxy:/etc/xray
     ports:
