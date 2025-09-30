@@ -9,8 +9,8 @@ services:
     container_name: searxng
     volumes:
       - ../data/perplexica/searxng:/etc/searxng:rw
-    expose:
-      - 8080:8080
+    ports:
+      - 4000:8080
     restart: unless-stopped
 
   perplexica:
