@@ -92,7 +92,8 @@
     },
     {
       "name": "sms_bot",
-      "file": "sms-bot.yaml"
+      "file": "sms-bot.yaml",
+      "disabled": true
     },
     {
       "name": "perplexica",
