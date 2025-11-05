@@ -33,6 +33,8 @@ This is my main server repository for home use. It currently hosts several servi
 - **[AdGuard Home](https://adguard.com/adguard-home/overview.html)** - Network-wide software for blocking ads and tracking.
 - **[Homer](https://github.com/bastienwirtz/homer)** - A simple static homepage for easy access to services, configured through a simple YAML file.
 - **[Netdata](https://www.netdata.cloud/)** - Server monitoring.
+- **[Sms sim800c bot](https://github.com/krlls/sms-sim800c-bot)** - Bot for receive sms
+- **[Perplexica](https://github.com/ItzCrazyKns/Perplexica)** - Privacy-focused AI answering engine that runs entirely on your own hardware.
 
 ## Infrastructure Management
 
