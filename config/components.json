@@ -98,6 +98,10 @@
     {
       "name": "perplexica",
       "file": "perplexica.yaml"
+    },
+    {
+      "name": "review_bot",
+      "file": "review-bot.yaml"
     }
   ]
 }
