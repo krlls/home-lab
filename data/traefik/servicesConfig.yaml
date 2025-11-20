@@ -170,6 +170,13 @@ http:
         - "websecure"
       tls:
         certresolver: "mydnschallenge"
+    review-bot:
+      rule: "Host(`{{env "REVIEW_BOT_HOST"}}`)"
+      service: review-bot
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver: "mydnschallenge"
 
   services:
     ksmi-service:
@@ -244,6 +251,10 @@ http:
       loadBalancer:
         servers:
           - url: "http://perplexica:3000"
+    review-bot:
+      loadBalancer:
+        servers:
+          - url: "http://review_bot:3000"
 
   middlewares:
     vpn-and-local-white-list:
