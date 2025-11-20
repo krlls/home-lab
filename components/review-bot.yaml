@@ -1,5 +1,10 @@
 version: "3.7"
 
+networks:
+  default:
+    name: traefik-network
+    external: true
+
 services:
   review_bot:
     image: ksmi/review_bot
