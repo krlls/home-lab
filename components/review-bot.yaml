@@ -14,4 +14,5 @@ services:
       - PGID=1000
       - BOT_TOKEN=${REVIEW_BOT_TOKEN}
       - WEBAPP_URL=${REVIEW_BOT_WEBAPP_URL}
+      - BOT_CHAT_ID=${REVIEW_BOT_CHAT_ID}
     restart: unless-stopped
