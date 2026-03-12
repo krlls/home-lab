@@ -32,4 +32,6 @@ services:
       - ${CONTENT_DIR}/plex/movies:/movies
       - ${CONTENT_DIR}/plex/music/:/music
       - ${CONTENT_DIR}/plex/likedMusic/:/likedMusic
+    devices:
+      - /dev/dri:/dev/dri
     restart: unless-stopped
