@@ -17,19 +17,6 @@ entryPoints:
   websecure:
     address: ':443'
 
-certificatesResolvers:
-  mydnschallenge:
-    acme:
-#      caServer: "https://acme-staging-v02.api.letsencrypt.org/directory" #for test
-      dnsChallenge:
-        provider: cloudflare
-        delayBeforeCheck: 0
-        resolvers:
-          - "1.1.1.1:53"
-          - "8.8.8.8:53"
-      email: krrllsm@gmail.com
-      storage: /etc/traefik/acme.json
-
 providers:
   docker:
     endpoint: 'unix:///var/run/docker.sock'

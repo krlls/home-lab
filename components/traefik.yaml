@@ -19,6 +19,8 @@ services:
       - ../data/traefik/traefik.yaml:/traefik.yaml:ro
       - ../data/traefik/servicesConfig.yaml:/servicesConfig.yaml:ro
       - ../data/traefik/etc/traefik:/etc/traefik/
+      - ../data/traefik/lego:/etc/traefik/lego:ro
+      - ../data/traefik/dynamic-certs.yaml:/dynamic-certs.yaml:ro
     environment:
       - CF_API_EMAIL=${CLOUDFLARE_ACCOUNT_EMAIL_ADDRESS}
       - CF_API_KEY=${CLOUDFLARE_GLOBAL_TOKEN}

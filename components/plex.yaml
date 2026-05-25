@@ -13,7 +13,7 @@ services:
       - PUID=1000
       - PGID=1000
       - VERSION=docker
-      - PLEX_CLAIM="claim-mBWf_FXSdKwkYfzzPFZf"
+      - PLEX_CLAIM="claim-zxW5eUii_JntPf4uRSiz"
     ports:
       - "32400:32400"
       - "32400:32400/udp"

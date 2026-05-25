@@ -6,7 +6,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     adguard:
       rule: "Host(`{{env "ADGUARD_TRAEFIK_HOST"}}`)"
@@ -14,7 +14,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     plex:
       rule: "Host(`{{env "PLEX_TRAEFIK_HOST"}}`)"
@@ -22,7 +22,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     homer:
       rule: "Host(`{{env "HOMER_TRAEFIK_HOST"}}`)"
@@ -32,7 +32,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     duplicati:
       rule: "Host(`{{env "DUPLICATI_TRAEFIK_HOST"}}`)"
@@ -42,7 +42,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     jackett:
       rule: "Host(`{{env "JACKETT_TRAEFIK_HOST"}}`)"
@@ -52,7 +52,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     lidarr:
       rule: "Host(`{{env "LIDARR_TRAEFIK_HOST"}}`)"
@@ -62,7 +62,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     sonarr:
       rule: "Host(`{{env "SONARR_TRAEFIK_HOST"}}`)"
@@ -72,7 +72,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     radarr:
       rule: "Host(`{{env "RADARR_TRAEFIK_HOST"}}`)"
@@ -82,7 +82,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     netdata:
       rule: "Host(`{{env "NETDATA_TRAEFIK_HOST"}}`)"
@@ -92,7 +92,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     nextcloud:
       rule: "Host(`{{env "NEXTCLOUD_TRAEFIK_HOST"}}`)"
@@ -103,7 +103,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     photoprism:
       rule: "Host(`{{env "PHOTOPRISM_TRAEFIK_HOST"}}`)"
@@ -113,7 +113,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     torrent:
       rule: "Host(`{{env "TORRENT_TRAEFIK_HOST"}}`)"
@@ -123,7 +123,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     tautulli:
       rule: "Host(`{{env "TAUTULLI_TRAEFIK_HOST"}}`)"
@@ -133,7 +133,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     overseerr:
       rule: "Host(`{{env "OVERSEERR_TRAEFIK_HOST"}}`)"
@@ -143,7 +143,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     perplexica:
       rule: "Host(`{{env "PERPLEXICA_TRAEFIK_HOST"}}`)"
@@ -153,7 +153,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     youtrack:
       rule: "Host(`{{env "YOUTRACK_TRAEFIK_HOST"}}`)"
@@ -161,7 +161,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
     couchdb:
       rule: "Host(`{{env "COUCHDB_TRAEFIK_HOST"}}`)"
@@ -169,7 +169,7 @@ http:
       entryPoints:
         - "websecure"
       tls:
-        certresolver: "mydnschallenge"
+        {}
 
   services:
     ksmi-service:
@@ -274,3 +274,8 @@ http:
       replacepathregex:
         regex: "^/.well-known/ca(l|rd)dav"
         replacement: "/remote.php/dav/"
+
+tls:
+  certificates:
+    - certFile: /etc/traefik/lego/certificates/_.ksmi.me.crt
+      keyFile: /etc/traefik/lego/certificates/_.ksmi.me.key
