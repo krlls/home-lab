@@ -171,6 +171,16 @@ http:
       tls:
         certresolver: "mydnschallenge"
 
+    unifi:
+      rule: "Host(`{{env "UNIFI_TRAEFIK_HOST"}}`)"
+      service: unifi-service
+      middlewares:
+        - local-white-list
+      entryPoints:
+        - "websecure"
+      tls:
+        certresolver: "mydnschallenge"
+
   services:
     ksmi-service:
       loadBalancer:
@@ -244,6 +254,15 @@ http:
       loadBalancer:
         servers:
           - url: "http://perplexica:3000"
+    unifi-service:
+      loadBalancer:
+        serversTransport: unifi-transport
+        servers:
+          - url: "https://unifi:8443"
+
+  serversTransports:
+    unifi-transport:
+      insecureSkipVerify: true
 
   middlewares:
     vpn-and-local-white-list:

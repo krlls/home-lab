@@ -1,0 +1,48 @@
+version: "3.7"
+
+networks:
+  default:
+    name: traefik-network
+    external: true
+
+services:
+  unifi:
+    image: lscr.io/linuxserver/unifi-network-application:latest
+    container_name: unifi
+    depends_on:
+      - unifi_db
+    environment:
+      - PUID=1000
+      - PGID=1000
+      - TZ=Europe/London
+      - MONGO_USER=${UNIFI_MONGO_USER}
+      - MONGO_PASS=${UNIFI_MONGO_PASSWORD}
+      - MONGO_HOST=unifi_db
+      - MONGO_PORT=27017
+      - MONGO_DBNAME=${UNIFI_MONGO_DBNAME}
+      - MONGO_AUTHSOURCE=admin
+    volumes:
+      - ../data/unifi/app:/config
+    ports:
+      - "8080:8080"
+      - "3478:3478/udp"
+      - "10001:10001/udp"
+      - "8843:8843"
+      - "8880:8880"
+      - "6789:6789"
+    restart: unless-stopped
+
+  unifi_db:
+    image: mongo:7
+    container_name: unifi_db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=${UNIFI_MONGO_ROOT_PASSWORD}
+      - MONGO_USER=${UNIFI_MONGO_USER}
+      - MONGO_PASS=${UNIFI_MONGO_PASSWORD}
+      - MONGO_DBNAME=${UNIFI_MONGO_DBNAME}
+      - MONGO_AUTHSOURCE=admin
+    volumes:
+      - ../data/unifi/db:/data/db
+      - ../data/unifi/init-mongo.sh:/docker-entrypoint-initdb.d/init-mongo.sh:ro
+    restart: unless-stopped

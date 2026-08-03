@@ -35,6 +35,7 @@ This is my main server repository for home use. It currently hosts several servi
 - **[Netdata](https://www.netdata.cloud/)** - Server monitoring.
 - **[Sms sim800c bot](https://github.com/krlls/sms-sim800c-bot)** - Bot for receive sms
 - **[Perplexica](https://github.com/ItzCrazyKns/Perplexica)** - Privacy-focused AI answering engine that runs entirely on your own hardware.
+- **[UniFi Network Application](https://docs.linuxserver.io/images/docker-unifi-network-application/)** - Local UniFi Network controller.
 
 ## Infrastructure Management
 
