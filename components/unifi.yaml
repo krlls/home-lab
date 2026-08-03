@@ -7,7 +7,7 @@ networks:
 
 services:
   unifi:
-    image: lscr.io/linuxserver/unifi-network-application:latest
+    image: linuxserver/unifi-network-application:latest
     container_name: unifi
     depends_on:
       - unifi_db
