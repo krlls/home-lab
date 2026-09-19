@@ -12,10 +12,6 @@ services:
     environment:
       - LOG_LEVEL=debug
       - TZ=Europe/London
-      - HTTP_PROXY=socks5h://xray_proxy:10808
-      - HTTPS_PROXY=socks5h://xray_proxy:10808
-      - ALL_PROXY=socks5h://xray_proxy:10808
-      - NO_PROXY=localhost,127.0.0.1,plex,radarr,sonarr,lidarr,jackett,overseerr,tautulli,qbittorrent,xray_proxy,traefik,.ksmi.me,192.168.0.0/24,10.0.0.0/8,172.16.0.0/12
     volumes:
       - ../data/overseerr/config:/app/config
     restart: unless-stopped
